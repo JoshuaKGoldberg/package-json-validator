@@ -35,6 +35,9 @@
 	],
 	"type": "commonjs",
 	"main": "PJV.js",
+	"bin": {
+		"pjv": "./bin/pjv"
+	},
 	"files": [
 		"bin/",
 		"demo/",
