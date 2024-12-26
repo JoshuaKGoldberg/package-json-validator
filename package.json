@@ -39,12 +39,7 @@
 		"pjv": "./bin/pjv"
 	},
 	"files": [
-		"bin/",
-		"demo/",
-		"index.html",
-		"LICENSE.md",
-		"package.json",
-		"README.md"
+		"bin/"
 	],
 	"scripts": {
 		"format": "prettier .",
