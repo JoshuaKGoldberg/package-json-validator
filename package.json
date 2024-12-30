@@ -34,18 +34,35 @@
 		}
 	],
 	"type": "commonjs",
-	"main": "PJV.js",
+	"exports": {
+		".": {
+			"import": {
+				"type": "./lib/index.d.mts",
+				"default": "./lib/index.mjs"
+			},
+			"require": {
+				"type": "./lib/index.d.ts",
+				"default": "./lib/index.js"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"main": "lib/index.js",
+	"module": "lib/index.mjs",
+	"types": "lib/index.d.ts",
 	"bin": {
-		"pjv": "./bin/pjv"
+		"pjv": "./lib/bin/pjv.mjs"
 	},
 	"files": [
-		"bin/"
+		"lib/"
 	],
 	"scripts": {
+		"build": "tsup",
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
 		"prepare": "husky",
-		"test": "vitest"
+		"test": "vitest",
+		"type-check": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
@@ -57,6 +74,8 @@
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
 		"@eslint/js": "9.17.0",
 		"@release-it/conventional-changelog": "9.0.0",
+		"@types/node": "^22.10.2",
+		"@types/yargs": "^17.0.33",
 		"all-contributors-for-repository": "0.4.0",
 		"eslint": "9.17.0",
 		"eslint-plugin-jsdoc": "50.6.1",
@@ -70,8 +89,12 @@
 		"prettier-plugin-packagejson": "2.5.3",
 		"prettier-plugin-sh": "0.14.0",
 		"release-it": "18.0.0",
+		"tsup": "^8.3.5",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.19.0",
 		"vitest": "2.1.3"
 	},
+	"packageManager": "pnpm@9.15.1",
 	"engines": {
 		"node": ">=18"
 	},

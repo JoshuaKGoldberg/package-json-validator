@@ -1,9 +1,11 @@
 import { assert, describe, it, test } from "vitest";
 
-import { PJV } from "./PJV.js";
+import { PJV } from "./PJV";
 
-function getPackageJson(extra) {
-	const out = {
+const getPackageJson = (
+	extra: Record<string, unknown> = {},
+): Record<string, unknown> => {
+	const out: Record<string, unknown> = {
 		name: "test-package",
 		version: "0.5.0",
 	};
@@ -13,7 +15,7 @@ function getPackageJson(extra) {
 		}
 	}
 	return out;
-}
+};
 const npmWarningFields = {
 	author: "Nick Sullivan <nick@sullivanflock.com>",
 	description: "This is my description",
@@ -28,7 +30,7 @@ const npmWarningFields = {
 };
 
 describe("Basic", () => {
-	test("Input types", function () {
+	test("Input types", () => {
 		assert.ok(PJV.validate("string").critical, "string");
 		assert.ok(PJV.validate("{").critical, "malformed object");
 		assert.ok(PJV.validate("[]").critical, "array");
@@ -37,11 +39,11 @@ describe("Basic", () => {
 		assert.ok(PJV.validate("null").critical, "null");
 		assert.ok(PJV.validate("true").critical, "true");
 		assert.ok(PJV.validate("false").critical, "false");
-		assert.ok(PJV.validate({}).critical, "literal object");
+		assert.ok(PJV.validate({} as string).critical, "literal object");
 	});
 });
 describe("NPM", () => {
-	test("Field formats", function () {
+	test("Field formats", () => {
 		assert.ok(PJV.packageFormat.test("a"), "one alphanumeric character");
 		assert.ok(PJV.packageFormat.test("abcABC123._-"), "url safe characters");
 		assert.equal(PJV.packageFormat.test(".abc123"), false, "starts with dot");
@@ -68,7 +70,7 @@ describe("NPM", () => {
 				"people",
 				"<b@rubble.com> (http://barneyrubble.tumblr.com/)",
 			).length > 0,
-			1,
+			true,
 			"author string: name required",
 		);
 		assert.equal(
@@ -109,7 +111,7 @@ describe("NPM", () => {
 		);
 	});
 
-	describe("Dependencies Ranges", function () {
+	describe("Dependencies Ranges", () => {
 		test("Smoke", () => {
 			const json = getPackageJson({
 				dependencies: {
@@ -194,7 +196,7 @@ describe("NPM", () => {
 		});
 	});
 
-	test("Dependencies with scope", function () {
+	test("Dependencies with scope", () => {
 		// reference: https://github.com/JoshuaKGoldberg/package-json-validator/issues/49
 		const json = getPackageJson({
 			dependencies: {
@@ -212,7 +214,7 @@ describe("NPM", () => {
 		assert.equal(result.critical, undefined, JSON.stringify(result));
 	});
 
-	test("Required fields", function () {
+	test("Required fields", () => {
 		let json = getPackageJson();
 		let result = PJV.validate(JSON.stringify(json), "npm", {
 			warnings: false,
@@ -221,7 +223,7 @@ describe("NPM", () => {
 		assert.equal(result.valid, true, JSON.stringify(result));
 		assert.equal(result.critical, undefined, JSON.stringify(result));
 
-		["name", "version"].forEach(function (field) {
+		["name", "version"].forEach((field) => {
 			json = getPackageJson();
 			delete json[field];
 			result = PJV.validate(JSON.stringify(json), "npm", {
@@ -231,7 +233,7 @@ describe("NPM", () => {
 			assert.equal(result.valid, false, JSON.stringify(result));
 			assert.equal(result.warnings, undefined, JSON.stringify(result));
 		});
-		["name", "version"].forEach(function (field) {
+		["name", "version"].forEach((field) => {
 			json = getPackageJson();
 			json["private"] = true;
 			delete json[field];
@@ -244,7 +246,7 @@ describe("NPM", () => {
 		});
 	});
 
-	test("Warning fields", function () {
+	test("Warning fields", () => {
 		let json = getPackageJson(npmWarningFields);
 		let result = PJV.validate(JSON.stringify(json), "npm", {
 			warnings: true,
@@ -269,7 +271,7 @@ describe("NPM", () => {
 		}
 	});
 
-	test("Recommended fields", function () {
+	test("Recommended fields", () => {
 		const recommendedFields = {
 			homepage: "http://example.com",
 			engines: { node: ">=0.10.3 <0.12" },
@@ -299,7 +301,7 @@ describe("NPM", () => {
 		}
 	});
 
-	test("Licenses", function () {
+	test("Licenses", () => {
 		// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
 
 		// licenses as an array
