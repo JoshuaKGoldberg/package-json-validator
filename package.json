@@ -61,7 +61,8 @@
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
 		"prepare": "husky",
-		"test": "vitest"
+		"test": "vitest",
+		"type-check": "tsc --noEmit"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
