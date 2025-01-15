@@ -73,7 +73,7 @@
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
 		"@eslint/js": "9.17.0",
-		"@release-it/conventional-changelog": "9.0.0",
+		"@release-it/conventional-changelog": "10.0.0",
 		"@types/node": "^22.10.2",
 		"@types/yargs": "^17.0.33",
 		"all-contributors-for-repository": "0.4.0",
