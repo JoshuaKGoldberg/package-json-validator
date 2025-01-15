@@ -3,17 +3,10 @@ const n = require("eslint-plugin-n");
 const tseslint = require("typescript-eslint");
 
 module.exports = tseslint.config(
-	// Global ignores
-	{
-		ignores: ["lib/*", "eslint.config.js"],
-	},
-
-	// Reusable configs
+	{ ignores: ["lib/*", "eslint.config.js"] },
 	eslint.configs.recommended,
 	n.configs["flat/recommended"],
 	tseslint.configs.recommended,
-
-	// Rule overrides
 	{
 		linterOptions: {
 			reportUnusedDisableDirectives: "error",
