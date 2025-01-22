@@ -43,15 +43,15 @@ npm install package-json-validator
 ```
 
 ```js
-import { PJV } from "package-json-validator";
+import { validate } from "package-json-validator";
 
-PJV.validate(/* ... */);
+validate(/* ... */);
 ```
 
 ## API
 
 ```js
-PJV.validate(packageData[([, spec], options)]);
+validate(packageData[([, spec], options)]);
 ```
 
 `spec` is either `npm`, `commonjs_1.0`, or `commonjs_1.1`
@@ -68,15 +68,15 @@ PJV.validate(packageData[([, spec], options)]);
 Example:
 
 ```js
-const { PJV } = require("package-json-validator");
+const { validate } = require("package-json-validator");
 
-PJV.validate(data, spec, options);
+validate(data, spec, options);
 ```
 
 Example1:
 
 ```js
-const { PJV } = require("package-json-validator");
+const { validate } = require("package-json-validator");
 
 const text = JSON.stringify({
 	name: "packageJsonValidator",
@@ -113,7 +113,7 @@ const text = JSON.stringify({
 	},
 });
 
-const data = PJV.validate(text);
+const data = validate(text);
 ```
 
 Output for above example:

@@ -1,6 +1,6 @@
 import { assert, describe, it, test } from "vitest";
 
-import { PJV } from "./PJV";
+import { PJV, validate } from "./PJV";
 
 const getPackageJson = (
 	extra: Record<string, unknown> = {},
@@ -29,20 +29,27 @@ const npmWarningFields = {
 	contributors: ["Nick Sullivan <nick@sullivanflock.com>"],
 };
 
-describe("Basic", () => {
-	test("Input types", () => {
-		assert.ok(PJV.validate("string").critical, "string");
-		assert.ok(PJV.validate("{").critical, "malformed object");
-		assert.ok(PJV.validate("[]").critical, "array");
-		assert.ok(PJV.validate('"malformed"').critical, "quoted string");
-		assert.ok(PJV.validate("42").critical, "number");
-		assert.ok(PJV.validate("null").critical, "null");
-		assert.ok(PJV.validate("true").critical, "true");
-		assert.ok(PJV.validate("false").critical, "false");
-		assert.ok(PJV.validate({} as string).critical, "literal object");
+describe("PJV", () => {
+	describe("Basic", () => {
+		test("Input types", () => {
+			assert.ok(validate("string").critical, "string");
+			assert.ok(validate("{").critical, "malformed object");
+			assert.ok(validate("[]").critical, "array");
+			assert.ok(validate('"malformed"').critical, "quoted string");
+			assert.ok(validate("42").critical, "number");
+			assert.ok(validate("null").critical, "null");
+			assert.ok(validate("true").critical, "true");
+			assert.ok(validate("false").critical, "false");
+			assert.ok(validate({} as string).critical, "literal object");
+		});
 	});
-});
-describe("NPM", () => {
+
+	// While the PJV named export is still being used, we should ensure it's using
+	// the same validate function as what we're exporting directly.
+	test("named exports", () => {
+		assert.strictEqual(PJV.validate, validate);
+	});
+
 	test("Field formats", () => {
 		assert.ok(PJV.packageFormat.test("a"), "one alphanumeric character");
 		assert.ok(PJV.packageFormat.test("abcABC123._-"), "url safe characters");
@@ -74,7 +81,7 @@ describe("NPM", () => {
 			"author string: name required",
 		);
 		assert.equal(
-			PJV.validate(
+			validate(
 				JSON.stringify(getPackageJson({ bin: "./path/to/program" })),
 				"npm",
 			).valid,
@@ -82,7 +89,7 @@ describe("NPM", () => {
 			"bin: can be string",
 		);
 		assert.equal(
-			PJV.validate(
+			validate(
 				JSON.stringify(
 					getPackageJson({ bin: { "my-project": "./path/to/program" } }),
 				),
@@ -92,7 +99,7 @@ describe("NPM", () => {
 			"bin: can be object",
 		);
 		assert.equal(
-			PJV.validate(
+			validate(
 				JSON.stringify(getPackageJson({ bin: ["./path/to/program"] })),
 				"npm",
 			).valid,
@@ -100,7 +107,7 @@ describe("NPM", () => {
 			"bin: can't be an array",
 		);
 		assert.equal(
-			PJV.validate(
+			validate(
 				JSON.stringify(
 					getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
 				),
@@ -151,7 +158,7 @@ describe("NPM", () => {
 					gt: ">1.2.3",
 				},
 			});
-			const result = PJV.validate(JSON.stringify(json), "npm", {
+			const result = validate(JSON.stringify(json), "npm", {
 				warnings: false,
 				recommendations: false,
 			});
@@ -170,7 +177,7 @@ describe("NPM", () => {
 				},
 			});
 
-			const result = PJV.validate(JSON.stringify(json), "npm");
+			const result = validate(JSON.stringify(json), "npm");
 
 			assert.deepStrictEqual(result.errors, [
 				"Invalid version range for dependency package-name: abc123",
@@ -188,7 +195,7 @@ describe("NPM", () => {
 				},
 			});
 
-			const result = PJV.validate(JSON.stringify(json), "npm");
+			const result = validate(JSON.stringify(json), "npm");
 
 			assert.deepStrictEqual(result.errors, [
 				"Invalid version range for dependency package-name: abc123",
@@ -206,7 +213,7 @@ describe("NPM", () => {
 				"@reactivex/rxjs": "^5.0.0-alpha.7",
 			},
 		});
-		const result = PJV.validate(JSON.stringify(json), "npm", {
+		const result = validate(JSON.stringify(json), "npm", {
 			warnings: false,
 			recommendations: false,
 		});
@@ -216,7 +223,7 @@ describe("NPM", () => {
 
 	test("Required fields", () => {
 		let json = getPackageJson();
-		let result = PJV.validate(JSON.stringify(json), "npm", {
+		let result = validate(JSON.stringify(json), "npm", {
 			warnings: false,
 			recommendations: false,
 		});
@@ -226,7 +233,7 @@ describe("NPM", () => {
 		["name", "version"].forEach((field) => {
 			json = getPackageJson();
 			delete json[field];
-			result = PJV.validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), "npm", {
 				warnings: false,
 				recommendations: false,
 			});
@@ -237,7 +244,7 @@ describe("NPM", () => {
 			json = getPackageJson();
 			json["private"] = true;
 			delete json[field];
-			result = PJV.validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), "npm", {
 				warnings: false,
 				recommendations: false,
 			});
@@ -248,7 +255,7 @@ describe("NPM", () => {
 
 	test("Warning fields", () => {
 		let json = getPackageJson(npmWarningFields);
-		let result = PJV.validate(JSON.stringify(json), "npm", {
+		let result = validate(JSON.stringify(json), "npm", {
 			warnings: true,
 			recommendations: false,
 		});
@@ -258,7 +265,7 @@ describe("NPM", () => {
 		for (const field in npmWarningFields) {
 			json = getPackageJson(npmWarningFields);
 			delete json[field];
-			result = PJV.validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), "npm", {
 				warnings: true,
 				recommendations: false,
 			});
@@ -278,7 +285,7 @@ describe("NPM", () => {
 			dependencies: { "package-json-validator": "*" },
 		};
 		let json = getPackageJson(recommendedFields);
-		let result = PJV.validate(JSON.stringify(json), "npm", {
+		let result = validate(JSON.stringify(json), "npm", {
 			warnings: false,
 			recommendations: true,
 		});
@@ -288,7 +295,7 @@ describe("NPM", () => {
 		for (const field in recommendedFields) {
 			json = getPackageJson(recommendedFields);
 			delete json[field];
-			result = PJV.validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), "npm", {
 				warnings: false,
 				recommendations: true,
 			});
@@ -306,7 +313,7 @@ describe("NPM", () => {
 
 		// licenses as an array
 		let json = getPackageJson(npmWarningFields);
-		let result = PJV.validate(JSON.stringify(json), "npm", {
+		let result = validate(JSON.stringify(json), "npm", {
 			warnings: true,
 			recommendations: false,
 		});
@@ -318,7 +325,7 @@ describe("NPM", () => {
 		json = getPackageJson(npmWarningFields);
 		delete json.licenses;
 		json.license = "MIT";
-		result = PJV.validate(JSON.stringify(json), "npm", {
+		result = validate(JSON.stringify(json), "npm", {
 			warnings: true,
 			recommendations: false,
 		});
@@ -329,7 +336,7 @@ describe("NPM", () => {
 		// neither
 		json = getPackageJson(npmWarningFields);
 		delete json.licenses;
-		result = PJV.validate(JSON.stringify(json), "npm", {
+		result = validate(JSON.stringify(json), "npm", {
 			warnings: true,
 			recommendations: false,
 		});

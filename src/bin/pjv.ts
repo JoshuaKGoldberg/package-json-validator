@@ -9,7 +9,7 @@ import process from "node:process";
 
 import yargs from "yargs";
 
-import { PJV } from "../PJV.js";
+import { validate } from "../PJV.js";
 import type { SpecName } from "../types";
 
 type Options = {
@@ -59,7 +59,7 @@ if (!fs.existsSync(options.filename)) {
 	process.exitCode = 1;
 } else {
 	const contents = fs.readFileSync(options.filename).toString(),
-		results = PJV.validate(contents, options.spec, {
+		results = validate(contents, options.spec, {
 			warnings: options.warnings,
 			recommendations: options.recommendations,
 		});

@@ -502,8 +502,7 @@ const validateUrlTypes = (
 	return errors;
 };
 
-// TODO: Should we consider deprecating the PJV named export in favor of directly
-// exporting the functions and constants?
+/** @deprecated please use the individual {@link validate} function */
 export const PJV = {
 	// Format regexes
 	emailFormat,
@@ -522,3 +521,5 @@ export const PJV = {
 	validateUrlOrMailto,
 	validateUrlTypes,
 };
+
+export { validate };
