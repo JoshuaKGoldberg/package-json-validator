@@ -16,7 +16,7 @@ Of course, there are multiple ones to follow, which makes it trickier.
 - [CommonJS Packages 1.0](http://wiki.commonjs.org/wiki/Packages/1.0)
 - [CommonJS Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
 
-## Usages
+## Usage
 
 ### Command line
 
@@ -65,15 +65,20 @@ validate(packageData[([, spec], options)]);
 }
 ```
 
-Example:
+Example using an object:
 
 ```js
 const { validate } = require("package-json-validator");
 
-validate(data, spec, options);
+const packageData = {
+	name: "my-package",
+	version: "1.2.3",
+};
+
+validate(packageData);
 ```
 
-Example1:
+Example using a string:
 
 ```js
 const { validate } = require("package-json-validator");

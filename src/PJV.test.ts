@@ -40,7 +40,6 @@ describe("PJV", () => {
 			assert.ok(validate("null").critical, "null");
 			assert.ok(validate("true").critical, "true");
 			assert.ok(validate("false").critical, "false");
-			assert.ok(validate({} as string).critical, "literal object");
 		});
 	});
 
@@ -116,236 +115,495 @@ describe("PJV", () => {
 			false,
 			"version should be a string",
 		);
+		assert.equal(
+			validate(getPackageJson({ bin: "./path/to/program" }), "npm").valid,
+			true,
+			"bin: can be string | with object input",
+		);
+		assert.equal(
+			validate(
+				getPackageJson({ bin: { "my-project": "./path/to/program" } }),
+				"npm",
+			).valid,
+			true,
+			"bin: can be object | with object input",
+		);
+		assert.equal(
+			validate(getPackageJson({ bin: ["./path/to/program"] }), "npm").valid,
+			false,
+			"bin: can't be an array | with object input",
+		);
+		assert.equal(
+			validate(
+				getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
+				"npm",
+			).valid,
+			false,
+			"version should be a string | with object input",
+		);
 	});
 
 	describe("Dependencies Ranges", () => {
-		test("Smoke", () => {
-			const json = getPackageJson({
-				dependencies: {
-					star: "*",
-					empty: "",
-					url: "https://github.com/JoshuaKGoldberg/package-json-validator",
-					"caret-first": "^1.0.0",
-					"tilde-first": "~1.2",
-					"x-version": "1.2.x",
-					"tilde-top": "~1",
-					"caret-top": "^1",
-					"workspace-package-no-range": "workspace:",
-					"workspace-package-caret": "workspace:^",
-					"workspace-package-any": "workspace:*",
-					"workspace-package-tilde-version": "workspace:~1.2.3",
-					"workspace-gt-version": "workspace:>1.2.3",
-					"workspace-pre-release": "workspace:1.2.3-rc.1",
-					"catalog-package": "catalog:",
-					"catalog-named-package": "catalog:react19",
-					"svgo-v1": "npm:svgo@1.3.2",
-					"svgo-v2": "npm:svgo@2.0.3",
-				},
-				devDependencies: {
-					range: "1.2.3 - 2.3.4",
-					lteq: "<=1.2.3",
-					gteq: ">=1.2.3",
-					"verion-build": "1.2.3+build2012",
-					lt: "<1.2.3",
-					gt: ">1.2.3",
-				},
-				peerDependencies: {
-					range: "1.2.3 - 2.3.4",
-					lteq: "<=1.2.3",
-					gteq: ">=1.2.3",
-					"verion-build": "1.2.3+build2012",
-					lt: "<1.2.3",
-					gt: ">1.2.3",
-				},
-			});
-			const result = validate(JSON.stringify(json), "npm", {
-				warnings: false,
-				recommendations: false,
-			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.critical, undefined, JSON.stringify(result));
-		});
-
-		it("reports a complaint when devDependencies has an invalid range", () => {
-			const json = getPackageJson({
-				devDependencies: {
-					"package-name": "abc123",
-					"bad-catalog": "catalob:",
-					"bad-workspace": "workspace:abc123",
-					"bad-workspace-range": "workspace:^>1.2.3",
-					"bad-npm": "npm;svgo@^1.2.3",
-				},
+		describe("with string input", () => {
+			test("Smoke", () => {
+				const json = getPackageJson({
+					dependencies: {
+						star: "*",
+						empty: "",
+						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
+						"caret-first": "^1.0.0",
+						"tilde-first": "~1.2",
+						"x-version": "1.2.x",
+						"tilde-top": "~1",
+						"caret-top": "^1",
+						"workspace-package-no-range": "workspace:",
+						"workspace-package-caret": "workspace:^",
+						"workspace-package-any": "workspace:*",
+						"workspace-package-tilde-version": "workspace:~1.2.3",
+						"workspace-gt-version": "workspace:>1.2.3",
+						"workspace-pre-release": "workspace:1.2.3-rc.1",
+						"catalog-package": "catalog:",
+						"catalog-named-package": "catalog:react19",
+						"svgo-v1": "npm:svgo@1.3.2",
+						"svgo-v2": "npm:svgo@2.0.3",
+					},
+					devDependencies: {
+						range: "1.2.3 - 2.3.4",
+						lteq: "<=1.2.3",
+						gteq: ">=1.2.3",
+						"verion-build": "1.2.3+build2012",
+						lt: "<1.2.3",
+						gt: ">1.2.3",
+					},
+					peerDependencies: {
+						range: "1.2.3 - 2.3.4",
+						lteq: "<=1.2.3",
+						gteq: ">=1.2.3",
+						"verion-build": "1.2.3+build2012",
+						lt: "<1.2.3",
+						gt: ">1.2.3",
+					},
+				});
+				const result = validate(JSON.stringify(json), "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
 			});
 
-			const result = validate(JSON.stringify(json), "npm");
+			it("reports a complaint when devDependencies has an invalid range", () => {
+				const json = getPackageJson({
+					devDependencies: {
+						"package-name": "abc123",
+						"bad-catalog": "catalob:",
+						"bad-workspace": "workspace:abc123",
+						"bad-workspace-range": "workspace:^>1.2.3",
+						"bad-npm": "npm;svgo@^1.2.3",
+					},
+				});
 
-			assert.deepStrictEqual(result.errors, [
-				"Invalid version range for dependency package-name: abc123",
-				"Invalid version range for dependency bad-catalog: catalob:",
-				"Invalid version range for dependency bad-workspace: workspace:abc123",
-				"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
-				"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-			]);
-		});
+				const result = validate(JSON.stringify(json), "npm");
 
-		it("reports a complaint when peerDependencies has an invalid range", () => {
-			const json = getPackageJson({
-				peerDependencies: {
-					"package-name": "abc123",
-				},
+				assert.deepStrictEqual(result.errors, [
+					"Invalid version range for dependency package-name: abc123",
+					"Invalid version range for dependency bad-catalog: catalob:",
+					"Invalid version range for dependency bad-workspace: workspace:abc123",
+					"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
+					"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
+				]);
 			});
 
-			const result = validate(JSON.stringify(json), "npm");
+			it("reports a complaint when peerDependencies has an invalid range", () => {
+				const json = getPackageJson({
+					peerDependencies: {
+						"package-name": "abc123",
+					},
+				});
 
-			assert.deepStrictEqual(result.errors, [
-				"Invalid version range for dependency package-name: abc123",
-			]);
-		});
-	});
+				const result = validate(JSON.stringify(json), "npm");
 
-	test("Dependencies with scope", () => {
-		// reference: https://github.com/JoshuaKGoldberg/package-json-validator/issues/49
-		const json = getPackageJson({
-			dependencies: {
-				star: "*",
-				empty: "",
-				url: "https://github.com/JoshuaKGoldberg/package-json-validator",
-				"@reactivex/rxjs": "^5.0.0-alpha.7",
-			},
-		});
-		const result = validate(JSON.stringify(json), "npm", {
-			warnings: false,
-			recommendations: false,
-		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
-	});
-
-	test("Required fields", () => {
-		let json = getPackageJson();
-		let result = validate(JSON.stringify(json), "npm", {
-			warnings: false,
-			recommendations: false,
-		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
-
-		["name", "version"].forEach((field) => {
-			json = getPackageJson();
-			delete json[field];
-			result = validate(JSON.stringify(json), "npm", {
-				warnings: false,
-				recommendations: false,
+				assert.deepStrictEqual(result.errors, [
+					"Invalid version range for dependency package-name: abc123",
+				]);
 			});
-			assert.equal(result.valid, false, JSON.stringify(result));
-			assert.equal(result.warnings, undefined, JSON.stringify(result));
-		});
-		["name", "version"].forEach((field) => {
-			json = getPackageJson();
-			json["private"] = true;
-			delete json[field];
-			result = validate(JSON.stringify(json), "npm", {
-				warnings: false,
-				recommendations: false,
+
+			test("Dependencies with scope", () => {
+				// reference: https://github.com/JoshuaKGoldberg/package-json-validator/issues/49
+				const json = getPackageJson({
+					dependencies: {
+						star: "*",
+						empty: "",
+						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
+						"@reactivex/rxjs": "^5.0.0-alpha.7",
+					},
+				});
+				const result = validate(JSON.stringify(json), "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
 			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.warnings, undefined, JSON.stringify(result));
-		});
-	});
 
-	test("Warning fields", () => {
-		let json = getPackageJson(npmWarningFields);
-		let result = validate(JSON.stringify(json), "npm", {
-			warnings: true,
-			recommendations: false,
-		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
+			test("Required fields", () => {
+				let json = getPackageJson();
+				let result = validate(JSON.stringify(json), "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
 
-		for (const field in npmWarningFields) {
-			json = getPackageJson(npmWarningFields);
-			delete json[field];
-			result = validate(JSON.stringify(json), "npm", {
-				warnings: true,
-				recommendations: false,
+				["name", "version"].forEach((field) => {
+					json = getPackageJson();
+					delete json[field];
+					result = validate(JSON.stringify(json), "npm", {
+						warnings: false,
+						recommendations: false,
+					});
+					assert.equal(result.valid, false, JSON.stringify(result));
+					assert.equal(result.warnings, undefined, JSON.stringify(result));
+				});
+				["name", "version"].forEach((field) => {
+					json = getPackageJson();
+					json["private"] = true;
+					delete json[field];
+					result = validate(JSON.stringify(json), "npm", {
+						warnings: false,
+						recommendations: false,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(result.warnings, undefined, JSON.stringify(result));
+				});
 			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(
-				result.warnings && result.warnings.length,
-				1,
-				JSON.stringify(result),
-			);
-		}
-	});
 
-	test("Recommended fields", () => {
-		const recommendedFields = {
-			homepage: "http://example.com",
-			engines: { node: ">=0.10.3 <0.12" },
-			dependencies: { "package-json-validator": "*" },
-		};
-		let json = getPackageJson(recommendedFields);
-		let result = validate(JSON.stringify(json), "npm", {
-			warnings: false,
-			recommendations: true,
-		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
+			test("Warning fields", () => {
+				let json = getPackageJson(npmWarningFields);
+				let result = validate(JSON.stringify(json), "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
 
-		for (const field in recommendedFields) {
-			json = getPackageJson(recommendedFields);
-			delete json[field];
-			result = validate(JSON.stringify(json), "npm", {
-				warnings: false,
-				recommendations: true,
+				for (const field in npmWarningFields) {
+					json = getPackageJson(npmWarningFields);
+					delete json[field];
+					result = validate(JSON.stringify(json), "npm", {
+						warnings: true,
+						recommendations: false,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(
+						result.warnings && result.warnings.length,
+						1,
+						JSON.stringify(result),
+					);
+				}
 			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(
-				result.recommendations && result.recommendations.length,
-				1,
-				JSON.stringify(result),
-			);
-		}
-	});
 
-	test("Licenses", () => {
-		// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
+			test("Recommended fields", () => {
+				const recommendedFields = {
+					homepage: "http://example.com",
+					engines: { node: ">=0.10.3 <0.12" },
+					dependencies: { "package-json-validator": "*" },
+				};
+				let json = getPackageJson(recommendedFields);
+				let result = validate(JSON.stringify(json), "npm", {
+					warnings: false,
+					recommendations: true,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
 
-		// licenses as an array
-		let json = getPackageJson(npmWarningFields);
-		let result = validate(JSON.stringify(json), "npm", {
-			warnings: true,
-			recommendations: false,
+				for (const field in recommendedFields) {
+					json = getPackageJson(recommendedFields);
+					delete json[field];
+					result = validate(JSON.stringify(json), "npm", {
+						warnings: false,
+						recommendations: true,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(
+						result.recommendations && result.recommendations.length,
+						1,
+						JSON.stringify(result),
+					);
+				}
+			});
+
+			test("Licenses", () => {
+				// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
+
+				// licenses as an array
+				let json = getPackageJson(npmWarningFields);
+				let result = validate(JSON.stringify(json), "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(result.warnings, undefined, JSON.stringify(result));
+
+				// licenses as a single type
+				json = getPackageJson(npmWarningFields);
+				delete json.licenses;
+				json.license = "MIT";
+				result = validate(JSON.stringify(json), "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(result.warnings, undefined, JSON.stringify(result));
+
+				// neither
+				json = getPackageJson(npmWarningFields);
+				delete json.licenses;
+				result = validate(JSON.stringify(json), "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(
+					result.warnings && result.warnings.length,
+					1,
+					JSON.stringify(result),
+				);
+			});
 		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
-		assert.equal(result.warnings, undefined, JSON.stringify(result));
 
-		// licenses as a single type
-		json = getPackageJson(npmWarningFields);
-		delete json.licenses;
-		json.license = "MIT";
-		result = validate(JSON.stringify(json), "npm", {
-			warnings: true,
-			recommendations: false,
-		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
-		assert.equal(result.warnings, undefined, JSON.stringify(result));
+		describe("with object input", () => {
+			test("Smoke", () => {
+				const json = getPackageJson({
+					dependencies: {
+						star: "*",
+						empty: "",
+						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
+						"caret-first": "^1.0.0",
+						"tilde-first": "~1.2",
+						"x-version": "1.2.x",
+						"tilde-top": "~1",
+						"caret-top": "^1",
+						"workspace-package-no-range": "workspace:",
+						"workspace-package-caret": "workspace:^",
+						"workspace-package-any": "workspace:*",
+						"workspace-package-tilde-version": "workspace:~1.2.3",
+						"workspace-gt-version": "workspace:>1.2.3",
+						"workspace-pre-release": "workspace:1.2.3-rc.1",
+						"catalog-package": "catalog:",
+						"catalog-named-package": "catalog:react19",
+						"svgo-v1": "npm:svgo@1.3.2",
+						"svgo-v2": "npm:svgo@2.0.3",
+					},
+					devDependencies: {
+						range: "1.2.3 - 2.3.4",
+						lteq: "<=1.2.3",
+						gteq: ">=1.2.3",
+						"verion-build": "1.2.3+build2012",
+						lt: "<1.2.3",
+						gt: ">1.2.3",
+					},
+					peerDependencies: {
+						range: "1.2.3 - 2.3.4",
+						lteq: "<=1.2.3",
+						gteq: ">=1.2.3",
+						"verion-build": "1.2.3+build2012",
+						lt: "<1.2.3",
+						gt: ">1.2.3",
+					},
+				});
+				const result = validate(json, "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+			});
 
-		// neither
-		json = getPackageJson(npmWarningFields);
-		delete json.licenses;
-		result = validate(JSON.stringify(json), "npm", {
-			warnings: true,
-			recommendations: false,
+			it("reports a complaint when devDependencies has an invalid range", () => {
+				const json = getPackageJson({
+					devDependencies: {
+						"package-name": "abc123",
+						"bad-catalog": "catalob:",
+						"bad-workspace": "workspace:abc123",
+						"bad-workspace-range": "workspace:^>1.2.3",
+						"bad-npm": "npm;svgo@^1.2.3",
+					},
+				});
+
+				const result = validate(json, "npm");
+
+				assert.deepStrictEqual(result.errors, [
+					"Invalid version range for dependency package-name: abc123",
+					"Invalid version range for dependency bad-catalog: catalob:",
+					"Invalid version range for dependency bad-workspace: workspace:abc123",
+					"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
+					"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
+				]);
+			});
+
+			it("reports a complaint when peerDependencies has an invalid range", () => {
+				const json = getPackageJson({
+					peerDependencies: {
+						"package-name": "abc123",
+					},
+				});
+
+				const result = validate(json, "npm");
+
+				assert.deepStrictEqual(result.errors, [
+					"Invalid version range for dependency package-name: abc123",
+				]);
+			});
+
+			test("Dependencies with scope", () => {
+				// reference: https://github.com/JoshuaKGoldberg/package-json-validator/issues/49
+				const json = getPackageJson({
+					dependencies: {
+						star: "*",
+						empty: "",
+						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
+						"@reactivex/rxjs": "^5.0.0-alpha.7",
+					},
+				});
+				const result = validate(json, "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+			});
+
+			test("Required fields", () => {
+				let json = getPackageJson();
+				let result = validate(json, "npm", {
+					warnings: false,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+
+				["name", "version"].forEach((field) => {
+					json = getPackageJson();
+					delete json[field];
+					result = validate(json, "npm", {
+						warnings: false,
+						recommendations: false,
+					});
+					assert.equal(result.valid, false, JSON.stringify(result));
+					assert.equal(result.warnings, undefined, JSON.stringify(result));
+				});
+				["name", "version"].forEach((field) => {
+					json = getPackageJson();
+					json["private"] = true;
+					delete json[field];
+					result = validate(json, "npm", {
+						warnings: false,
+						recommendations: false,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(result.warnings, undefined, JSON.stringify(result));
+				});
+			});
+
+			test("Warning fields", () => {
+				let json = getPackageJson(npmWarningFields);
+				let result = validate(json, "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+
+				for (const field in npmWarningFields) {
+					json = getPackageJson(npmWarningFields);
+					delete json[field];
+					result = validate(json, "npm", {
+						warnings: true,
+						recommendations: false,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(
+						result.warnings && result.warnings.length,
+						1,
+						JSON.stringify(result),
+					);
+				}
+			});
+
+			test("Recommended fields", () => {
+				const recommendedFields = {
+					homepage: "http://example.com",
+					engines: { node: ">=0.10.3 <0.12" },
+					dependencies: { "package-json-validator": "*" },
+				};
+				let json = getPackageJson(recommendedFields);
+				let result = validate(json, "npm", {
+					warnings: false,
+					recommendations: true,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+
+				for (const field in recommendedFields) {
+					json = getPackageJson(recommendedFields);
+					delete json[field];
+					result = validate(json, "npm", {
+						warnings: false,
+						recommendations: true,
+					});
+					assert.equal(result.valid, true, JSON.stringify(result));
+					assert.equal(
+						result.recommendations && result.recommendations.length,
+						1,
+						JSON.stringify(result),
+					);
+				}
+			});
+
+			test("Licenses", () => {
+				// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
+
+				// licenses as an array
+				let json = getPackageJson(npmWarningFields);
+				let result = validate(json, "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(result.warnings, undefined, JSON.stringify(result));
+
+				// licenses as a single type
+				json = getPackageJson(npmWarningFields);
+				delete json.licenses;
+				json.license = "MIT";
+				result = validate(json, "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(result.warnings, undefined, JSON.stringify(result));
+
+				// neither
+				json = getPackageJson(npmWarningFields);
+				delete json.licenses;
+				result = validate(json, "npm", {
+					warnings: true,
+					recommendations: false,
+				});
+				assert.equal(result.valid, true, JSON.stringify(result));
+				assert.equal(result.critical, undefined, JSON.stringify(result));
+				assert.equal(
+					result.warnings && result.warnings.length,
+					1,
+					JSON.stringify(result),
+				);
+			});
 		});
-		assert.equal(result.valid, true, JSON.stringify(result));
-		assert.equal(result.critical, undefined, JSON.stringify(result));
-		assert.equal(
-			result.warnings && result.warnings.length,
-			1,
-			JSON.stringify(result),
-		);
 	});
 });

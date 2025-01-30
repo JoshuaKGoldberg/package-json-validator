@@ -212,11 +212,11 @@ type ValidationOutput = {
 	critical?: string | Record<string, string>;
 };
 const validate = (
-	data: string,
+	data: string | object,
 	specName: SpecName = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
-	const parsed = parse(data);
+	const parsed = typeof data == "object" ? data : parse(data);
 	const out: ValidationOutput = { valid: false };
 
 	if (typeof parsed == "string") {
