@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.10.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.9.0...v0.10.0) (2025-01-30)
+
+### Features
+
+- add support for object input ([#138](https://github.com/JoshuaKGoldberg/package-json-validator/issues/138)) ([80648e1](https://github.com/JoshuaKGoldberg/package-json-validator/commit/80648e1ab9bc7f70ae0f16892d6714aa68ec6394)), closes [#66](https://github.com/JoshuaKGoldberg/package-json-validator/issues/66) [#66](https://github.com/JoshuaKGoldberg/package-json-validator/issues/66)
+
 # [0.9.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.8.0...v0.9.0) (2025-01-28)
 
 ### Features
