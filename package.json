@@ -94,7 +94,7 @@
 		"typescript-eslint": "8.23.0",
 		"vitest": "3.0.1"
 	},
-	"packageManager": "pnpm@10.1.0",
+	"packageManager": "pnpm@10.2.0",
 	"engines": {
 		"node": ">=18"
 	},
