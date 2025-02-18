@@ -9,7 +9,7 @@ import process from "node:process";
 
 import yargs from "yargs";
 
-import { validate } from "../PJV.js";
+import { validate } from "../validate.js";
 import type { SpecName } from "../types";
 
 type Options = {

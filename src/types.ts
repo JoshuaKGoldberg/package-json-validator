@@ -43,5 +43,7 @@ export type UrlType = {
 
 export type UrlOrMailTo =
 	| string
-	| { url: string; email: string; mail?: never; web?: never }
-	| { mail: string; web: string; email?: never; url?: never };
+	| { url: string; email?: string; mail?: never; web?: never }
+	| { url?: string; email: string; mail?: never; web?: never }
+	| { mail: string; web?: string; email?: never; url?: never }
+	| { mail?: string; web: string; email?: never; url?: never };

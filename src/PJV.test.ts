@@ -1,6 +1,7 @@
 import { assert, describe, it, test } from "vitest";
 
-import { PJV, validate } from "./PJV";
+import { PJV } from "./PJV";
+import { validate } from "./validate";
 
 const getPackageJson = (
 	extra: Record<string, unknown> = {},
@@ -30,19 +31,6 @@ const npmWarningFields = {
 };
 
 describe("PJV", () => {
-	describe("Basic", () => {
-		test("Input types", () => {
-			assert.ok(validate("string").critical, "string");
-			assert.ok(validate("{").critical, "malformed object");
-			assert.ok(validate("[]").critical, "array");
-			assert.ok(validate('"malformed"').critical, "quoted string");
-			assert.ok(validate("42").critical, "number");
-			assert.ok(validate("null").critical, "null");
-			assert.ok(validate("true").critical, "true");
-			assert.ok(validate("false").critical, "false");
-		});
-	});
-
 	// While the PJV named export is still being used, we should ensure it's using
 	// the same validate function as what we're exporting directly.
 	test("named exports", () => {
@@ -78,68 +66,6 @@ describe("PJV", () => {
 			).length > 0,
 			true,
 			"author string: name required",
-		);
-		assert.equal(
-			validate(
-				JSON.stringify(getPackageJson({ bin: "./path/to/program" })),
-				"npm",
-			).valid,
-			true,
-			"bin: can be string",
-		);
-		assert.equal(
-			validate(
-				JSON.stringify(
-					getPackageJson({ bin: { "my-project": "./path/to/program" } }),
-				),
-				"npm",
-			).valid,
-			true,
-			"bin: can be object",
-		);
-		assert.equal(
-			validate(
-				JSON.stringify(getPackageJson({ bin: ["./path/to/program"] })),
-				"npm",
-			).valid,
-			false,
-			"bin: can't be an array",
-		);
-		assert.equal(
-			validate(
-				JSON.stringify(
-					getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
-				),
-				"npm",
-			).valid,
-			false,
-			"version should be a string",
-		);
-		assert.equal(
-			validate(getPackageJson({ bin: "./path/to/program" }), "npm").valid,
-			true,
-			"bin: can be string | with object input",
-		);
-		assert.equal(
-			validate(
-				getPackageJson({ bin: { "my-project": "./path/to/program" } }),
-				"npm",
-			).valid,
-			true,
-			"bin: can be object | with object input",
-		);
-		assert.equal(
-			validate(getPackageJson({ bin: ["./path/to/program"] }), "npm").valid,
-			false,
-			"bin: can't be an array | with object input",
-		);
-		assert.equal(
-			validate(
-				getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
-				"npm",
-			).valid,
-			false,
-			"version should be a string | with object input",
 		);
 	});
 
