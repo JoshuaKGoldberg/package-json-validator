@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Command line interface for package-json-validator.
  * For command line options, try --help
