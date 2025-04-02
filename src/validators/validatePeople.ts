@@ -1,5 +1,6 @@
-import { emailFormat, urlFormat } from "../formats.js";
 import type { People, Person } from "../types";
+
+import { emailFormat, urlFormat } from "../formats.js";
 
 /**
  * Validate 'people' fields, which can be an object like this:
@@ -12,23 +13,23 @@ import type { People, Person } from "../types";
  * }
  *
  * Or a single string like this:
- * "Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)
+ * "Barney Rubble &lt;b@rubble.com> (http://barnyrubble.tumblr.com/)
  * Or an array of either of the above.
  */
 export const validatePeople = (name: string, obj: People): string[] => {
 	const errors: string[] = [];
 
-	function validatePerson(obj: string | Person) {
+	function validatePerson(obj: Person | string) {
 		if (typeof obj == "string") {
-			const authorRegex = /^([^<\(\s]+[^<\(]*)?(\s*<(.*?)>)?(\s*\((.*?)\))?/;
+			const authorRegex = /^([^<(\s][^<(]*)?(\s*<(.*?)>)?(\s*\((.*?)\))?/;
 			const authorFields = authorRegex.exec(obj);
 			if (authorFields) {
 				const authorName = authorFields[1];
 				const authorEmail = authorFields[3];
 				const authorUrl = authorFields[5];
 				validatePerson({
-					name: authorName,
 					email: authorEmail,
+					name: authorName,
 					url: authorUrl,
 				});
 			} else {

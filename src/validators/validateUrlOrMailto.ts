@@ -1,5 +1,6 @@
-import { emailFormat, urlFormat } from "../formats.js";
 import type { UrlOrMailTo } from "../types";
+
+import { emailFormat, urlFormat } from "../formats.js";
 
 /**
  * Allows for a url as a string, or an object that looks like:

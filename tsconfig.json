@@ -3,14 +3,14 @@
 		"declaration": true,
 		"declarationMap": true,
 		"esModuleInterop": true,
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"module": "esnext",
+		"moduleResolution": "bundler",
 		"noEmit": true,
 		"resolveJsonModule": true,
-		"rewriteRelativeImportExtensions": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2022"
+		"target": "ES2022",
+		"rewriteRelativeImportExtensions": true
 	},
 	"include": ["src"]
 }

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { validatePeople } from "./validatePeople";
 
 describe("validatePeople", () => {
@@ -17,8 +18,8 @@ describe("validatePeople", () => {
 
 	it("should validate person object", () => {
 		const person = {
-			name: "Barney Rubble",
 			email: "b@rubble.com",
+			name: "Barney Rubble",
 			url: "http://barneyrubble.tumblr.com/",
 		};
 		const result = validatePeople("people", person);
@@ -27,13 +28,13 @@ describe("validatePeople", () => {
 
 	it("should validate array of person objects", () => {
 		const barney = {
-			name: "Barney Rubble",
 			email: "b@rubble.com",
+			name: "Barney Rubble",
 			url: "http://barneyrubble.tumblr.com/",
 		};
 		const fred = {
-			name: "Fred Flintstone",
 			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
 			url: "https://tiktok.com/@fred",
 		};
 		const result = validatePeople("people", [barney, fred]);

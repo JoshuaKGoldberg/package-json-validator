@@ -1,5 +1,6 @@
-import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import type { SpecMap, SpecName } from "./types";
+
+import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import {
 	validateDependencies,
 	validatePeople,
@@ -11,155 +12,155 @@ import {
 const getSpecMap = (
 	specName: SpecName,
 	isPrivate: boolean,
-): SpecMap | false => {
+): false | SpecMap => {
 	if (specName == "npm") {
 		// https://docs.npmjs.com/cli/v9/configuring-npm/package-json
 		return {
-			name: {
-				type: "string",
-				required: !isPrivate,
-				format: packageFormat,
-			},
-			version: {
-				type: "string",
-				required: !isPrivate,
-				format: versionFormat,
-			},
-			description: { type: "string", warning: true },
-			keywords: { type: "array", warning: true },
-			homepage: { type: "string", recommended: true, format: urlFormat },
-			bugs: { warning: true, validate: validateUrlOrMailto },
-			licenses: {
-				type: "array",
-				warning: true,
-				validate: validateUrlTypes,
-				or: "license",
-			},
-			license: { type: "string" },
-			author: { warning: true, validate: validatePeople },
-			contributors: { warning: true, validate: validatePeople },
-			files: { type: "array" },
-			main: { type: "string" },
+			author: { validate: validatePeople, warning: true },
 			bin: { types: ["string", "object"] },
-			man: { types: ["string", "array"] },
-			directories: { type: "object" },
-			repository: {
-				types: ["string", "object"],
-				warning: true,
-				validate: validateUrlTypes,
-				or: "repositories",
-			},
-			scripts: { type: "object" },
-			config: { type: "object" },
-			dependencies: {
-				type: "object",
-				recommended: true,
-				validate: validateDependencies,
-			},
-			devDependencies: { type: "object", validate: validateDependencies },
-			peerDependencies: {
-				type: "object",
-				validate: validateDependencies,
-			},
+			bugs: { validate: validateUrlOrMailto, warning: true },
 			bundledDependencies: { type: "array" },
 			bundleDependencies: { type: "array" },
+			config: { type: "object" },
+			contributors: { validate: validatePeople, warning: true },
+			cpu: { type: "array" },
+			dependencies: {
+				recommended: true,
+				type: "object",
+				validate: validateDependencies,
+			},
+			description: { type: "string", warning: true },
+			devDependencies: { type: "object", validate: validateDependencies },
+			directories: { type: "object" },
+			engines: { recommended: true, type: "object" },
+			engineStrict: { type: "boolean" },
+			files: { type: "array" },
+			homepage: { format: urlFormat, recommended: true, type: "string" },
+			keywords: { type: "array", warning: true },
+			license: { type: "string" },
+			licenses: {
+				or: "license",
+				type: "array",
+				validate: validateUrlTypes,
+				warning: true,
+			},
+			main: { type: "string" },
+			man: { types: ["string", "array"] },
+			name: {
+				format: packageFormat,
+				required: !isPrivate,
+				type: "string",
+			},
 			optionalDependencies: {
 				type: "object",
 				validate: validateDependencies,
 			},
-			engines: { type: "object", recommended: true },
-			engineStrict: { type: "boolean" },
 			os: { type: "array" },
-			cpu: { type: "array" },
+			peerDependencies: {
+				type: "object",
+				validate: validateDependencies,
+			},
 			preferGlobal: { type: "boolean" },
 			private: { type: "boolean" },
 			publishConfig: { type: "object" },
+			repository: {
+				or: "repositories",
+				types: ["string", "object"],
+				validate: validateUrlTypes,
+				warning: true,
+			},
+			scripts: { type: "object" },
+			version: {
+				format: versionFormat,
+				required: !isPrivate,
+				type: "string",
+			},
 		};
 	} else if (specName == "commonjs_1.0") {
 		// http://wiki.commonjs.org/wiki/Packages/1.0
 		return {
-			name: { type: "string", required: true, format: packageFormat },
-			description: { type: "string", required: true },
-			version: { type: "string", required: true, format: versionFormat },
-			keywords: { type: "array", required: true },
-			maintainers: {
-				type: "array",
-				required: true,
-				validate: validatePeople,
-			},
-			contributors: {
-				type: "array",
-				required: true,
-				validate: validatePeople,
-			},
 			bugs: {
-				type: "string",
 				required: true,
+				type: "string",
 				validate: validateUrlOrMailto,
 			},
-			licenses: {
+			builtin: { type: "boolean" },
+			checksums: { type: "object" },
+			contributors: {
+				required: true,
 				type: "array",
-				required: true,
-				validate: validateUrlTypes,
+				validate: validatePeople,
 			},
-			repositories: {
-				type: "object",
-				required: true,
-				validate: validateUrlTypes,
-			},
+			cpu: { type: "array" },
 			dependencies: {
-				type: "object",
 				required: true,
+				type: "object",
 				validate: validateDependencies,
 			},
-
-			homepage: { type: "string", format: urlFormat },
-			os: { type: "array" },
-			cpu: { type: "array" },
-			engine: { type: "array" },
-			builtin: { type: "boolean" },
+			description: { required: true, type: "string" },
 			directories: { type: "object" },
+			engine: { type: "array" },
+			homepage: { format: urlFormat, type: "string" },
+
 			implements: { type: "array" },
+			keywords: { required: true, type: "array" },
+			licenses: {
+				required: true,
+				type: "array",
+				validate: validateUrlTypes,
+			},
+			maintainers: {
+				required: true,
+				type: "array",
+				validate: validatePeople,
+			},
+			name: { format: packageFormat, required: true, type: "string" },
+			os: { type: "array" },
+			repositories: {
+				required: true,
+				type: "object",
+				validate: validateUrlTypes,
+			},
 			scripts: { type: "object" },
-			checksums: { type: "object" },
+			version: { format: versionFormat, required: true, type: "string" },
 		};
 	} else if (specName == "commonjs_1.1") {
 		// http://wiki.commonjs.org/wiki/Packages/1.1
 		return {
-			name: { type: "string", required: true, format: packageFormat },
-			version: { type: "string", required: true, format: versionFormat },
-			main: { type: "string", required: true },
-			directories: { type: "object", required: true },
-
-			maintainers: {
-				type: "array",
-				warning: true,
-				validate: validatePeople,
-			},
-			description: { type: "string", warning: true },
-			licenses: {
-				type: "array",
-				warning: true,
-				validate: validateUrlTypes,
-			},
 			bugs: {
 				type: "string",
-				warning: true,
 				validate: validateUrlOrMailto,
+				warning: true,
 			},
-			keywords: { type: "array" },
-			repositories: { type: "array", validate: validateUrlTypes },
-			contributors: { type: "array", validate: validatePeople },
-			dependencies: { type: "object", validate: validateDependencies },
-			homepage: { type: "string", warning: true, format: urlFormat },
-			os: { type: "array" },
-			cpu: { type: "array" },
-			engine: { type: "array" },
 			builtin: { type: "boolean" },
-			implements: { type: "array" },
-			scripts: { type: "object" },
-			overlay: { type: "object" },
 			checksums: { type: "object" },
+			contributors: { type: "array", validate: validatePeople },
+
+			cpu: { type: "array" },
+			dependencies: { type: "object", validate: validateDependencies },
+			description: { type: "string", warning: true },
+			directories: { required: true, type: "object" },
+			engine: { type: "array" },
+			homepage: { format: urlFormat, type: "string", warning: true },
+			implements: { type: "array" },
+			keywords: { type: "array" },
+			licenses: {
+				type: "array",
+				validate: validateUrlTypes,
+				warning: true,
+			},
+			main: { required: true, type: "string" },
+			maintainers: {
+				type: "array",
+				validate: validatePeople,
+				warning: true,
+			},
+			name: { format: packageFormat, required: true, type: "string" },
+			os: { type: "array" },
+			overlay: { type: "object" },
+			repositories: { type: "array", validate: validateUrlTypes },
+			scripts: { type: "object" },
+			version: { format: versionFormat, required: true, type: "string" },
 		};
 	} else {
 		// Unrecognized spec
@@ -194,19 +195,19 @@ const parse = (data: string) => {
 	return parsed;
 };
 
-type ValidationOptions = {
-	warnings?: boolean;
+export interface ValidationOptions {
 	recommendations?: boolean;
-};
-type ValidationOutput = {
-	valid: boolean;
+	warnings?: boolean;
+}
+export interface ValidationOutput {
+	critical?: Record<string, string> | string;
 	errors?: string[];
-	warnings?: string[];
 	recommendations?: string[];
-	critical?: string | Record<string, string>;
-};
+	valid: boolean;
+	warnings?: string[];
+}
 export const validate = (
-	data: string | object,
+	data: object | string,
 	specName: SpecName = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
@@ -229,7 +230,7 @@ export const validate = (
 
 	let name: keyof typeof map;
 	for (name in map) {
-		const field = map[name]!;
+		const field = map[name];
 
 		if (
 			parsed[name] === undefined &&

@@ -1,8 +1,32 @@
-export type SpecName = "npm" | "commonjs_1.0" | "commonjs_1.1";
+export type FieldSpec = FieldSpecWithType | FieldSpecWithTypes;
+
+export type People = Person | Person[] | string;
+
+export interface Person {
+	email?: string;
+	name: string;
+	url?: string;
+	web?: string;
+}
+
+export type SpecMap = Record<string, FieldSpec>;
+
+export type SpecName = "commonjs_1.0" | "commonjs_1.1" | "npm";
 
 export type SpecType = "array" | "boolean" | "object" | "string";
 
-type BaseFieldSpec = {
+export type UrlOrMailTo =
+	| string
+	| { email: string; mail?: never; url?: string; web?: never }
+	| { email?: never; mail: string; url?: never; web?: string }
+	| { email?: never; mail?: string; url?: never; web: string }
+	| { email?: string; mail?: never; url: string; web?: never };
+
+export interface UrlType {
+	type: string;
+	url: string;
+}
+interface BaseFieldSpec {
 	format?: RegExp;
 	or?: string;
 	recommended?: boolean;
@@ -10,40 +34,14 @@ type BaseFieldSpec = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	validate?: (name: string, obj: any) => string[];
 	warning?: boolean;
-};
+}
 
-type FieldSpecWithType = {
+type FieldSpecWithType = BaseFieldSpec & {
 	type?: SpecType;
 	types?: never;
-} & BaseFieldSpec;
+};
 
-type FieldSpecWithTypes = {
-	types?: SpecType[];
+type FieldSpecWithTypes = BaseFieldSpec & {
 	type?: never;
-} & BaseFieldSpec;
-
-export type FieldSpec = FieldSpecWithType | FieldSpecWithTypes;
-
-export type SpecMap = {
-	[key: string]: FieldSpec;
+	types?: SpecType[];
 };
-
-export type Person = {
-	name: string;
-	email?: string;
-	url?: string;
-	web?: string;
-};
-export type People = Person | Person[] | string;
-
-export type UrlType = {
-	type: string;
-	url: string;
-};
-
-export type UrlOrMailTo =
-	| string
-	| { url: string; email?: string; mail?: never; web?: never }
-	| { url?: string; email: string; mail?: never; web?: never }
-	| { mail: string; web?: string; email?: never; url?: never }
-	| { mail?: string; web: string; email?: never; url?: never };
