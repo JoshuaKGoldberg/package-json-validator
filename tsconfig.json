@@ -7,10 +7,10 @@
 		"moduleResolution": "Bundler",
 		"noEmit": true,
 		"resolveJsonModule": true,
+		"rewriteRelativeImportExtensions": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2022",
-		"rewriteRelativeImportExtensions": true
+		"target": "ES2022"
 	},
 	"include": ["src"]
 }
