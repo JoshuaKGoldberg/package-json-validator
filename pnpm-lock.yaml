@@ -36,9 +36,6 @@ importers:
       '@vitest/eslint-plugin':
         specifier: 1.1.38
         version: 1.1.38(@typescript-eslint/utils@8.28.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10))
-      all-contributors-for-repository:
-        specifier: 0.4.0
-        version: 0.4.0
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
@@ -75,9 +72,6 @@ importers:
       eslint-plugin-yml:
         specifier: 1.17.0
         version: 1.17.0(eslint@9.23.0(jiti@2.4.2))
-      globals:
-        specifier: 16.0.0
-        version: 16.0.0
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -1360,10 +1354,6 @@ packages:
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
 
-  all-contributors-for-repository@0.4.0:
-    resolution: {integrity: sha512-qGJHdVaRnoKMEZ6IcDvrFQJIDA9KPSsCVAMk+mjqVkHMYrgvp05TU94I8x4SjwWIfYBLp9heC9Onh55BIrOA4A==}
-    engines: {node: '>=18'}
-
   all-properties-lazy@0.1.0:
     resolution: {integrity: sha512-Ab9UQDstwhrTcsRP1m4QkT6W1PRMBoAnPJeB5LZcuum/nLiFMlSwYxH1J8fsRAolaXez0ijgbm6BAWZkQC9DVg==}
     engines: {node: '>=18.3.0'}
@@ -1514,10 +1504,6 @@ packages:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
 
-  cached-factory@0.0.2:
-    resolution: {integrity: sha512-4mhebGQ8YyvlDAX+zOHso5MezPi2pP11ZFE7vYhDIOJifsxEi7R5geB/nrLBYzQH5nwZ9kNsLAjM+WBj6osLDg==}
-    engines: {node: '>=18'}
-
   cached-factory@0.1.0:
     resolution: {integrity: sha512-IGOSWu+NuED5UzCRmBeqQPZ8z7SkgrD/nN67W2iY1Qv83CVhevyMexkGclJ86saXisIqxoOnbeiTWvsCHRqJBw==}
     engines: {node: '>=18'}
@@ -1629,10 +1615,6 @@ packages:
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
-
-  co-author-to-username@0.1.1:
-    resolution: {integrity: sha512-KtQvKq2m52MncBa9hmYSiUae/hRRjLIOpXY29Ll43mSK/KreIRcoNy+K5/U5UHyVMNNjux1Xi4Ya744BO4G+RA==}
-    engines: {node: '>=18'}
 
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -1891,10 +1873,6 @@ packages:
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
-
-  description-to-co-authors@0.3.0:
-    resolution: {integrity: sha512-GaMDuvOCmtkQ3tjjawAEl3YhxNEIsR9tmlXV4xeypGyiO75YLXRm3iHKltqrmxNgtNlppVzT2pdsPM2Yzm67CA==}
-    engines: {node: '>=18.3.0'}
 
   detect-indent@6.1.0:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
@@ -2360,10 +2338,6 @@ packages:
 
   globals@15.15.0:
     resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
-    engines: {node: '>=18'}
-
-  globals@16.0.0:
-    resolution: {integrity: sha512-iInW14XItCXET01CQFqudPOWP2jYMl7T+QRQT+UNcR/iQncN/F0UNpgd76iFkBPgNQb4+X3LV9tLJYzwh+Gl3A==}
     engines: {node: '>=18'}
 
   globby@14.0.2:
@@ -5311,14 +5285,6 @@ snapshots:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
-  all-contributors-for-repository@0.4.0:
-    dependencies:
-      co-author-to-username: 0.1.1
-      conventional-commits-parser: 6.0.0
-      description-to-co-authors: 0.3.0
-      octokit: 4.1.2
-      octokit-from-auth: 0.3.0
-
   all-properties-lazy@0.1.0:
     dependencies:
       without-undefined-properties: 0.1.2
@@ -5477,8 +5443,6 @@ snapshots:
 
   cac@6.7.14: {}
 
-  cached-factory@0.0.2: {}
-
   cached-factory@0.1.0: {}
 
   call-id@0.1.0: {}
@@ -5583,11 +5547,6 @@ snapshots:
 
   clone@1.0.4:
     optional: true
-
-  co-author-to-username@0.1.1:
-    dependencies:
-      cached-factory: 0.0.2
-      octokit: 4.1.2
 
   color-convert@1.9.3:
     dependencies:
@@ -5926,8 +5885,6 @@ snapshots:
       esprima: 4.0.1
 
   dequal@2.0.3: {}
-
-  description-to-co-authors@0.3.0: {}
 
   detect-indent@6.1.0: {}
 
@@ -6516,8 +6473,6 @@ snapshots:
   globals@14.0.0: {}
 
   globals@15.15.0: {}
-
-  globals@16.0.0: {}
 
   globby@14.0.2:
     dependencies:
