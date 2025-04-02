@@ -33,7 +33,7 @@
 			"url": "https://joshuakgoldberg.com"
 		}
 	],
-	"type": "module",
+	"type": "commonjs",
 	"exports": {
 		".": {
 			"import": {
