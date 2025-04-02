@@ -1,6 +1,6 @@
 <h1 align="center">package.json validator</h1>
 
-<p align="center">Tools to validate <code>package.json</code> files.</p>
+<p align="center">Tools to validate package.json files.</p>
 
 <p align="center">
 	<!-- prettier-ignore-start -->
@@ -145,7 +145,7 @@ console.log(data);
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
-Thanks! 💖
+Thanks! ☑️
 
 ## Contributors
 
