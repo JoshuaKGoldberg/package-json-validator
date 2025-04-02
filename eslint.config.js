@@ -54,6 +54,11 @@ export default tseslint.config(
 			"@typescript-eslint/no-dynamic-delete": "off",
 			"n/no-missing-import": "off",
 
+			// Using a ts bin file throws this rule off.
+			// It uses the package.json as a source of truth, and since the package points
+			// at the transpiled js file, it treats usage on the ts src as a violation.
+			"n/hashbang": "off",
+
 			// TODO: Eventually clean these up
 			"@typescript-eslint/no-deprecated": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",

@@ -12,7 +12,7 @@ import {
 	blockTSup,
 	blockTypeScript,
 	createConfig,
-} from "create-typescript-app";
+} from "../create-typescript-app/lib/index.js";
 
 export default createConfig({
 	refinements: {
@@ -32,8 +32,8 @@ export default createConfig({
 						},
 					},
 					{
-						comment: `// Using a ts bin file throws this rule off.
-it uses the package.json as a source of truth, and since the package points
+						comment: `Using a ts bin file throws this rule off.
+It uses the package.json as a source of truth, and since the package points
 at the transpiled js file, it treats usage on the ts src as a violation.`,
 						entries: {
 							"n/hashbang": "off",

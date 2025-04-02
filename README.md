@@ -1,6 +1,6 @@
 <h1 align="center">package.json validator</h1>
 
-<p align="center">Tools to validate package.json files.</p>
+<p align="center">Tools to validate <code>package.json</code> files.</p>
 
 <p align="center">
 	<!-- prettier-ignore-start -->
@@ -142,6 +142,14 @@ console.log(data);
 }
 ```
 
+## Supported Specifications
+
+Of course, there are multiple ones to follow, which makes it trickier.
+
+- [NPM](https://docs.npmjs.com/cli/configuring-npm/package-json)
+- [CommonJS Packages 1.0](http://wiki.commonjs.org/wiki/Packages/1.0)
+- [CommonJS Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
+
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
@@ -205,5 +213,9 @@ Thanks! 💖
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
+
+## Appreciation
+
+Many thanks to [@TechNickAI](https://github.com/TechNickAI) for creating the initial version and core infrastructure of this package! 💖
 
 > 💝 This package was templated with [`create-typescript-app`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
