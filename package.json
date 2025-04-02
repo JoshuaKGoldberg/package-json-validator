@@ -2,6 +2,13 @@
 	"name": "package-json-validator",
 	"version": "0.10.0",
 	"description": "Tools to validate package.json files.",
+	"keywords": [
+		"lint",
+		"package.json",
+		"package.json linter",
+		"package.json validator",
+		"validator"
+	],
 	"homepage": "https://github.com/JoshuaKGoldberg/package-json-validator#readme",
 	"bugs": {
 		"url": "https://github.com/JoshuaKGoldberg/package-json-validator/issues"
@@ -83,7 +90,7 @@
 		"@vitest/eslint-plugin": "1.1.38",
 		"all-contributors-for-repository": "0.4.0",
 		"console-fail-test": "0.5.0",
-		"create-typescript-app": "2.22.3",
+		"create-typescript-app": "2.22.8",
 		"cspell": "8.17.5",
 		"eslint": "9.23.0",
 		"eslint-plugin-jsdoc": "50.6.8",

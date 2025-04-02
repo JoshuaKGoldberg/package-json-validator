@@ -43,8 +43,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-typescript-app:
-        specifier: 2.22.3
-        version: 2.22.3(bingo-systems@0.5.4)
+        specifier: 2.22.8
+        version: 2.22.8(bingo-systems@0.5.4)
       cspell:
         specifier: 8.17.5
         version: 8.17.5
@@ -1774,8 +1774,8 @@ packages:
       typescript:
         optional: true
 
-  create-typescript-app@2.22.3:
-    resolution: {integrity: sha512-ILEXtlrGWpGr1tskv17/xJ/2SeqKVYZaTf/2PzQGEf/VauntbKueEKEmJHEbRz8X1h38PcyFqYdhmRtJkEDM1w==}
+  create-typescript-app@2.22.8:
+    resolution: {integrity: sha512-0gAU1c4ebNx7vFlG+dhIWCKIX+TH3gC1H023m8Dju73s22WztpR/Sx2+bDGQP8c31YBGXTo4SYjxGx5mzsQkkA==}
     engines: {node: '>=18.3.0'}
     hasBin: true
 
@@ -4139,8 +4139,8 @@ packages:
     resolution: {integrity: sha512-RvEsa3W/NCqEBMtnoE09GRVelA3IqRcKaijEiM6CEGsD19qLurf0HjrYMHwOqImOszlLL0ja63DPJeeU4pm7oQ==}
     engines: {node: '>=20'}
 
-  zod-tsconfig@0.1.2:
-    resolution: {integrity: sha512-/+w7rFkGoNetAFJ3gEELq8FWgXmt9fHow/2GhqFdyE3nXjVskqiGT8LUFGLhODgIhifeqnoiL0yLNrZj3SdxZQ==}
+  zod-tsconfig@0.2.0:
+    resolution: {integrity: sha512-ug/zndWh/wNiejtCJ2tGyNzi3Nf94ZnpFos/e5CGTIXYIwoXMiXYg3a3SptYVrfXFnLCpuTTfVjYWh6q9djKhA==}
     engines: {node: '>=18.3.0'}
 
   zod-validation-error@3.4.0:
@@ -5739,7 +5739,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.2
 
-  create-typescript-app@2.22.3(bingo-systems@0.5.4):
+  create-typescript-app@2.22.8(bingo-systems@0.5.4):
     dependencies:
       bingo: 0.5.13
       bingo-fs: 0.5.5
@@ -5772,7 +5772,7 @@ snapshots:
       trash-cli: 6.0.0
       zod: 3.24.2
       zod-package-json: 1.1.0
-      zod-tsconfig: 0.1.2
+      zod-tsconfig: 0.2.0
     transitivePeerDependencies:
       - bingo-systems
 
@@ -8403,7 +8403,7 @@ snapshots:
     dependencies:
       zod: 3.24.2
 
-  zod-tsconfig@0.1.2:
+  zod-tsconfig@0.2.0:
     dependencies:
       zod: 3.24.2
 

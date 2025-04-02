@@ -12,7 +12,7 @@ import {
 	blockTSup,
 	blockTypeScript,
 	createConfig,
-} from "../create-typescript-app/lib/index.js";
+} from "create-typescript-app";
 
 export default createConfig({
 	refinements: {
