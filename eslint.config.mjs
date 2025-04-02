@@ -60,8 +60,6 @@ export default tseslint.config(
 			"n/hashbang": "off",
 
 			// TODO: Eventually clean these up
-			"@typescript-eslint/no-deprecated": "off",
-			"@typescript-eslint/no-dynamic-delete": "off",
 			"@typescript-eslint/no-non-null-assertion": "off",
 			"@typescript-eslint/no-unnecessary-condition": "off",
 			"@typescript-eslint/no-unsafe-argument": "off",

@@ -8,7 +8,6 @@
 import {
 	blockCSpell,
 	blockESLint,
-	blockPackageJson,
 	blockTSup,
 	blockTypeScript,
 	createConfig,
@@ -62,11 +61,6 @@ at the transpiled js file, it treats usage on the ts src as a violation.`,
 						},
 					},
 				],
-			}),
-			blockPackageJson({
-				properties: {
-					type: "commonjs",
-				},
 			}),
 			blockTSup({
 				properties: {
