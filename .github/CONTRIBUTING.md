@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `package-json-validator`! ☑️
+Thanks for your interest in contributing to `package-json-validator`! 💖
 
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
@@ -94,4 +94,4 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
 
 If you made it all the way to the end, bravo dear user, we love you.
 Please include an emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
-☑️ is a good starter if you're not sure which to use.
+💖 is a good starter if you're not sure which to use.

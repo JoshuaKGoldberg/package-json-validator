@@ -145,7 +145,7 @@ console.log(data);
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
-Thanks! ☑️
+Thanks! 💖
 
 ## Contributors
 

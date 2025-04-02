@@ -8,6 +8,7 @@
 import {
 	blockCSpell,
 	blockESLint,
+	blockPackageJson,
 	blockTSup,
 	blockTypeScript,
 	createConfig,
@@ -28,6 +29,14 @@ export default createConfig({
 							"@typescript-eslint/no-deprecated": "off",
 							"@typescript-eslint/no-dynamic-delete": "off",
 							"n/no-missing-import": "off",
+						},
+					},
+					{
+						comment: `// Using a ts bin file throws this rule off.
+it uses the package.json as a source of truth, and since the package points
+at the transpiled js file, it treats usage on the ts src as a violation.`,
+						entries: {
+							"n/hashbang": "off",
 						},
 					},
 					{
@@ -54,6 +63,11 @@ export default createConfig({
 					},
 				],
 			}),
+			blockPackageJson({
+				properties: {
+					type: "commonjs",
+				},
+			}),
 			blockTSup({
 				properties: {
 					format: ["cjs", "esm"],
@@ -61,8 +75,8 @@ export default createConfig({
 			}),
 			blockTypeScript({
 				compilerOptions: {
-					module: "esnext",
-					moduleResolution: "bundler",
+					module: "ESNext",
+					moduleResolution: "Bundler",
 					rewriteRelativeImportExtensions: true,
 				},
 			}),
