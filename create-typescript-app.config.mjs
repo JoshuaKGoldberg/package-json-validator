@@ -41,8 +41,6 @@ at the transpiled js file, it treats usage on the ts src as a violation.`,
 					{
 						comment: "TODO: Eventually clean these up",
 						entries: {
-							"@typescript-eslint/no-deprecated": "off",
-							"@typescript-eslint/no-dynamic-delete": "off",
 							"@typescript-eslint/no-non-null-assertion": "off",
 							"@typescript-eslint/no-unnecessary-condition": "off",
 							"@typescript-eslint/no-unsafe-argument": "off",
