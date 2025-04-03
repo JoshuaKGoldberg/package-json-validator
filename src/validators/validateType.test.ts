@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { validateType } from "./validateType";
+
 import type { FieldSpec } from "../types";
+
+import { validateType } from "./validateType";
 
 describe("validateType", () => {
 	it("should return an empty array if no type or types are defined", () => {

@@ -3,18 +3,17 @@
 <p align="center">Tools to validate <code>package.json</code> files.</p>
 
 <p align="center">
+	<!-- prettier-ignore-start -->
+	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 32" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-32-21bb42.svg" /></a>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+	<!-- prettier-ignore-end -->
 	<a href="https://github.com/JoshuaKGoldberg/package-json-validator/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
-	<a href="https://github.com/JoshuaKGoldberg/package-json-validator/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
-	<a href="http://npmjs.com/package/package-json-validator"><img alt="📦 npm version" src="https://img.shields.io/npm/v/package-json-validator?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
+	<a href="https://codecov.io/gh/JoshuaKGoldberg/package-json-validator" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/JoshuaKGoldberg/package-json-validator?label=%F0%9F%A7%AA%20coverage" /></a>
+	<a href="https://github.com/JoshuaKGoldberg/package-json-validator/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg" /></a>
+	<a href="http://npmjs.com/package/package-json-validator" target="_blank"><img alt="📦 npm version" src="https://img.shields.io/npm/v/package-json-validator?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
+	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
-
-## Supported Specifications
-
-Of course, there are multiple ones to follow, which makes it trickier.
-
-- [NPM](https://docs.npmjs.com/cli/configuring-npm/package-json)
-- [CommonJS Packages 1.0](http://wiki.commonjs.org/wiki/Packages/1.0)
-- [CommonJS Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
 
 ## Usage
 
@@ -143,8 +142,22 @@ console.log(data);
 }
 ```
 
+## Supported Specifications
+
+Of course, there are multiple ones to follow, which makes it trickier.
+
+- [NPM](https://docs.npmjs.com/cli/configuring-npm/package-json)
+- [CommonJS Packages 1.0](http://wiki.commonjs.org/wiki/Packages/1.0)
+- [CommonJS Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
+
+## Development
+
+See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
+Thanks! 💖
+
 ## Contributors
 
+<!-- spellchecker: disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -171,7 +184,7 @@ console.log(data);
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://staxmanade.com/"><img src="https://avatars.githubusercontent.com/u/156715?v=4?s=100" width="100px;" alt="Jason Jarrett"/><br /><sub><b>Jason Jarrett</b></sub></a><br /><a href="#ideas-staxmanade" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jatin"><img src="https://avatars.githubusercontent.com/u/1121748?v=4?s=100" width="100px;" alt="Jatin Chopra"/><br /><sub><b>Jatin Chopra</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=jatin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com/"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg ✨"/><br /><sub><b>Josh Goldberg ✨</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/package-json-validator/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com/"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg ✨"/><br /><sub><b>Josh Goldberg ✨</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/package-json-validator/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="#content-JoshuaKGoldberg" title="Content">🖋</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/anudeep586"><img src="https://avatars.githubusercontent.com/u/61861542?v=4?s=100" width="100px;" alt="L N M Anudeep"/><br /><sub><b>L N M Anudeep</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/package-json-validator/commits?author=anudeep586" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://linus.xn--unnebck-9wa.se/"><img src="https://avatars.githubusercontent.com/u/189580?v=4?s=100" width="100px;" alt="Linus Unnebäck"/><br /><sub><b>Linus Unnebäck</b></sub></a><br /><a href="#maintenance-LinusU" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://holloway.co.nz/"><img src="https://avatars.githubusercontent.com/u/620580?v=4?s=100" width="100px;" alt="Matthew Holloway"/><br /><sub><b>Matthew Holloway</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/package-json-validator/issues?q=author%3Aholloway" title="Bug reports">🐛</a></td>
@@ -199,7 +212,10 @@ console.log(data);
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- spellchecker: enable -->
 
 ## Appreciation
 
 Many thanks to [@TechNickAI](https://github.com/TechNickAI) for creating the initial version and core infrastructure of this package! 💖
+
+> 💝 This package was templated with [`create-typescript-app`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).

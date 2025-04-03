@@ -9,8 +9,10 @@
 		"json",
 		"jsonc",
 		"markdown",
+		"typescript",
+		"typescriptreact",
 		"yaml"
 	],
 	"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-	"eslint.useFlatConfig": true
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

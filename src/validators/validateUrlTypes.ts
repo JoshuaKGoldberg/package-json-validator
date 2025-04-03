@@ -1,5 +1,6 @@
-import { urlFormat } from "../formats.js";
 import type { UrlType } from "../types";
+
+import { urlFormat } from "../formats.js";
 
 /**
  * Format for license(s) and repository(s):

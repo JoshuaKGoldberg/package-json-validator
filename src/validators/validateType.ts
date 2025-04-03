@@ -2,15 +2,15 @@ import type { FieldSpec, SpecType } from "../types";
 
 /**
  * Validate that a field conforms to the shape defined by its `type` property.
- * @param name - The name of the field being validated
- * @param field - The field spec
- * @param value - The actual value of the field we're going to validate
+ * @param name The name of the field being validated
+ * @param field The field spec
+ * @param value The actual value of the field we're going to validate
  * @returns An array with a validation error (if a violation is found)
  */
 export const validateType = (
 	name: string,
 	field: FieldSpec,
-	value: unknown[] | boolean | string | object,
+	value: boolean | object | string | unknown[],
 ): string[] => {
 	// If there's no type defined, we can't validate it
 	if (!field.types && !field.type) {

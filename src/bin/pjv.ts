@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * Command line interface for package-json-validator.
  * For command line options, try --help
@@ -6,49 +7,49 @@
  */
 import fs from "node:fs";
 import process from "node:process";
-
 import yargs from "yargs";
 
-import { validate } from "../validate.js";
 import type { SpecName } from "../types";
 
-type Options = {
+import { validate } from "../validate.js";
+
+interface Options {
 	filename: string;
+	quiet: boolean;
+	recommendations: boolean;
 	spec: SpecName;
 	warnings: boolean;
-	recommendations: boolean;
-	quiet: boolean;
-};
+}
 
 // Command line options
 const options = yargs(process.argv.slice(2))
 	.options("filename", {
-		default: "package.json",
 		alias: "f",
+		default: "package.json",
 		description: "package.json file to validate",
 	})
 	.options("spec", {
-		default: "npm",
 		alias: "s",
 		choices: ["npm", "commonjs_1.0", "commonjs_1.1"],
+		default: "npm",
 		description: "spec to use - npm|commonjs_1.0|commonjs_1.1",
 	})
 	.options("warnings", {
-		default: false,
 		alias: "w",
 		boolean: true,
+		default: false,
 		description: "display warnings",
 	})
 	.options("recommendations", {
-		default: false,
 		alias: "r",
 		boolean: true,
+		default: false,
 		description: "display recommendations",
 	})
 	.options("quiet", {
-		default: false,
 		alias: "q",
 		boolean: true,
+		default: false,
 		description: "less output",
 	})
 	.usage("Validate package.json files")
@@ -60,8 +61,8 @@ if (!fs.existsSync(options.filename)) {
 } else {
 	const contents = fs.readFileSync(options.filename).toString(),
 		results = validate(contents, options.spec, {
-			warnings: options.warnings,
 			recommendations: options.recommendations,
+			warnings: options.warnings,
 		});
 
 	if (results.valid) {

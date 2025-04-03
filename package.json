@@ -3,11 +3,11 @@
 	"version": "0.10.0",
 	"description": "Tools to validate package.json files.",
 	"keywords": [
-		"package.json",
-		"validator",
-		"package.json validator",
 		"lint",
-		"package.json linter"
+		"package.json",
+		"package.json linter",
+		"package.json validator",
+		"validator"
 	],
 	"homepage": "https://github.com/JoshuaKGoldberg/package-json-validator#readme",
 	"bugs": {
@@ -15,7 +15,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/package-json-validator"
+		"url": "git+https://github.com/JoshuaKGoldberg/package-json-validator.git"
 	},
 	"license": "MIT",
 	"author": {
@@ -51,17 +51,25 @@
 	"module": "lib/index.mjs",
 	"types": "lib/index.d.ts",
 	"bin": {
-		"pjv": "./lib/bin/pjv.mjs"
+		"pjv": "lib/bin/pjv.mjs"
 	},
 	"files": [
-		"lib/"
+		"LICENSE.md",
+		"README.md",
+		"lib/",
+		"package.json"
 	],
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
+		"lint:knip": "knip",
+		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
+		"lint:packages": "pnpm dedupe --check",
+		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
 		"test": "vitest",
+		"tsc": "tsc",
 		"type-check": "tsc"
 	},
 	"lint-staged": {
@@ -71,28 +79,41 @@
 		"yargs": "~17.7.2"
 	},
 	"devDependencies": {
-		"@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
+		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",
 		"@eslint/js": "9.23.0",
 		"@release-it/conventional-changelog": "10.0.0",
-		"@types/node": "22.13.0",
+		"@types/eslint-plugin-markdown": "2.0.2",
+		"@types/node": "22.13.10",
 		"@types/yargs": "17.0.33",
-		"all-contributors-for-repository": "0.4.0",
+		"@vitest/coverage-v8": "3.0.9",
+		"@vitest/eslint-plugin": "1.1.38",
+		"console-fail-test": "0.5.0",
+		"create-typescript-app": "2.23.0",
+		"cspell": "8.17.5",
 		"eslint": "9.23.0",
-		"eslint-plugin-jsdoc": "50.6.1",
-		"eslint-plugin-n": "17.16.1",
+		"eslint-plugin-jsdoc": "50.6.8",
+		"eslint-plugin-jsonc": "2.20.0",
+		"eslint-plugin-markdown": "5.1.0",
+		"eslint-plugin-n": "17.16.2",
+		"eslint-plugin-package-json": "0.29.0",
+		"eslint-plugin-perfectionist": "4.10.1",
 		"eslint-plugin-regexp": "2.7.0",
-		"globals": "16.0.0",
-		"husky": "9.1.6",
+		"eslint-plugin-yml": "1.17.0",
+		"husky": "9.1.7",
+		"knip": "5.46.0",
 		"lint-staged": "15.5.0",
-		"prettier": "3.5.0",
+		"markdownlint": "0.37.4",
+		"markdownlint-cli": "0.44.0",
+		"prettier": "3.5.3",
 		"prettier-plugin-curly": "0.3.1",
-		"prettier-plugin-packagejson": "2.5.3",
+		"prettier-plugin-packagejson": "2.5.10",
 		"prettier-plugin-sh": "0.15.0",
-		"release-it": "18.1.1",
+		"release-it": "18.1.2",
+		"sentences-per-line": "0.3.0",
 		"tsup": "8.4.0",
 		"typescript": "5.8.2",
 		"typescript-eslint": "8.28.0",
-		"vitest": "3.0.1"
+		"vitest": "3.0.9"
 	},
 	"packageManager": "pnpm@10.6.0",
 	"engines": {
