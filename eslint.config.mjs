@@ -40,7 +40,7 @@ export default tseslint.config(
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
 		],
-		files: ["**/*.js", "**/*.ts"],
+		files: ["**/*.{js,mjs,ts}"],
 		languageOptions: {
 			parserOptions: {
 				projectService: {
@@ -96,6 +96,7 @@ export default tseslint.config(
 		files: ["**/*.md/*.ts"],
 		rules: { "n/no-missing-import": "off" },
 	},
+	{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 	{
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
