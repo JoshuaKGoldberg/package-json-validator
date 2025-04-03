@@ -46,6 +46,7 @@ export default tseslint.config(
 				projectService: {
 					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
 				},
+				// eslint-disable-next-line n/no-unsupported-features/node-builtins
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
