@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.0...v0.10.1) (2025-04-03)
+
+### Bug Fixes
+
+- bump to create-typescript-app@2 with transitions action ([#178](https://github.com/JoshuaKGoldberg/package-json-validator/issues/178)) ([c9a968c](https://github.com/JoshuaKGoldberg/package-json-validator/commit/c9a968cce1efc5e2902abd77f3d8ed719d280301)), closes [#172](https://github.com/JoshuaKGoldberg/package-json-validator/issues/172)
+- empty commit to trigger release ([ecd3ee5](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ecd3ee5c19f275adf14e79aa3240fccd1af2cc1f))
+
 # [0.10.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.9.0...v0.10.0) (2025-01-30)
 
 ### Features
