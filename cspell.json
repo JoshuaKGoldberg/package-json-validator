@@ -7,8 +7,7 @@
 		"coverage",
 		"lib",
 		"node_modules",
-		"pnpm-lock.yaml",
-		"src/**/*.test.ts"
+		"pnpm-lock.yaml"
 	],
 	"words": ["Pilotfish", "react-chartjs-2", "robotstxt.org"]
 }
