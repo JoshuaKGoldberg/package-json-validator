@@ -80,7 +80,7 @@
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",
-		"@eslint/js": "9.23.0",
+		"@eslint/js": "9.24.0",
 		"@release-it/conventional-changelog": "10.0.0",
 		"@types/eslint-plugin-markdown": "2.0.2",
 		"@types/node": "22.14.0",
@@ -90,7 +90,7 @@
 		"console-fail-test": "0.5.0",
 		"create-typescript-app": "2.35.3",
 		"cspell": "8.18.0",
-		"eslint": "9.23.0",
+		"eslint": "9.24.0",
 		"eslint-plugin-jsdoc": "50.6.8",
 		"eslint-plugin-jsonc": "2.20.0",
 		"eslint-plugin-markdown": "5.1.0",
