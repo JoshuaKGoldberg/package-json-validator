@@ -319,10 +319,5 @@
   "projectName": "package-json-validator",
   "projectOwner": "JoshuaKGoldberg",
   "repoType": "github",
-  "commitConvention": "angular",
-  "files": [
-    "README.md"
-  ],
-  "commitType": "docs",
-  "contributorsPerLine": 7
+  "commitConvention": "angular"
 }
