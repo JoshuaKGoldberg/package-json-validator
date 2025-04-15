@@ -88,7 +88,7 @@
 		"@vitest/coverage-v8": "3.1.1",
 		"@vitest/eslint-plugin": "1.1.38",
 		"console-fail-test": "0.5.0",
-		"create-typescript-app": "2.35.3",
+		"create-typescript-app": "2.36.2",
 		"cspell": "8.18.0",
 		"eslint": "9.24.0",
 		"eslint-plugin-jsdoc": "50.6.8",
