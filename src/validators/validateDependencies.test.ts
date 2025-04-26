@@ -12,6 +12,9 @@ describe("validateDependencies", () => {
 			empty: "",
 			gt: ">1.2.3",
 			gteq: ">=1.2.3",
+			"jsr-package": "jsr:^1.0.0",
+			"jsr-package-exact": "jsr:1.0.0",
+			"jsr-scoped-package": "jsr:@valibot/valibot@^1.0.0",
 			lt: "<1.2.3",
 			lteq: "<=1.2.3",
 			range: "1.2.3 - 2.3.4",
@@ -40,6 +43,7 @@ describe("validateDependencies", () => {
 	it("reports a complaint when dependencies has an invalid range", () => {
 		const dependencies = {
 			"bad-catalog": "catalob:",
+			"bad-jsr": "jsr;@scope/package@^1.0.0",
 			"bad-npm": "npm;svgo@^1.2.3",
 			"bad-workspace": "workspace:abc123",
 			"bad-workspace-range": "workspace:^>1.2.3",
@@ -50,6 +54,7 @@ describe("validateDependencies", () => {
 
 		assert.deepStrictEqual(result, [
 			"Invalid version range for dependency bad-catalog: catalob:",
+			"Invalid version range for dependency bad-jsr: jsr;@scope/package@^1.0.0",
 			"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
 			"Invalid version range for dependency bad-workspace: workspace:abc123",
 			"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
