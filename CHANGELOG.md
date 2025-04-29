@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.1...v0.10.2) (2025-04-29)
+
+### Bug Fixes
+
+- support jsr package version specifiers ([#211](https://github.com/JoshuaKGoldberg/package-json-validator/issues/211)) ([77e8c7e](https://github.com/JoshuaKGoldberg/package-json-validator/commit/77e8c7e1f238ccfd82ed20bfc83e96bae962b25a))
+
 ## [0.10.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.0...v0.10.1) (2025-04-03)
 
 ### Bug Fixes
