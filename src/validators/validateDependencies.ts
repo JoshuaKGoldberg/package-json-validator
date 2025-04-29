@@ -14,6 +14,8 @@ const isValidVersionRange = (v: string): boolean => {
 		// https://pnpm.io/next/catalogs
 		(typeof v === "string" && v.startsWith("catalog:")) ||
 		(typeof v === "string" && v.startsWith("npm:")) ||
+		// https://jsr.io/docs/using-packages
+		(typeof v === "string" && v.startsWith("jsr:")) ||
 		false
 	);
 };
