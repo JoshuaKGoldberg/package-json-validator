@@ -1,3 +1,4 @@
+<!-- markdownlint-disable no-duplicate-heading -->
 <h1 align="center">package.json validator</h1>
 
 <p align="center">Tools to validate <code>package.json</code> files.</p>
