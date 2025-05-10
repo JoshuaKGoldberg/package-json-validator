@@ -2,6 +2,7 @@ import type { SpecMap, SpecName } from "./types";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats";
 import {
+	validateBin,
 	validateDependencies,
 	validatePeople,
 	validateType,
@@ -17,7 +18,7 @@ const getSpecMap = (
 		// https://docs.npmjs.com/cli/v9/configuring-npm/package-json
 		return {
 			author: { validate: validatePeople, warning: true },
-			bin: { types: ["string", "object"] },
+			bin: { validate: (_, value) => validateBin(value) },
 			bugs: { validate: validateUrlOrMailto, warning: true },
 			bundledDependencies: { type: "array" },
 			bundleDependencies: { type: "array" },
