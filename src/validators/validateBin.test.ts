@@ -83,10 +83,16 @@ describe("validateBin", () => {
 	});
 
 	it("should return an error if the bin field is an array", () => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const result = validateBin(["./cli.js"] as any);
+		const result = validateBin(["./cli.js"]);
 		expect(result).toEqual([
 			'Type for field "bin" should be `string` or `object`, not `array`',
+		]);
+	});
+
+	it("should return an error if the bin field is null", () => {
+		const result = validateBin(null);
+		expect(result).toEqual([
+			"bin field is `null`, but should be a `string` or an `object`",
 		]);
 	});
 });

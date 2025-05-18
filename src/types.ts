@@ -1,5 +1,3 @@
-export type Bin = Record<string, string> | string;
-
 export type FieldSpec = FieldSpecWithType | FieldSpecWithTypes;
 
 export type People = Person | Person[] | string;
