@@ -8,19 +8,13 @@ describe("validateBin", () => {
 		expect(result).toEqual([]);
 	});
 
-	it("should return no errors if the bin field is a valid string", () => {
-		let result = validateBin("./cli.js");
-		expect(result).toEqual([]);
-
-		result = validateBin("cli.js");
-		expect(result).toEqual([]);
-
-		result = validateBin("./bin/cli.js");
-		expect(result).toEqual([]);
-
-		result = validateBin("bin/cli.js");
-		expect(result).toEqual([]);
-	});
+	it.each(["./cli.js", "cli.js", "./bin/cli.js", "bin/cli.js"])(
+		"should return no errors if the bin field is a valid string: %s",
+		(binPath) => {
+			const result = validateBin(binPath);
+			expect(result).toEqual([]);
+		},
+	);
 
 	it("should return an error if the bin field is an empty string", () => {
 		const result = validateBin("");
