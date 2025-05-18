@@ -201,10 +201,14 @@ export interface ValidationOptions {
 }
 export interface ValidationOutput {
 	critical?: Record<string, string> | string;
-	errors?: string[];
+	errors?: ValidationError[];
 	recommendations?: string[];
 	valid: boolean;
 	warnings?: string[];
+}
+interface ValidationError {
+	field: string;
+	message: string;
 }
 export const validate = (
 	data: object | string,
@@ -224,7 +228,7 @@ export const validate = (
 		out.critical = { "Invalid specification": specName };
 		return out;
 	}
-	const errors: string[] = [];
+	const errors: ValidationError[] = [];
 	const warnings: string[] = [];
 	const recommendations: string[] = [];
 
@@ -237,7 +241,10 @@ export const validate = (
 			(!field.or || (field.or && parsed[field.or] === undefined))
 		) {
 			if (field.required) {
-				errors.push(`Missing required field: ${name}`);
+				errors.push({
+					field: name,
+					message: `Missing required field: ${name}`,
+				});
 			} else if (field.warning) {
 				warnings.push(`Missing recommended field: ${name}`);
 			} else if (field.recommended) {
@@ -253,22 +260,27 @@ export const validate = (
 		if (field.types || field.type) {
 			const typeErrors = validateType(name, field, parsed[name]);
 			if (typeErrors.length > 0) {
-				errors.push(...typeErrors);
+				errors.push(...typeErrors.map((e) => ({ field: name, message: e })));
 				continue;
 			}
 		}
 
 		// Regexp format check
 		if (field.format && !field.format.test(parsed[name])) {
-			errors.push(
-				`Value for field ${name}, ${parsed[name]} does not match format: ${field.format.toString()}`,
-			);
+			errors.push({
+				field: name,
+				message: `Value for field ${name}, ${parsed[name]} does not match format: ${field.format.toString()}`,
+			});
 		}
 
 		// Validation function check
 		if (field.validate && typeof field.validate === "function") {
 			// Validation is expected to return an array of errors (empty means no errors)
-			errors.push(...field.validate(name, parsed[name]));
+			errors.push(
+				...field
+					.validate(name, parsed[name])
+					.map((e) => ({ field: name, message: e })),
+			);
 		}
 	}
 

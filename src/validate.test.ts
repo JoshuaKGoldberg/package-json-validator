@@ -171,11 +171,31 @@ describe("validate", () => {
 				const result = validate(JSON.stringify(json), "npm");
 
 				assert.deepStrictEqual(result.errors, [
-					"Invalid version range for dependency bad-catalog: catalob:",
-					"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-					"Invalid version range for dependency bad-workspace: workspace:abc123",
-					"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
-					"Invalid version range for dependency package-name: abc123",
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-catalog: catalob:",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-workspace: workspace:abc123",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency package-name: abc123",
+					},
 				]);
 			});
 
@@ -189,7 +209,11 @@ describe("validate", () => {
 				const result = validate(JSON.stringify(json), "npm");
 
 				assert.deepStrictEqual(result.errors, [
-					"Invalid version range for dependency package-name: abc123",
+					{
+						field: "peerDependencies",
+						message:
+							"Invalid version range for dependency package-name: abc123",
+					},
 				]);
 			});
 
@@ -377,7 +401,7 @@ describe("validate", () => {
 				assert.equal(result.critical, undefined, JSON.stringify(result));
 			});
 
-			it("reports a complaint when devDependencies has an invalid range", () => {
+			it("reports errors when devDependencies have invalid ranges", () => {
 				const json = getPackageJson({
 					devDependencies: {
 						"bad-catalog": "catalob:",
@@ -391,11 +415,31 @@ describe("validate", () => {
 				const result = validate(json, "npm");
 
 				assert.deepStrictEqual(result.errors, [
-					"Invalid version range for dependency bad-catalog: catalob:",
-					"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-					"Invalid version range for dependency bad-workspace: workspace:abc123",
-					"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
-					"Invalid version range for dependency package-name: abc123",
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-catalog: catalob:",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-workspace: workspace:abc123",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
+					},
+					{
+						field: "devDependencies",
+						message:
+							"Invalid version range for dependency package-name: abc123",
+					},
 				]);
 			});
 
@@ -409,7 +453,11 @@ describe("validate", () => {
 				const result = validate(json, "npm");
 
 				assert.deepStrictEqual(result.errors, [
-					"Invalid version range for dependency package-name: abc123",
+					{
+						field: "peerDependencies",
+						message:
+							"Invalid version range for dependency package-name: abc123",
+					},
 				]);
 			});
 
