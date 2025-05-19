@@ -49,25 +49,29 @@ validate(/* ... */);
 
 ## API
 
-```js
-validate(packageData[([, spec], options)]);
-```
+### validate(data, spec?, options?)
 
-`spec` is either `npm`, `commonjs_1.0`, or `commonjs_1.1`
+This function validates an entire `package.json` and returns a list of errors, if
+any violations are found.
 
-`options` is an object with the following available:
+#### Parameters
 
-```js
-{
-    warnings: true, // show warnings
-    recommendations: true // show recommendations
-}
-```
+- `data` packageData object or a JSON-stringified version of the package data.
+- `spec` is either `npm`, `commonjs_1.0`, or `commonjs_1.1`
+- `options` is an object with the following:
+  ```ts
+  interface Options {
+  	recommendations?: boolean; // show recommendations
+  	warnings?: boolean; // show warnings
+  }
+  ```
+
+#### Examples
 
 Example using an object:
 
 ```js
-const { validate } = require("package-json-validator");
+import { validate } from "package-json-validator";
 
 const packageData = {
 	name: "my-package",
@@ -80,7 +84,7 @@ validate(packageData);
 Example using a string:
 
 ```js
-const { validate } = require("package-json-validator");
+import { validate } from "package-json-validator";
 
 const text = JSON.stringify({
 	name: "packageJsonValidator",
@@ -140,6 +144,42 @@ console.log(data);
 //    'Missing optional field: engines'
 //  ]
 }
+```
+
+### validateBin(value)
+
+This function validates the value of the `bin` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- It should be of type `string` or `object`.
+- If it's a `string`, it should be a relative path to an executable file.
+- If it's an `object`, it should be a key to string value object, and the values should all be relative paths.
+
+It returns a list of error messages if any violations are found.
+
+#### Examples
+
+```ts
+import { validateBin } from "package-json-validator";
+
+const packageData = {
+	bin: "./my-cli.js",
+};
+
+const errors = validateBin(packageData.bin);
+```
+
+```ts
+import { validateBin } from "package-json-validator";
+
+const packageData = {
+	bin: {
+		"my-cli": "./my-cli.js",
+		"my-dev-cli": "./dev/my-cli.js",
+	},
+};
+
+const errors = validateBin(packageData.bin);
 ```
 
 ## Supported Specifications

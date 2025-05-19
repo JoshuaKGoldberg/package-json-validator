@@ -1,3 +1,4 @@
+export { validateBin } from "./validateBin";
 export { validateDependencies } from "./validateDependencies";
 export { validatePeople } from "./validatePeople";
 export { validateType } from "./validateType";
