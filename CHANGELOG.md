@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.11.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.2...v0.11.0) (2025-05-19)
+
+### Features
+
+- **validateBin:** add new validateBin function ([#243](https://github.com/JoshuaKGoldberg/package-json-validator/issues/243)) ([d1014a2](https://github.com/JoshuaKGoldberg/package-json-validator/commit/d1014a2ab639c7a089ebb26311020f2be7c31518)), closes [#230](https://github.com/JoshuaKGoldberg/package-json-validator/issues/230) [#223](https://github.com/JoshuaKGoldberg/package-json-validator/issues/223) [#223](https://github.com/JoshuaKGoldberg/package-json-validator/issues/223)
+
 ## [0.10.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.1...v0.10.2) (2025-04-29)
 
 ### Bug Fixes
