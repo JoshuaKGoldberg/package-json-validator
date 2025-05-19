@@ -8,8 +8,7 @@
  *   "my-dev-tool" : "./dev-tool.js",
  * }
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const validateBin = (obj: any): string[] => {
+export const validateBin = (obj: unknown): string[] => {
 	const errors: string[] = [];
 
 	if (typeof obj === "string") {
@@ -18,14 +17,14 @@ export const validateBin = (obj: any): string[] => {
 		}
 	} else if (obj && typeof obj === "object" && !Array.isArray(obj)) {
 		let propertyNumber = 0;
-		for (const key in obj) {
+		for (const [key, value] of Object.entries(obj)) {
 			const normalizedKey = key.trim();
 			const fieldName =
 				normalizedKey === "" ? String(propertyNumber) : `"${normalizedKey}"`;
 
-			if (typeof obj[key] !== "string") {
+			if (typeof value !== "string") {
 				errors.push(`bin field ${fieldName} should be a string`);
-			} else if (obj[key].trim() === "") {
+			} else if (value.trim() === "") {
 				errors.push(
 					`bin field ${fieldName} is empty, but should be a relative path`,
 				);
