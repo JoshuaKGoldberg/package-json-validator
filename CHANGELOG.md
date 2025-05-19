@@ -1,5 +1,16 @@
 # Changelog
 
+# [1.0.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.2...v1.0.0) (2025-05-19)
+
+### Features
+
+- **validateBin:** add new validateBin function ([#230](https://github.com/JoshuaKGoldberg/package-json-validator/issues/230)) ([72131bf](https://github.com/JoshuaKGoldberg/package-json-validator/commit/72131bf986d9078948877bd5ec23c340ac4ee577)), closes [#223](https://github.com/JoshuaKGoldberg/package-json-validator/issues/223) [#223](https://github.com/JoshuaKGoldberg/package-json-validator/issues/223)
+
+### BREAKING CHANGES
+
+- **validateBin:** the `validate` function's validation of `bin` is now
+  stricter than before.
+
 ## [0.10.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.1...v0.10.2) (2025-04-29)
 
 ### Bug Fixes
