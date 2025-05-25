@@ -2,6 +2,14 @@ import type { People, Person } from "../types";
 
 import { emailFormat, urlFormat } from "../formats.js";
 
+export const isPersonArray = (obj: unknown): obj is Person[] => {
+	return Array.isArray(obj) && obj.every((item) => isPerson(item));
+};
+
+export const isPerson = (obj: unknown): obj is Person => {
+	return typeof obj === "object" && obj !== null && "name" in obj;
+};
+
 /**
  * Validate 'people' fields, which can be an object like this:
  *
@@ -9,7 +17,6 @@ import { emailFormat, urlFormat } from "../formats.js";
  *   "name" : "Barney Rubble"
  *   "email" : "b@rubble.com",
  *   "url" : "http://barnyrubble.tumblr.com/"
- *   "web" : "http://barnyrubble.tumblr.com/"
  * }
  *
  * Or a single string like this:

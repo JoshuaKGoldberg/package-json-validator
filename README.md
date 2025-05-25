@@ -146,6 +146,43 @@ console.log(data);
 }
 ```
 
+### validateAuthor(value)
+
+This function validates the value of the `author` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is either a string or an object
+- if it's an object, it should include a `name` field and, optionally, `email` and / or `url` fields.
+- if present, the `email` and `url` fields should be valid email and url, respectively.
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateAuthor } from "package-json-validator";
+
+const packageData = {
+	author: {
+		email: "b@rubble.com",
+		name: "Barney Rubble",
+		url: "http://barnyrubble.tumblr.com/",
+	},
+};
+
+const errors = validateAuthor(packageData.author);
+```
+
+```ts
+import { validateAuthor } from "package-json-validator";
+
+const packageData = {
+	author: "Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
+};
+
+const errors = validateAuthor(packageData.author);
+```
+
 ### validateBin(value)
 
 This function validates the value of the `bin` property of a `package.json`.
@@ -155,7 +192,7 @@ It takes the value, and validates it against the following criteria.
 - If it's a `string`, it should be a relative path to an executable file.
 - If it's an `object`, it should be a key to string value object, and the values should all be relative paths.
 
-It returns a list of error messages if any violations are found.
+It returns a list of error messages, if any violations are found.
 
 #### Examples
 
