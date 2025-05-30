@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validatePeople } from "./validatePeople";
+import { isPerson, isPersonArray, validatePeople } from "./validatePeople";
 
 describe("validatePeople", () => {
 	it("should validate string with only name", () => {
@@ -54,5 +54,58 @@ describe("validatePeople", () => {
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.length).toBe(1);
+	});
+
+	describe("isPerson", () => {
+		it("should return true for valid person object", () => {
+			const person = { name: "Barney Rubble" };
+			expect(isPerson(person)).toBe(true);
+		});
+
+		it("should return false for invalid person object", () => {
+			const notAPerson = {
+				email: "<b@rubble.com>",
+				url: "http://barneyrubble.tumblr.com/",
+			};
+			expect(isPerson(notAPerson)).toBe(false);
+		});
+
+		it.each(["Barney Rubble", ["Barney Rubble"], 42, true, null, undefined])(
+			"should return false for something that's not an object: %s",
+			(input) => {
+				expect(isPerson(input)).toBe(false);
+			},
+		);
+	});
+
+	describe("isPersonArray", () => {
+		it("should return true for valid person array", () => {
+			const personArray = [
+				{ name: "Barney Rubble" },
+				{ name: "Fred Flintstone" },
+			];
+			expect(isPersonArray(personArray)).toBe(true);
+		});
+
+		it("should return false for invalid person array", () => {
+			const notAPersonArray = [
+				{
+					email: "<b@rubble.com>",
+					url: "http://barneyrubble.tumblr.com/",
+				},
+			];
+			expect(isPersonArray(notAPersonArray)).toBe(false);
+		});
+
+		it.each([
+			"Barney Rubble",
+			{ name: "Barney Rubble" },
+			42,
+			true,
+			null,
+			undefined,
+		])("should return false for something that's not an array: %s", (input) => {
+			expect(isPersonArray(input)).toBe(false);
+		});
 	});
 });
