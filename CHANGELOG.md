@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.13.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.12.0...v0.13.0) (2025-05-30)
+
+### Features
+
+- **validateAuthor:** add new validateAuthor function ([#253](https://github.com/JoshuaKGoldberg/package-json-validator/issues/253)) ([0945929](https://github.com/JoshuaKGoldberg/package-json-validator/commit/0945929e8656a087d96c3ed7c20872538996c613)), closes [#231](https://github.com/JoshuaKGoldberg/package-json-validator/issues/231)
+
 # [0.12.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.11.0...v0.12.0) (2025-05-30)
 
 ### Features
