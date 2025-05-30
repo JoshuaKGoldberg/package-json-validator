@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.12.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.11.0...v0.12.0) (2025-05-30)
+
+### Features
+
+- **validate:** expand errors to include field name ([#242](https://github.com/JoshuaKGoldberg/package-json-validator/issues/242)) ([ebe4eb1](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ebe4eb1e197f788c42531771d03ebbb7556c9590)), closes [#51](https://github.com/JoshuaKGoldberg/package-json-validator/issues/51)
+
 # [0.11.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.10.2...v0.11.0) (2025-05-19)
 
 ### Features
