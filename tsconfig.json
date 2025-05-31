@@ -10,7 +10,10 @@
 		"rewriteRelativeImportExtensions": true,
 		"skipLibCheck": true,
 		"strict": true,
-		"target": "ES2022"
+		"target": "ES2022",
+		"paths": {
+			"package-json-validator": ["./src/index.ts"]
+		}
 	},
 	"include": ["src"]
 }
