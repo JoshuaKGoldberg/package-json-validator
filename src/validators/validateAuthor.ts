@@ -1,4 +1,4 @@
-import { isPerson, validatePeople } from "./validatePeople";
+import { isPerson, validatePeople } from "./validatePeople.js";
 
 /**
  * Validate the `author` field in a package.json, which can either be a person
