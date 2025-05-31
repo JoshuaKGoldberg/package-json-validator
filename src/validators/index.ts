@@ -1,7 +1,7 @@
-export { validateAuthor } from "./validateAuthor.js";
-export { validateBin } from "./validateBin.js";
-export { validateDependencies } from "./validateDependencies.js";
-export { validatePeople } from "./validatePeople.js";
-export { validateType } from "./validateType.js";
-export { validateUrlOrMailto } from "./validateUrlOrMailto.js";
-export { validateUrlTypes } from "./validateUrlTypes.js";
+export { validateAuthor } from "./validateAuthor";
+export { validateBin } from "./validateBin";
+export { validateDependencies } from "./validateDependencies";
+export { validatePeople } from "./validatePeople";
+export { validateType } from "./validateType";
+export { validateUrlOrMailto } from "./validateUrlOrMailto";
+export { validateUrlTypes } from "./validateUrlTypes";

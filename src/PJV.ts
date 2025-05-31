@@ -3,15 +3,15 @@ import {
 	packageFormat,
 	urlFormat,
 	versionFormat,
-} from "./formats.js";
-import { validate } from "./validate.js";
+} from "./formats";
+import { validate } from "./validate";
 import {
 	validateDependencies,
 	validatePeople,
 	validateType,
 	validateUrlOrMailto,
 	validateUrlTypes,
-} from "./validators/index.js";
+} from "./validators";
 
 /** @deprecated please use the individual {@link validate} function */
 export const PJV = {

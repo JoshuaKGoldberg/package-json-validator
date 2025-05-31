@@ -1,6 +1,6 @@
 import type { People, Person } from "../types";
 
-import { emailFormat, urlFormat } from "../formats.js";
+import { emailFormat, urlFormat } from "../formats";
 
 export const isPersonArray = (obj: unknown): obj is Person[] => {
 	return Array.isArray(obj) && obj.every((item) => isPerson(item));
