@@ -1,4 +1,4 @@
-import { packageFormat, urlFormat } from "../formats.js";
+import { packageFormat, urlFormat } from "../formats";
 
 const isValidVersionRange = (v: string): boolean => {
 	// https://github.com/isaacs/npm/blob/master/doc/cli/json.md#dependencies

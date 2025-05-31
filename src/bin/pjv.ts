@@ -7,11 +7,10 @@
  */
 import fs from "node:fs";
 import process from "node:process";
+import { validate } from "package-json-validator";
 import yargs from "yargs";
 
 import type { SpecName } from "../types";
-
-import { validate } from "../validate.js";
 
 interface Options {
 	filename: string;

@@ -1,10 +1,10 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-	bundle: false,
 	clean: true,
 	dts: true,
-	entry: ["src/**/*.ts", "!src/**/*.test.*"],
+	entry: ["src/index.ts", "src/bin/pjv.ts"],
+	external: ["package-json-validator"],
 	format: ["cjs", "esm"],
 	outDir: "lib",
 });
