@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.0...v0.13.1) (2025-05-31)
+
+### Bug Fixes
+
+- add extensions to imports ([#258](https://github.com/JoshuaKGoldberg/package-json-validator/issues/258)) ([f9376e8](https://github.com/JoshuaKGoldberg/package-json-validator/commit/f9376e88e91a5e62ebbf478a78a2ad41ea0f352e)), closes [#260](https://github.com/JoshuaKGoldberg/package-json-validator/issues/260)
+
 # [0.13.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.12.0...v0.13.0) (2025-05-30)
 
 ### Features
