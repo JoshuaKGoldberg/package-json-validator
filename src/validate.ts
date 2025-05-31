@@ -1,6 +1,6 @@
 import type { SpecMap, SpecName } from "./types";
 
-import { packageFormat, urlFormat, versionFormat } from "./formats";
+import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import {
 	validateAuthor,
 	validateBin,
@@ -9,7 +9,7 @@ import {
 	validateType,
 	validateUrlOrMailto,
 	validateUrlTypes,
-} from "./validators";
+} from "./validators/index.js";
 
 const getSpecMap = (
 	specName: SpecName,
