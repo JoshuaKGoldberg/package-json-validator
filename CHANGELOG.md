@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.1...v0.13.2) (2025-06-01)
+
+### Bug Fixes
+
+- add CHANGELOG to package ([#266](https://github.com/JoshuaKGoldberg/package-json-validator/issues/266)) ([7c280b3](https://github.com/JoshuaKGoldberg/package-json-validator/commit/7c280b39aa0f3b654fb593b6ce84ad06ca98a296)), closes [#265](https://github.com/JoshuaKGoldberg/package-json-validator/issues/265)
+
 ## [0.13.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.0...v0.13.1) (2025-05-31)
 
 ### Bug Fixes
