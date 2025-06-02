@@ -1,4 +1,4 @@
-export { PJV } from "./PJV.js";
+export { PJV } from "./PJV";
 export type { SpecName, SpecType } from "./types";
-export { validate } from "./validate.js";
-export { validateAuthor, validateBin } from "./validators/index.js";
+export { validate } from "./validate";
+export { validateAuthor, validateBin } from "./validators";

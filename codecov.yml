@@ -1,0 +1,2 @@
+ignore:
+  - src/bin/pjv.ts # bin script entry point
