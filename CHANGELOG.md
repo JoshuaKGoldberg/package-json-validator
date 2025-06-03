@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.3](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.2...v0.13.3) (2025-06-03)
+
+### Bug Fixes
+
+- **deps:** update dependency yargs to v18 ([#269](https://github.com/JoshuaKGoldberg/package-json-validator/issues/269)) ([9dddeeb](https://github.com/JoshuaKGoldberg/package-json-validator/commit/9dddeebd1909158b3d14a75e6ff97202174a9057))
+
 ## [0.13.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.1...v0.13.2) (2025-06-01)
 
 ### Bug Fixes
