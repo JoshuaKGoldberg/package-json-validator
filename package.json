@@ -74,7 +74,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"yargs": "~17.7.2"
+		"yargs": "~18.0.0"
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.5.0",
