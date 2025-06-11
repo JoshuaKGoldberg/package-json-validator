@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.14.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.3...v0.14.0) (2025-06-11)
+
+### Features
+
+- remove support for node 18 ([#278](https://github.com/JoshuaKGoldberg/package-json-validator/issues/278)) ([b2bc9db](https://github.com/JoshuaKGoldberg/package-json-validator/commit/b2bc9dbfd6387a7785f140153b24cd66825272f2)), closes [#276](https://github.com/JoshuaKGoldberg/package-json-validator/issues/276)
+
 ## [0.13.3](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.2...v0.13.3) (2025-06-03)
 
 ### Bug Fixes
