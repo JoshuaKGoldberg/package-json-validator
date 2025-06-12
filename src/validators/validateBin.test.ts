@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateBin } from "./validateBin";
+import { validateBin } from "./validateBin.js";
 
 describe("validateBin", () => {
 	it("should return no errors if the bin field is an empty object", () => {

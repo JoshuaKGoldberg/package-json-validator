@@ -1,4 +1,4 @@
-import type { SpecMap, SpecName } from "./types";
+import type { SpecMap, SpecName } from "./types.js";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import {

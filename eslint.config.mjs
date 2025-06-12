@@ -53,7 +53,6 @@ export default tseslint.config(
 			"@typescript-eslint/no-deprecated": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",
 			"n/no-missing-import": "off",
-			"n/no-unsupported-features/node-builtins": "off",
 
 			// Using a ts bin file throws this rule off.
 			// It uses the package.json as a source of truth, and since the package points

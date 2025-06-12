@@ -1,6 +1,6 @@
 import { assert, describe, it, test } from "vitest";
 
-import { PJV, validate } from ".";
+import { PJV, validate } from "./index.js";
 
 const getPackageJson = (
 	extra: Record<string, unknown> = {},

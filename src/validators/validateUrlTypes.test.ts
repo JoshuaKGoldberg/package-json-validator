@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateUrlTypes } from "./validateUrlTypes";
+import { validateUrlTypes } from "./validateUrlTypes.js";
 
 describe("validateUrlTypes", () => {
 	it("should return an error if the string is not a valid URL", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { isPerson, isPersonArray, validatePeople } from "./validatePeople";
+import { isPerson, isPersonArray, validatePeople } from "./validatePeople.js";
 
 describe("validatePeople", () => {
 	it("should validate string with only name", () => {

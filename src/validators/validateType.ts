@@ -1,4 +1,4 @@
-import type { FieldSpec, SpecType } from "../types";
+import type { FieldSpec, SpecType } from "../types.js";
 
 /**
  * Validate that a field conforms to the shape defined by its `type` property.
