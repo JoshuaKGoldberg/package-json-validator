@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.15.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.14.0...v0.15.0) (2025-06-12)
+
+### Features
+
+- migrate to ESM-only ([#281](https://github.com/JoshuaKGoldberg/package-json-validator/issues/281)) ([5beb7bb](https://github.com/JoshuaKGoldberg/package-json-validator/commit/5beb7bba46f73fb8e874a6717f31fea73364e8ec)), closes [#259](https://github.com/JoshuaKGoldberg/package-json-validator/issues/259)
+
 # [0.14.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.13.3...v0.14.0) (2025-06-11)
 
 ### Features
