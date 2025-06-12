@@ -1,4 +1,4 @@
-import type { UrlType } from "../types";
+import type { UrlType } from "../types.js";
 
 import { urlFormat } from "../formats.js";
 

@@ -33,25 +33,18 @@
 			"url": "https://joshuakgoldberg.com"
 		}
 	],
-	"type": "commonjs",
+	"type": "module",
 	"exports": {
 		".": {
-			"import": {
-				"type": "./lib/index.d.mts",
-				"default": "./lib/index.mjs"
-			},
-			"require": {
-				"type": "./lib/index.d.ts",
-				"default": "./lib/index.js"
-			}
+			"type": "./lib/index.d.ts",
+			"default": "./lib/index.js"
 		},
 		"./package.json": "./package.json"
 	},
 	"main": "lib/index.js",
-	"module": "lib/index.mjs",
 	"types": "lib/index.d.ts",
 	"bin": {
-		"pjv": "lib/bin/pjv.mjs"
+		"pjv": "lib/bin/pjv.js"
 	},
 	"files": [
 		"CHANGELOG.md",
@@ -67,8 +60,7 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
 		"test": "vitest",
-		"tsc": "tsc",
-		"type-check": "tsc"
+		"typecheck": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

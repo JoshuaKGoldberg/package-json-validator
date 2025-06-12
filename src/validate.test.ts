@@ -1,6 +1,6 @@
 import { assert, describe, it, test } from "vitest";
 
-import { validate } from "./validate";
+import { validate } from "./validate.js";
 
 const getPackageJson = (
 	extra: Record<string, unknown> = {},

@@ -1,4 +1,4 @@
-import type { UrlOrMailTo } from "../types";
+import type { UrlOrMailTo } from "../types.js";
 
 import { emailFormat, urlFormat } from "../formats.js";
 

@@ -1,4 +1,4 @@
-import type { People, Person } from "../types";
+import type { People, Person } from "../types.js";
 
 import { emailFormat, urlFormat } from "../formats.js";
 
