@@ -10,6 +10,7 @@ import {
 	validateAuthor,
 	validateBin,
 	validateDependencies,
+	validateType,
 	validateUrlOrMailto,
 } from "./validators/index.js";
 
@@ -75,6 +76,7 @@ const getSpecMap = (
 				warning: true,
 			},
 			scripts: { type: "object" },
+			type: { recommended: true, validate: (_, value) => validateType(value) },
 			version: {
 				format: versionFormat,
 				required: !isPrivate,
