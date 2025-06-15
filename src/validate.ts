@@ -2,13 +2,15 @@ import type { SpecMap, SpecName } from "./types.js";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import {
+	validateFieldType,
+	validatePeople,
+	validateUrlTypes,
+} from "./utils/index.js";
+import {
 	validateAuthor,
 	validateBin,
 	validateDependencies,
-	validatePeople,
-	validateType,
 	validateUrlOrMailto,
-	validateUrlTypes,
 } from "./validators/index.js";
 
 const getSpecMap = (
@@ -16,7 +18,8 @@ const getSpecMap = (
 	isPrivate: boolean,
 ): false | SpecMap => {
 	if (specName == "npm") {
-		// https://docs.npmjs.com/cli/v9/configuring-npm/package-json
+		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
+		// https://nodejs.org/api/packages.html
 		return {
 			author: { validate: (_, value) => validateAuthor(value), warning: true },
 			bin: { validate: (_, value) => validateBin(value) },
@@ -260,7 +263,7 @@ export const validate = (
 
 		// Type checking
 		if (field.types || field.type) {
-			const typeErrors = validateType(name, field, parsed[name]);
+			const typeErrors = validateFieldType(name, field, parsed[name]);
 			if (typeErrors.length > 0) {
 				errors.push(...typeErrors.map((e) => ({ field: name, message: e })));
 				continue;

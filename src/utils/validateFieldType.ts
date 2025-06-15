@@ -7,7 +7,7 @@ import type { FieldSpec, SpecType } from "../types.js";
  * @param value The actual value of the field we're going to validate
  * @returns An array with a validation error (if a violation is found)
  */
-export const validateType = (
+export const validateFieldType = (
 	name: string,
 	field: FieldSpec,
 	value: boolean | object | string | unknown[],
