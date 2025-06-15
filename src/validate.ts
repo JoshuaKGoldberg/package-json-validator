@@ -10,6 +10,7 @@ import {
 	validateAuthor,
 	validateBin,
 	validateDependencies,
+	validateType,
 	validateUrlOrMailto,
 } from "./validators/index.js";
 
