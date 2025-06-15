@@ -219,6 +219,28 @@ const packageData = {
 const errors = validateBin(packageData.bin);
 ```
 
+### validateType(value)
+
+This function validates the value of the `type` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is a string
+- its value is either `'commonjs'` or `'module'`
+
+It returns an error message, if a violation is found.
+
+#### Examples
+
+```ts
+import { validateType } from "package-json-validator";
+
+const packageData = {
+	type: "module",
+};
+
+const errors = validateType(packageData.type);
+```
+
 ## Supported Specifications
 
 Of course, there are multiple ones to follow, which makes it trickier.

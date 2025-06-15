@@ -1,21 +1,15 @@
-import { assert, describe, it, test } from "vitest";
+import { assert, describe, expect, it, test } from "vitest";
 
 import { validate } from "./validate.js";
 
 const getPackageJson = (
 	extra: Record<string, unknown> = {},
-): Record<string, unknown> => {
-	const out: Record<string, unknown> = {
-		name: "test-package",
-		version: "0.5.0",
-	};
-	if (extra) {
-		for (const name in extra) {
-			out[name] = extra[name];
-		}
-	}
-	return out;
-};
+): Record<string, unknown> => ({
+	name: "test-package",
+	version: "0.5.0",
+	...extra,
+});
+
 const npmWarningFields = {
 	author: "Nick Sullivan <nick@sullivanflock.com>",
 	bugs: "http://example.com/bugs",
@@ -294,14 +288,15 @@ describe("validate", () => {
 				dependencies: { "package-json-validator": "*" },
 				engines: { node: ">=0.10.3 <0.12" },
 				homepage: "http://example.com",
+				type: "module",
 			};
 			let json = getPackageJson(recommendedFields);
 			let result = validate(JSON.stringify(json), "npm", {
 				recommendations: true,
 				warnings: false,
 			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.critical, undefined, JSON.stringify(result));
+			expect(result.valid).toBe(true);
+			expect(result.recommendations?.length).toBeFalsy();
 
 			for (const field in recommendedFields) {
 				json = getPackageJson(recommendedFields);
@@ -538,14 +533,15 @@ describe("validate", () => {
 				dependencies: { "package-json-validator": "*" },
 				engines: { node: ">=0.10.3 <0.12" },
 				homepage: "http://example.com",
+				type: "module",
 			};
 			let json = getPackageJson(recommendedFields);
 			let result = validate(json, "npm", {
 				recommendations: true,
 				warnings: false,
 			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.critical, undefined, JSON.stringify(result));
+			expect(result.valid).toBe(true);
+			expect(result.recommendations?.length).toBeFalsy();
 
 			for (const field in recommendedFields) {
 				json = getPackageJson(recommendedFields);
