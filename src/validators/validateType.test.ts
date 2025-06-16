@@ -1,85 +1,78 @@
 import { describe, expect, it } from "vitest";
 
-import type { FieldSpec } from "../types.js";
-
 import { validateType } from "./validateType.js";
 
 describe("validateType", () => {
-	it("should return an empty array if no type or types are defined", () => {
-		const field = {} satisfies FieldSpec;
-		const result = validateType("testField", field, "testValue");
-		expect(result).toEqual([]);
-	});
+	it.each(["commonjs", "module"])(
+		"should return no errors for valid type '%s'",
+		(type) => {
+			expect(validateType(type)).toEqual([]);
+		},
+	);
 
-	it("should validate a single type correctly", () => {
-		const field = { type: "string" } satisfies FieldSpec;
-		const result = validateType("testField", field, "testValue");
-		expect(result).toEqual([]);
-	});
-
-	it("should return an error if the value does not match the single type", () => {
-		const field = { type: "string" } satisfies FieldSpec;
-		const result = validateType("testField", field, true);
-		expect(result).toEqual([
-			"Type for field testField was expected to be string, not boolean",
+	it("should return error if type is not a string (number)", () => {
+		expect(validateType(123)).toEqual([
+			"type should be a `string`, not `number`",
 		]);
 	});
 
-	it("should validate multiple types correctly", () => {
-		const field = { types: ["string", "boolean"] } satisfies FieldSpec;
-		const result1 = validateType("testField", field, "testValue");
-		const result2 = validateType("testField", field, true);
-		expect(result1).toEqual([]);
-		expect(result2).toEqual([]);
-	});
-
-	it("should return an error if the value does not match any of the multiple types", () => {
-		const field = { types: ["string", "boolean"] } satisfies FieldSpec;
-		const result = validateType("testField", field, {});
-		expect(result).toEqual([
-			"Type for field testField was expected to be string or boolean, not object",
+	it("should return error if type is not a string (object)", () => {
+		expect(validateType({})).toEqual([
+			"type should be a `string`, not `object`",
 		]);
 	});
 
-	it("should validate array type correctly", () => {
-		const field = { type: "array" } satisfies FieldSpec;
-		const result = validateType("testField", field, []);
-		expect(result).toEqual([]);
-	});
-
-	it("should return an error if the value does not match the array type", () => {
-		const field = { type: "array" } satisfies FieldSpec;
-		const result = validateType("testField", field, "notAnArray");
-		expect(result).toEqual([
-			"Type for field testField was expected to be array, not string",
+	it("should return error if type is not a string (array)", () => {
+		expect(validateType([])).toEqual([
+			"type should be a `string`, not `array`",
 		]);
 	});
 
-	it("should validate boolean type correctly", () => {
-		const field = { type: "boolean" } satisfies FieldSpec;
-		const result = validateType("testField", field, true);
-		expect(result).toEqual([]);
-	});
-
-	it("should return an error if the value does not match the boolean type", () => {
-		const field = { type: "boolean" } satisfies FieldSpec;
-		const result = validateType("testField", field, "notABoolean");
-		expect(result).toEqual([
-			"Type for field testField was expected to be boolean, not string",
+	it("should return error if type is not a string (boolean)", () => {
+		expect(validateType(true)).toEqual([
+			"type should be a `string`, not `boolean`",
 		]);
 	});
 
-	it("should validate object type correctly", () => {
-		const field = { type: "object" } satisfies FieldSpec;
-		const result = validateType("testField", field, {});
-		expect(result).toEqual([]);
+	it("should return error if type is not a string (undefined)", () => {
+		expect(validateType(undefined)).toEqual([
+			"type should be a `string`, not `undefined`",
+		]);
 	});
 
-	it("should return an error if the value does not match the object type", () => {
-		const field = { type: "object" } satisfies FieldSpec;
-		const result = validateType("testField", field, "notAnObject");
-		expect(result).toEqual([
-			"Type for field testField was expected to be object, not string",
+	it("should return error if type is not a string (null)", () => {
+		expect(validateType(null)).toEqual([
+			"type is `null`, but should be a `string`",
+		]);
+	});
+
+	it("should return error if type is an empty string", () => {
+		expect(validateType("")).toEqual([
+			"type is empty, but should be one of: commonjs, module",
+		]);
+	});
+
+	it("should return error if type is whitespace only", () => {
+		expect(validateType("   ")).toEqual([
+			"type is empty, but should be one of: commonjs, module",
+		]);
+	});
+
+	it("should return error if type is an invalid string", () => {
+		expect(validateType("esm")).toEqual([
+			'type "esm" is not valid. Valid types are: commonjs, module',
+		]);
+	});
+
+	it("should return error if type is a valid type but with extra whitespace", () => {
+		expect(validateType(" commonjs ")).toEqual([
+			'type " commonjs " is not valid. Valid types are: commonjs, module',
+		]);
+	});
+
+	it("should return error if type is a case-mismatched valid type", () => {
+		expect(validateType("CommonJS")).toEqual([
+			'type "CommonJS" is not valid. Valid types are: commonjs, module',
 		]);
 	});
 });

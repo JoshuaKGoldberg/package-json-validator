@@ -4,13 +4,12 @@ import {
 	urlFormat,
 	versionFormat,
 } from "./formats.js";
+import { validatePeople, validateUrlTypes } from "./utils/index.js";
 import { validate } from "./validate.js";
 import {
 	validateDependencies,
-	validatePeople,
 	validateType,
 	validateUrlOrMailto,
-	validateUrlTypes,
 } from "./validators/index.js";
 
 /** @deprecated please use the individual {@link validate} function */
