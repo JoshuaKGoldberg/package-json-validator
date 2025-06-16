@@ -1,5 +1,5 @@
 export { PJV } from "./PJV.js";
-export { validate, ValidationOptions } from "./validate.js";
+export { validate, type ValidationOptions } from "./validate.js";
 export {
 	validateAuthor,
 	validateBin,
