@@ -1,7 +1,6 @@
-import type { SpecMap, SpecName } from "./Spec.types.ts";
+import type { SpecMap } from "./Spec.types.ts";
 
-import { packageFormat, urlFormat, versionFormat } from "./formats.ts";
-import { validateFieldType, validateUrlTypes } from "./utils/index.js";
+import { validateFieldType } from "./utils/index.ts";
 import {
 	validateAuthor,
 	validateBin,
@@ -31,16 +30,13 @@ import {
 	validateUrlOrMailto,
 	validateVersion,
 	validateWorkspaces,
-} from "./validators/index.js";
+} from "./validators/index.ts";
 
+// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
+		// https://nodejs.org/api/packages.html
 const getSpecMap = (
 	isPrivate: boolean,
-	specName: SpecName = "npm",
-): false | SpecMap => {
-	if (specName == "npm") {
-		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
-		// https://nodejs.org/api/packages.html
-		return {
+): SpecMap => ({
 			author: {
 				validate: (_, value) => validateAuthor(value).errorMessages,
 				warning: true,
@@ -126,103 +122,7 @@ const getSpecMap = (
 			workspaces: {
 				validate: (_, value) => validateWorkspaces(value).errorMessages,
 			},
-		};
-	} else if (specName == "commonjs_1.0") {
-		// http://wiki.commonjs.org/wiki/Packages/1.0
-		return {
-			bugs: {
-				required: true,
-				type: "string",
-				validate: validateUrlOrMailto,
-			},
-			builtin: { type: "boolean" },
-			checksums: { type: "object" },
-			contributors: {
-				required: true,
-				type: "array",
-				validate: (_, value) => validateContributors(value).errorMessages,
-			},
-			cpu: { type: "array" },
-			dependencies: {
-				required: true,
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			description: { required: true, type: "string" },
-			directories: { type: "object" },
-			engine: { type: "array" },
-			homepage: { format: urlFormat, type: "string" },
-
-			implements: { type: "array" },
-			keywords: { required: true, type: "array" },
-			licenses: {
-				required: true,
-				type: "array",
-				validate: validateUrlTypes,
-			},
-			maintainers: {
-				required: true,
-				type: "array",
-				validate: (_, value) => validateContributors(value).errorMessages,
-			},
-			name: { format: packageFormat, required: true, type: "string" },
-			os: { type: "array" },
-			repositories: {
-				required: true,
-				type: "object",
-				validate: validateUrlTypes,
-			},
-			scripts: { type: "object" },
-			version: { format: versionFormat, required: true, type: "string" },
-		};
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	} else if (specName == "commonjs_1.1") {
-		// http://wiki.commonjs.org/wiki/Packages/1.1
-		return {
-			bugs: {
-				type: "string",
-				validate: validateUrlOrMailto,
-				warning: true,
-			},
-			builtin: { type: "boolean" },
-			checksums: { type: "object" },
-			contributors: {
-				type: "array",
-				validate: (_, value) => validateContributors(value).errorMessages,
-			},
-
-			cpu: { type: "array" },
-			dependencies: {
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			description: { type: "string", warning: true },
-			directories: { required: true, type: "object" },
-			engine: { type: "array" },
-			homepage: { format: urlFormat, type: "string", warning: true },
-			implements: { type: "array" },
-			keywords: { type: "array" },
-			licenses: {
-				type: "array",
-				validate: validateUrlTypes,
-				warning: true,
-			},
-			main: { required: true, type: "string" },
-			maintainers: {
-				type: "array",
-				validate: (_, value) => validateContributors(value).errorMessages,
-				warning: true,
-			},
-			name: { format: packageFormat, required: true, type: "string" },
-			os: { type: "array" },
-			overlay: { type: "object" },
-			repositories: { type: "array", validate: validateUrlTypes },
-			scripts: { type: "object" },
-			version: { format: versionFormat, required: true, type: "string" },
-		};
-	} else {
-		// Unrecognized spec
-		return false;
-	}
-};
+		});
 
 const parse = (data: string) => {
 	if (typeof data != "string") {
@@ -253,16 +153,7 @@ const parse = (data: string) => {
 	return parsed;
 };
 
-export interface ValidateFunction {
-	(data: object | string, options?: ValidationOptions): ValidationOutput;
-
-	/** @deprecated Both commonjs specs have been deprecated. Please use `validate(data, options)` instead. */
-	(
-		data: object | string,
-		specName?: SpecName,
-		options?: ValidationOptions,
-	): ValidationOutput;
-}
+export type ValidateFunction = (data: object | string, options?: ValidationOptions) => ValidationOutput;
 
 export interface ValidationOptions {
 	recommendations?: boolean;
@@ -285,13 +176,11 @@ interface ValidationError {
 /**
  * Validate a package.json object (or string) against the npm spec.
  * @param data The package.json data to validate, either as a string or an object.
- * @param specNameOrOptions The options object, or the specification name to use for validation (deprecated).
  * @param options The options for validation, if using the deprecated spec name parameter.
  * @returns an object with the validation results.
  */
 export const validate: ValidateFunction = (
 	data: object | string,
-	specNameOrOptions: SpecName | ValidationOptions = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -303,22 +192,7 @@ export const validate: ValidateFunction = (
 		return out;
 	}
 
-	let specName: SpecName | ValidationOptions;
-	if (typeof specNameOrOptions === "object") {
-		specName = "npm"; // Default spec
-		options = specNameOrOptions; // Use the options from the second parameter
-	} else {
-		specName = specNameOrOptions;
-	}
-
-	const map = getSpecMap(
-		(parsed.private as boolean | undefined) ?? false,
-		specName,
-	);
-	if (map === false) {
-		out.critical = { "Invalid specification": specName };
-		return out;
-	}
+	const map = getSpecMap((parsed.private as boolean | undefined) ?? false);
 	const errors: ValidationError[] = [];
 	const warnings: string[] = [];
 	const recommendations: string[] = [];
