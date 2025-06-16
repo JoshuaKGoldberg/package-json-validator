@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.16.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.15.0...v0.16.0) (2025-06-16)
+
+### Features
+
+- **validateType:** add function for validating type ([#284](https://github.com/JoshuaKGoldberg/package-json-validator/issues/284)) ([6775b04](https://github.com/JoshuaKGoldberg/package-json-validator/commit/6775b04f068f1de7a63ff783c4c7927bf45cc431)), closes [#68](https://github.com/JoshuaKGoldberg/package-json-validator/issues/68)
+
 # [0.15.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.14.0...v0.15.0) (2025-06-12)
 
 ### Features
