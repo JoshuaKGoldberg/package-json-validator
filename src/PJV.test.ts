@@ -13,7 +13,6 @@ const getPackageJson = (
 const npmWarningFields = {
 	author: "Nick Sullivan <nick@sullivanflock.com>",
 	bugs: "http://example.com/bugs",
-	contributors: ["Nick Sullivan <nick@sullivanflock.com>"],
 	description: "This is my description",
 	keywords: ["keyword1", "keyword2", "keyword3"],
 	licenses: [{ type: "MIT", url: "http://example.com/license" }],
