@@ -246,7 +246,11 @@ describe("PJV", () => {
 				const recommendedFields = {
 					dependencies: { "package-json-validator": "*" },
 					engines: { node: ">=0.10.3 <0.12" },
+					exports: {
+						".": "./index.js",
+					},
 					homepage: "http://example.com",
+					main: "index.js",
 					type: "module",
 				};
 				let json = getPackageJson(recommendedFields);
@@ -494,7 +498,11 @@ describe("PJV", () => {
 				const recommendedFields = {
 					dependencies: { "package-json-validator": "*" },
 					engines: { node: ">=0.10.3 <0.12" },
+					exports: {
+						".": "./index.js",
+					},
 					homepage: "http://example.com",
+					main: "index.js",
 					type: "module",
 				};
 				let json = getPackageJson(recommendedFields);
