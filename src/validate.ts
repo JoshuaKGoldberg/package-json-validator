@@ -1,4 +1,4 @@
-import type { SpecMap, SpecName } from "./types.js";
+import type { SpecMap } from "./types.js";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats.js";
 import {
@@ -14,166 +14,70 @@ import {
 	validateUrlOrMailto,
 } from "./validators/index.js";
 
-const getSpecMap = (
-	specName: SpecName,
-	isPrivate: boolean,
-): false | SpecMap => {
-	if (specName == "npm") {
-		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
-		// https://nodejs.org/api/packages.html
-		return {
-			author: { validate: (_, value) => validateAuthor(value), warning: true },
-			bin: { validate: (_, value) => validateBin(value) },
-			bugs: { validate: validateUrlOrMailto, warning: true },
-			bundledDependencies: { type: "array" },
-			bundleDependencies: { type: "array" },
-			config: { type: "object" },
-			contributors: { validate: validatePeople, warning: true },
-			cpu: { type: "array" },
-			dependencies: {
-				recommended: true,
-				type: "object",
-				validate: validateDependencies,
-			},
-			description: { type: "string", warning: true },
-			devDependencies: { type: "object", validate: validateDependencies },
-			directories: { type: "object" },
-			engines: { recommended: true, type: "object" },
-			engineStrict: { type: "boolean" },
-			files: { type: "array" },
-			homepage: { format: urlFormat, recommended: true, type: "string" },
-			keywords: { type: "array", warning: true },
-			license: { type: "string" },
-			licenses: {
-				or: "license",
-				type: "array",
-				validate: validateUrlTypes,
-				warning: true,
-			},
-			main: { type: "string" },
-			man: { types: ["string", "array"] },
-			name: {
-				format: packageFormat,
-				required: !isPrivate,
-				type: "string",
-			},
-			optionalDependencies: {
-				type: "object",
-				validate: validateDependencies,
-			},
-			os: { type: "array" },
-			peerDependencies: {
-				type: "object",
-				validate: validateDependencies,
-			},
-			preferGlobal: { type: "boolean" },
-			private: { type: "boolean" },
-			publishConfig: { type: "object" },
-			repository: {
-				or: "repositories",
-				types: ["string", "object"],
-				validate: validateUrlTypes,
-				warning: true,
-			},
-			scripts: { type: "object" },
-			type: { recommended: true, validate: (_, value) => validateType(value) },
-			version: {
-				format: versionFormat,
-				required: !isPrivate,
-				type: "string",
-			},
-		};
-	} else if (specName == "commonjs_1.0") {
-		// http://wiki.commonjs.org/wiki/Packages/1.0
-		return {
-			bugs: {
-				required: true,
-				type: "string",
-				validate: validateUrlOrMailto,
-			},
-			builtin: { type: "boolean" },
-			checksums: { type: "object" },
-			contributors: {
-				required: true,
-				type: "array",
-				validate: validatePeople,
-			},
-			cpu: { type: "array" },
-			dependencies: {
-				required: true,
-				type: "object",
-				validate: validateDependencies,
-			},
-			description: { required: true, type: "string" },
-			directories: { type: "object" },
-			engine: { type: "array" },
-			homepage: { format: urlFormat, type: "string" },
-
-			implements: { type: "array" },
-			keywords: { required: true, type: "array" },
-			licenses: {
-				required: true,
-				type: "array",
-				validate: validateUrlTypes,
-			},
-			maintainers: {
-				required: true,
-				type: "array",
-				validate: validatePeople,
-			},
-			name: { format: packageFormat, required: true, type: "string" },
-			os: { type: "array" },
-			repositories: {
-				required: true,
-				type: "object",
-				validate: validateUrlTypes,
-			},
-			scripts: { type: "object" },
-			version: { format: versionFormat, required: true, type: "string" },
-		};
-	} else if (specName == "commonjs_1.1") {
-		// http://wiki.commonjs.org/wiki/Packages/1.1
-		return {
-			bugs: {
-				type: "string",
-				validate: validateUrlOrMailto,
-				warning: true,
-			},
-			builtin: { type: "boolean" },
-			checksums: { type: "object" },
-			contributors: { type: "array", validate: validatePeople },
-
-			cpu: { type: "array" },
-			dependencies: { type: "object", validate: validateDependencies },
-			description: { type: "string", warning: true },
-			directories: { required: true, type: "object" },
-			engine: { type: "array" },
-			homepage: { format: urlFormat, type: "string", warning: true },
-			implements: { type: "array" },
-			keywords: { type: "array" },
-			licenses: {
-				type: "array",
-				validate: validateUrlTypes,
-				warning: true,
-			},
-			main: { required: true, type: "string" },
-			maintainers: {
-				type: "array",
-				validate: validatePeople,
-				warning: true,
-			},
-			name: { format: packageFormat, required: true, type: "string" },
-			os: { type: "array" },
-			overlay: { type: "object" },
-			repositories: { type: "array", validate: validateUrlTypes },
-			scripts: { type: "object" },
-			version: { format: versionFormat, required: true, type: "string" },
-		};
-	} else {
-		// Unrecognized spec
-		return false;
-	}
-};
+// https://docs.npmjs.com/cli/configuring-npm/package-json
+// https://nodejs.org/api/packages.html
+const getSpecMap = (isPrivate: boolean): SpecMap => ({
+	author: { validate: (_, value) => validateAuthor(value), warning: true },
+	bin: { validate: (_, value) => validateBin(value) },
+	bugs: { validate: validateUrlOrMailto, warning: true },
+	bundledDependencies: { type: "array" },
+	bundleDependencies: { type: "array" },
+	config: { type: "object" },
+	contributors: { validate: validatePeople, warning: true },
+	cpu: { type: "array" },
+	dependencies: {
+		recommended: true,
+		type: "object",
+		validate: validateDependencies,
+	},
+	description: { type: "string", warning: true },
+	devDependencies: { type: "object", validate: validateDependencies },
+	directories: { type: "object" },
+	engines: { recommended: true, type: "object" },
+	engineStrict: { type: "boolean" },
+	files: { type: "array" },
+	homepage: { format: urlFormat, recommended: true, type: "string" },
+	keywords: { type: "array", warning: true },
+	license: { type: "string" },
+	licenses: {
+		or: "license",
+		type: "array",
+		validate: validateUrlTypes,
+		warning: true,
+	},
+	main: { type: "string" },
+	man: { types: ["string", "array"] },
+	name: {
+		format: packageFormat,
+		required: !isPrivate,
+		type: "string",
+	},
+	optionalDependencies: {
+		type: "object",
+		validate: validateDependencies,
+	},
+	os: { type: "array" },
+	peerDependencies: {
+		type: "object",
+		validate: validateDependencies,
+	},
+	preferGlobal: { type: "boolean" },
+	private: { type: "boolean" },
+	publishConfig: { type: "object" },
+	repository: {
+		or: "repositories",
+		types: ["string", "object"],
+		validate: validateUrlTypes,
+		warning: true,
+	},
+	scripts: { type: "object" },
+	type: { recommended: true, validate: (_, value) => validateType(value) },
+	version: {
+		format: versionFormat,
+		required: !isPrivate,
+		type: "string",
+	},
+});
 
 const parse = (data: string) => {
 	if (typeof data != "string") {
@@ -219,7 +123,6 @@ interface ValidationError {
 }
 export const validate = (
 	data: object | string,
-	specName: SpecName = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
 	const parsed = typeof data == "object" ? data : parse(data);
@@ -230,11 +133,7 @@ export const validate = (
 		return out;
 	}
 
-	const map = getSpecMap(specName, parsed.private);
-	if (map === false) {
-		out.critical = { "Invalid specification": specName };
-		return out;
-	}
+	const map = getSpecMap(parsed.private);
 	const errors: ValidationError[] = [];
 	const warnings: string[] = [];
 	const recommendations: string[] = [];

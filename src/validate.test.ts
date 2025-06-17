@@ -39,10 +39,8 @@ describe("validate", () => {
 
 	test("Field formats", () => {
 		assert.equal(
-			validate(
-				JSON.stringify(getPackageJson({ bin: "./path/to/program" })),
-				"npm",
-			).valid,
+			validate(JSON.stringify(getPackageJson({ bin: "./path/to/program" })))
+				.valid,
 			true,
 			"bin: can be string",
 		);
@@ -51,16 +49,13 @@ describe("validate", () => {
 				JSON.stringify(
 					getPackageJson({ bin: { "my-project": "./path/to/program" } }),
 				),
-				"npm",
 			).valid,
 			true,
 			"bin: can be object",
 		);
 		assert.equal(
-			validate(
-				JSON.stringify(getPackageJson({ bin: ["./path/to/program"] })),
-				"npm",
-			).valid,
+			validate(JSON.stringify(getPackageJson({ bin: ["./path/to/program"] })))
+				.valid,
 			false,
 			"bin: can't be an array",
 		);
@@ -69,34 +64,29 @@ describe("validate", () => {
 				JSON.stringify(
 					getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
 				),
-				"npm",
 			).valid,
 			false,
 			"version should be a string",
 		);
 		assert.equal(
-			validate(getPackageJson({ bin: "./path/to/program" }), "npm").valid,
+			validate(getPackageJson({ bin: "./path/to/program" })).valid,
 			true,
 			"bin: can be string | with object input",
 		);
 		assert.equal(
-			validate(
-				getPackageJson({ bin: { "my-project": "./path/to/program" } }),
-				"npm",
-			).valid,
+			validate(getPackageJson({ bin: { "my-project": "./path/to/program" } }))
+				.valid,
 			true,
 			"bin: can be object | with object input",
 		);
 		assert.equal(
-			validate(getPackageJson({ bin: ["./path/to/program"] }), "npm").valid,
+			validate(getPackageJson({ bin: ["./path/to/program"] })).valid,
 			false,
 			"bin: can't be an array | with object input",
 		);
 		assert.equal(
-			validate(
-				getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }),
-				"npm",
-			).valid,
+			validate(getPackageJson({ dependencies: { bad: { version: "3.3.3" } } }))
+				.valid,
 			false,
 			"version should be a string | with object input",
 		);
@@ -143,7 +133,7 @@ describe("validate", () => {
 						"verion-build": "1.2.3+build2012",
 					},
 				});
-				const result = validate(JSON.stringify(json), "npm", {
+				const result = validate(JSON.stringify(json), {
 					recommendations: false,
 					warnings: false,
 				});
@@ -162,7 +152,7 @@ describe("validate", () => {
 					},
 				});
 
-				const result = validate(JSON.stringify(json), "npm");
+				const result = validate(JSON.stringify(json));
 
 				assert.deepStrictEqual(result.errors, [
 					{
@@ -200,7 +190,7 @@ describe("validate", () => {
 					},
 				});
 
-				const result = validate(JSON.stringify(json), "npm");
+				const result = validate(JSON.stringify(json));
 
 				assert.deepStrictEqual(result.errors, [
 					{
@@ -221,7 +211,7 @@ describe("validate", () => {
 						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
 					},
 				});
-				const result = validate(JSON.stringify(json), "npm", {
+				const result = validate(JSON.stringify(json), {
 					recommendations: false,
 					warnings: false,
 				});
@@ -232,7 +222,7 @@ describe("validate", () => {
 
 		test("Required fields", () => {
 			let json = getPackageJson();
-			let result = validate(JSON.stringify(json), "npm", {
+			let result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: false,
 			});
@@ -242,7 +232,7 @@ describe("validate", () => {
 			["name", "version"].forEach((field) => {
 				json = getPackageJson();
 				delete json[field];
-				result = validate(JSON.stringify(json), "npm", {
+				result = validate(JSON.stringify(json), {
 					recommendations: false,
 					warnings: false,
 				});
@@ -253,7 +243,7 @@ describe("validate", () => {
 				json = getPackageJson();
 				json.private = true;
 				delete json[field];
-				result = validate(JSON.stringify(json), "npm", {
+				result = validate(JSON.stringify(json), {
 					recommendations: false,
 					warnings: false,
 				});
@@ -264,7 +254,7 @@ describe("validate", () => {
 
 		test("Warning fields", () => {
 			let json = getPackageJson(npmWarningFields);
-			let result = validate(JSON.stringify(json), "npm", {
+			let result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: true,
 			});
@@ -274,7 +264,7 @@ describe("validate", () => {
 			for (const field in npmWarningFields) {
 				json = getPackageJson(npmWarningFields);
 				delete json[field];
-				result = validate(JSON.stringify(json), "npm", {
+				result = validate(JSON.stringify(json), {
 					recommendations: false,
 					warnings: true,
 				});
@@ -291,7 +281,7 @@ describe("validate", () => {
 				type: "module",
 			};
 			let json = getPackageJson(recommendedFields);
-			let result = validate(JSON.stringify(json), "npm", {
+			let result = validate(JSON.stringify(json), {
 				recommendations: true,
 				warnings: false,
 			});
@@ -301,7 +291,7 @@ describe("validate", () => {
 			for (const field in recommendedFields) {
 				json = getPackageJson(recommendedFields);
 				delete json[field];
-				result = validate(JSON.stringify(json), "npm", {
+				result = validate(JSON.stringify(json), {
 					recommendations: true,
 					warnings: false,
 				});
@@ -315,7 +305,7 @@ describe("validate", () => {
 
 			// licenses as an array
 			let json = getPackageJson(npmWarningFields);
-			let result = validate(JSON.stringify(json), "npm", {
+			let result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: true,
 			});
@@ -327,7 +317,7 @@ describe("validate", () => {
 			json = getPackageJson(npmWarningFields);
 			delete json.licenses;
 			json.license = "MIT";
-			result = validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: true,
 			});
@@ -338,7 +328,7 @@ describe("validate", () => {
 			// neither
 			json = getPackageJson(npmWarningFields);
 			delete json.licenses;
-			result = validate(JSON.stringify(json), "npm", {
+			result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: true,
 			});
@@ -388,7 +378,7 @@ describe("validate", () => {
 						"verion-build": "1.2.3+build2012",
 					},
 				});
-				const result = validate(json, "npm", {
+				const result = validate(json, {
 					recommendations: false,
 					warnings: false,
 				});
@@ -407,7 +397,7 @@ describe("validate", () => {
 					},
 				});
 
-				const result = validate(json, "npm");
+				const result = validate(json);
 
 				assert.deepStrictEqual(result.errors, [
 					{
@@ -445,7 +435,7 @@ describe("validate", () => {
 					},
 				});
 
-				const result = validate(json, "npm");
+				const result = validate(json);
 
 				assert.deepStrictEqual(result.errors, [
 					{
@@ -466,7 +456,7 @@ describe("validate", () => {
 						url: "https://github.com/JoshuaKGoldberg/package-json-validator",
 					},
 				});
-				const result = validate(json, "npm", {
+				const result = validate(json, {
 					recommendations: false,
 					warnings: false,
 				});
@@ -477,7 +467,7 @@ describe("validate", () => {
 
 		test("Required fields", () => {
 			let json = getPackageJson();
-			let result = validate(json, "npm", {
+			let result = validate(json, {
 				recommendations: false,
 				warnings: false,
 			});
@@ -487,7 +477,7 @@ describe("validate", () => {
 			["name", "version"].forEach((field) => {
 				json = getPackageJson();
 				delete json[field];
-				result = validate(json, "npm", {
+				result = validate(json, {
 					recommendations: false,
 					warnings: false,
 				});
@@ -498,7 +488,7 @@ describe("validate", () => {
 				json = getPackageJson();
 				json.private = true;
 				delete json[field];
-				result = validate(json, "npm", {
+				result = validate(json, {
 					recommendations: false,
 					warnings: false,
 				});
@@ -509,7 +499,7 @@ describe("validate", () => {
 
 		test("Warning fields", () => {
 			let json = getPackageJson(npmWarningFields);
-			let result = validate(json, "npm", {
+			let result = validate(json, {
 				recommendations: false,
 				warnings: true,
 			});
@@ -519,7 +509,7 @@ describe("validate", () => {
 			for (const field in npmWarningFields) {
 				json = getPackageJson(npmWarningFields);
 				delete json[field];
-				result = validate(json, "npm", {
+				result = validate(json, {
 					recommendations: false,
 					warnings: true,
 				});
@@ -536,7 +526,7 @@ describe("validate", () => {
 				type: "module",
 			};
 			let json = getPackageJson(recommendedFields);
-			let result = validate(json, "npm", {
+			let result = validate(json, {
 				recommendations: true,
 				warnings: false,
 			});
@@ -546,7 +536,7 @@ describe("validate", () => {
 			for (const field in recommendedFields) {
 				json = getPackageJson(recommendedFields);
 				delete json[field];
-				result = validate(json, "npm", {
+				result = validate(json, {
 					recommendations: true,
 					warnings: false,
 				});
@@ -560,7 +550,7 @@ describe("validate", () => {
 
 			// licenses as an array
 			let json = getPackageJson(npmWarningFields);
-			let result = validate(json, "npm", {
+			let result = validate(json, {
 				recommendations: false,
 				warnings: true,
 			});
@@ -572,7 +562,7 @@ describe("validate", () => {
 			json = getPackageJson(npmWarningFields);
 			delete json.licenses;
 			json.license = "MIT";
-			result = validate(json, "npm", {
+			result = validate(json, {
 				recommendations: false,
 				warnings: true,
 			});
@@ -583,7 +573,7 @@ describe("validate", () => {
 			// neither
 			json = getPackageJson(npmWarningFields);
 			delete json.licenses;
-			result = validate(json, "npm", {
+			result = validate(json, {
 				recommendations: false,
 				warnings: true,
 			});
