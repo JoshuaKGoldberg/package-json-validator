@@ -28,7 +28,7 @@ const getSpecMap = (
 			bundledDependencies: { type: "array" },
 			bundleDependencies: { type: "array" },
 			config: { type: "object" },
-			contributors: { validate: validatePeople, warning: true },
+			contributors: { validate: validatePeople },
 			cpu: { type: "array" },
 			dependencies: {
 				recommended: true,
