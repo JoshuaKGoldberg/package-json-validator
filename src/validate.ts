@@ -40,6 +40,7 @@ const getSpecMap = (
 			directories: { type: "object" },
 			engines: { recommended: true, type: "object" },
 			engineStrict: { type: "boolean" },
+			exports: { recommended: true, type: "object" },
 			files: { type: "array" },
 			homepage: { format: urlFormat, recommended: true, type: "string" },
 			keywords: { type: "array", warning: true },
@@ -50,7 +51,7 @@ const getSpecMap = (
 				validate: validateUrlTypes,
 				warning: true,
 			},
-			main: { type: "string" },
+			main: { recommended: true, type: "string" },
 			man: { types: ["string", "array"] },
 			name: {
 				format: packageFormat,
