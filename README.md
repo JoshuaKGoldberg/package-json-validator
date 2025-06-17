@@ -219,6 +219,33 @@ const packageData = {
 const errors = validateBin(packageData.bin);
 ```
 
+### validateScripts(value)
+
+This function validates the value of the `scripts` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an object
+- its keys are non-empty strings
+- its values are all non-empty strings
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateScripts } from "package-json-validator";
+
+const packageData = {
+	scripts: {
+		build: "rollup -c",
+		lint: "eslint .",
+		test: "vitest",
+	},
+};
+
+const errors = validateScripts(packageData.scripts);
+```
+
 ### validateType(value)
 
 This function validates the value of the `type` property of a `package.json`.

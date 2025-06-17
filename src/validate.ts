@@ -10,6 +10,7 @@ import {
 	validateAuthor,
 	validateBin,
 	validateDependencies,
+	validateScripts,
 	validateType,
 	validateUrlOrMailto,
 } from "./validators/index.js";
@@ -75,7 +76,7 @@ const getSpecMap = (
 				validate: validateUrlTypes,
 				warning: true,
 			},
-			scripts: { type: "object" },
+			scripts: { validate: (_, value) => validateScripts(value) },
 			type: { recommended: true, validate: (_, value) => validateType(value) },
 			version: {
 				format: versionFormat,
