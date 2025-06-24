@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.16.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.16.0...v0.16.1) (2025-06-24)
+
+### Bug Fixes
+
+- remove warning for the `contributors` field ([#290](https://github.com/JoshuaKGoldberg/package-json-validator/issues/290)) ([e24d98e](https://github.com/JoshuaKGoldberg/package-json-validator/commit/e24d98e878a5455bf6013fbcffdab4122a9c7071)), closes [#60](https://github.com/JoshuaKGoldberg/package-json-validator/issues/60)
+
 # [0.16.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.15.0...v0.16.0) (2025-06-16)
 
 ### Features
