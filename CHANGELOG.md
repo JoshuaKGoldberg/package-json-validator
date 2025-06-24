@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.17.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.16.1...v0.17.0) (2025-06-24)
+
+### Features
+
+- **validateScripts:** add function for validating `scripts` ([#294](https://github.com/JoshuaKGoldberg/package-json-validator/issues/294)) ([bee3b42](https://github.com/JoshuaKGoldberg/package-json-validator/commit/bee3b429cd7ced939c7dabb96587b20c35c1afad)), closes [#292](https://github.com/JoshuaKGoldberg/package-json-validator/issues/292) [#63](https://github.com/JoshuaKGoldberg/package-json-validator/issues/63)
+
 ## [0.16.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.16.0...v0.16.1) (2025-06-24)
 
 ### Bug Fixes
