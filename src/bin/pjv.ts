@@ -32,6 +32,7 @@ const options = yargs(process.argv.slice(2))
 		alias: "s",
 		choices: ["npm", "commonjs_1.0", "commonjs_1.1"],
 		default: "npm",
+		deprecated: true,
 		description: "spec to use - npm|commonjs_1.0|commonjs_1.1",
 	})
 	.options("warnings", {
