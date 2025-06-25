@@ -16,8 +16,8 @@ import {
 } from "./validators/index.js";
 
 const getSpecMap = (
-	specName: SpecName,
 	isPrivate: boolean,
+	specName: SpecName = "npm",
 ): false | SpecMap => {
 	if (specName == "npm") {
 		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
@@ -203,10 +203,22 @@ const parse = (data: string) => {
 	return parsed;
 };
 
+export interface ValidateFunction {
+	(data: object | string, options?: ValidationOptions): ValidationOutput;
+
+	/** @deprecated Both common_js specs have been deprecated. Please use `validate(data, options)` instead. */
+	(
+		data: object | string,
+		specName?: SpecName,
+		options?: ValidationOptions,
+	): ValidationOutput;
+}
+
 export interface ValidationOptions {
 	recommendations?: boolean;
 	warnings?: boolean;
 }
+
 export interface ValidationOutput {
 	critical?: Record<string, string> | string;
 	errors?: ValidationError[];
@@ -214,13 +226,22 @@ export interface ValidationOutput {
 	valid: boolean;
 	warnings?: string[];
 }
+
 interface ValidationError {
 	field: string;
 	message: string;
 }
-export const validate = (
+
+/**
+ * Validate a package.json object (or string) against the npm spec.
+ * @param data The package.json data to validate, either as a string or an object.
+ * @param specNameOrOptions The options object, or the specification name to use for validation (deprecated).
+ * @param options The options for validation, if using the deprecated spec name parameter.
+ * @returns an object with the validation results.
+ */
+export const validate: ValidateFunction = (
 	data: object | string,
-	specName: SpecName = "npm",
+	specNameOrOptions: SpecName | ValidationOptions = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
 	const parsed = typeof data == "object" ? data : parse(data);
@@ -231,7 +252,15 @@ export const validate = (
 		return out;
 	}
 
-	const map = getSpecMap(specName, parsed.private);
+	let specName: SpecName | ValidationOptions;
+	if (typeof specNameOrOptions === "object") {
+		specName = "npm"; // Default spec
+		options = specNameOrOptions; // Use the options from the second parameter
+	} else {
+		specName = specNameOrOptions;
+	}
+
+	const map = getSpecMap(parsed.private, specName);
 	if (map === false) {
 		out.critical = { "Invalid specification": specName };
 		return out;

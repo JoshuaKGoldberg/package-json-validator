@@ -11,6 +11,7 @@ export interface Person {
 
 export type SpecMap = Record<string, FieldSpec>;
 
+/** @deprecated commonjs_1.0 and commonjs_1.1 specs have been deprecated */
 export type SpecName = "commonjs_1.0" | "commonjs_1.1" | "npm";
 
 export type SpecType = "array" | "boolean" | "object" | "string";
