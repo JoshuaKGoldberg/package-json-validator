@@ -219,6 +219,28 @@ const packageData = {
 const errors = validateBin(packageData.bin);
 ```
 
+### validateBundleDependencies(value)
+
+This function validates the value of the `bundleDependencies` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is either an array or a boolean
+- if it's an array, all items should be strings
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateBundleDependencies } from "package-json-validator";
+
+const packageData = {
+	bundleDependencies: ["renderized", "super-streams"],
+};
+
+const errors = validateBundleDependencies(packageData.packageData);
+```
+
 ### validateScripts(value)
 
 This function validates the value of the `scripts` property of a `package.json`.
