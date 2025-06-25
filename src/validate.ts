@@ -206,7 +206,7 @@ const parse = (data: string) => {
 export interface ValidateFunction {
 	(data: object | string, options?: ValidationOptions): ValidationOutput;
 
-	/** @deprecated Both common_js specs have been deprecated. Please use `validate(data, options)` instead. */
+	/** @deprecated Both commonjs specs have been deprecated. Please use `validate(data, options)` instead. */
 	(
 		data: object | string,
 		specName?: SpecName,
