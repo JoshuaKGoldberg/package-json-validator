@@ -4,6 +4,7 @@ export { validate } from "./validate.js";
 export {
 	validateAuthor,
 	validateBin,
+	validateBundleDependencies,
 	validateScripts,
 	validateType,
 } from "./validators/index.js";

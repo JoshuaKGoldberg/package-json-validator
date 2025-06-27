@@ -10,5 +10,11 @@
 		"pnpm-lock.yaml",
 		"src/**/*.test.ts"
 	],
-	"words": ["Pilotfish", "react-chartjs-2", "robotstxt.org", "nodenext"]
+	"words": [
+		"Pilotfish",
+		"react-chartjs-2",
+		"robotstxt.org",
+		"nodenext",
+		"renderized"
+	]
 }

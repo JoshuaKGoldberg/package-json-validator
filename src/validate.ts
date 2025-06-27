@@ -9,6 +9,7 @@ import {
 import {
 	validateAuthor,
 	validateBin,
+	validateBundleDependencies,
 	validateDependencies,
 	validateScripts,
 	validateType,
@@ -26,8 +27,12 @@ const getSpecMap = (
 			author: { validate: (_, value) => validateAuthor(value), warning: true },
 			bin: { validate: (_, value) => validateBin(value) },
 			bugs: { validate: validateUrlOrMailto, warning: true },
-			bundledDependencies: { type: "array" },
-			bundleDependencies: { type: "array" },
+			bundledDependencies: {
+				validate: (_, value) => validateBundleDependencies(value),
+			},
+			bundleDependencies: {
+				validate: (_, value) => validateBundleDependencies(value),
+			},
 			config: { type: "object" },
 			contributors: { validate: validatePeople },
 			cpu: { type: "array" },
