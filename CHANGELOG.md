@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.18.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.17.0...v0.18.0) (2025-06-27)
+
+### Features
+
+- **validateBundleDependencies:** add function for validating `bundleDependencies` ([#308](https://github.com/JoshuaKGoldberg/package-json-validator/issues/308)) ([94d23a8](https://github.com/JoshuaKGoldberg/package-json-validator/commit/94d23a86d5c89226a6a0ad7aaa9998fc572d5a8c)), closes [#232](https://github.com/JoshuaKGoldberg/package-json-validator/issues/232)
+
 # [0.17.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.16.1...v0.17.0) (2025-06-24)
 
 ### Features
