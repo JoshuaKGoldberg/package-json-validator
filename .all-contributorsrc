@@ -305,7 +305,8 @@
         "infra",
         "tool",
         "maintenance",
-        "bug"
+        "bug",
+        "doc"
       ]
     },
     {
