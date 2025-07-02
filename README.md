@@ -28,7 +28,6 @@ See `pjv --help` for usage:
 ```plaintext
 Options:
   --filename, -f         package.json file to validate                      [default: "package.json"]
-  --spec, -s             which spec to use - npm|commonjs_1.0|commonjs_1.1  [default: "npm"]
   --warnings, -w         display warnings                                   [default: false]
   --recommendations, -r  display recommendations                            [default: false]
   --quiet, -q            less output                                        [default: false]
@@ -49,7 +48,7 @@ validate(/* ... */);
 
 ## API
 
-### validate(data, spec?, options?)
+### validate(data, options?)
 
 This function validates an entire `package.json` and returns a list of errors, if
 any violations are found.
@@ -57,7 +56,6 @@ any violations are found.
 #### Parameters
 
 - `data` packageData object or a JSON-stringified version of the package data.
-- `spec` is either `npm`, `commonjs_1.0`, or `commonjs_1.1`
 - `options` is an object with the following:
   ```ts
   interface Options {
@@ -290,13 +288,9 @@ const packageData = {
 const errors = validateType(packageData.type);
 ```
 
-## Supported Specifications
+## Specification
 
-Of course, there are multiple ones to follow, which makes it trickier.
-
-- [NPM](https://docs.npmjs.com/cli/configuring-npm/package-json)
-- [CommonJS Packages 1.0](http://wiki.commonjs.org/wiki/Packages/1.0)
-- [CommonJS Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
+This package uses the `npm` [spec](https://docs.npmjs.com/cli/configuring-npm/package-json) along with additional [supporting documentation from node](https://nodejs.org/api/packages.html), as its source of truth for validation.
 
 ## Deprecation Policy
 
