@@ -8,7 +8,7 @@ const isValidVersionRange = (v: string): boolean => {
 		v == "*" ||
 		v === "" ||
 		v === "latest" ||
-		(typeof v === "string" && v.startsWith("git")) ||
+		v.startsWith("git") ||
 		// https://pnpm.io/next/workspaces#workspace-protocol-workspace
 		/^workspace:((\^|~)?[0-9.x]*|(<=?|>=?)?[0-9.x][\-.+\w]+|\*)?$/.test(v) ||
 		// https://pnpm.io/next/catalogs
@@ -31,7 +31,7 @@ const isValidVersionRange = (v: string): boolean => {
  */
 export const validateDependencies = (
 	name: string,
-	deps: Record<string, string>,
+	deps: Record<string, unknown>,
 ): string[] => {
 	const errors: string[] = [];
 	for (const pkg in deps) {
@@ -39,6 +39,12 @@ export const validateDependencies = (
 			errors.push(`Invalid dependency package name: ${pkg}`);
 		}
 
+		if (typeof deps[pkg] !== "string") {
+			errors.push(
+				`Dependency version for ${pkg} should be a string: ${deps[pkg]}`,
+			);
+			continue;
+		}
 		if (!isValidVersionRange(deps[pkg])) {
 			errors.push(`Invalid version range for dependency ${pkg}: ${deps[pkg]}`);
 		}
