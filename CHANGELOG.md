@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.20.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.20.0...v0.20.1) (2025-07-03)
+
+### Bug Fixes
+
+- support file: protocol ([#328](https://github.com/JoshuaKGoldberg/package-json-validator/issues/328)) ([8df8184](https://github.com/JoshuaKGoldberg/package-json-validator/commit/8df8184384c5bc48cf244e6980f4ceb6fc691159)), closes [#38](https://github.com/JoshuaKGoldberg/package-json-validator/issues/38)
+
 # [0.20.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.19.0...v0.20.0) (2025-07-03)
 
 ### Features
