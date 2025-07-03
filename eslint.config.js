@@ -40,11 +40,11 @@ export default tseslint.config(
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
 		],
-		files: ["**/*.{js,mjs,ts}"],
+		files: ["**/*.{js,ts}"],
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
+					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.js"],
 				},
 				tsconfigRootDir: import.meta.dirname,
 			},
@@ -96,7 +96,6 @@ export default tseslint.config(
 		files: ["**/*.md/*.ts"],
 		rules: { "n/no-missing-import": "off" },
 	},
-	{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 	{
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
@@ -107,6 +106,10 @@ export default tseslint.config(
 		files: ["**/*.{yml,yaml}"],
 		rules: {
 			"yml/file-extension": ["error", { extension: "yml" }],
+			"yml/sort-keys": [
+				"error",
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
+			],
 			"yml/sort-sequence-values": [
 				"error",
 				{ order: { type: "asc" }, pathPattern: "^.*$" },

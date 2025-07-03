@@ -1,11 +1,3 @@
-name: 💬 RFC
-description: Request feedback from the community on a significant change to the project.
-
-title: "💬 RFC: <short description of the proposal>"
-
-labels:
-  - "type: rfc"
-
 body:
   - attributes:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
@@ -25,3 +17,9 @@ body:
       label: This RFC will remain open until
       placeholder: YYYY-MM-DD
     type: input
+description: Request feedback from the community on a significant change to the project.
+
+labels:
+  - "type: rfc"
+name: 💬 RFC
+title: "💬 RFC: <short description of the proposal>"

@@ -6,7 +6,7 @@ export default defineConfig({
 		coverage: {
 			all: true,
 			include: ["src"],
-			reporter: ["html", "lcov", "text"],
+			reporter: ["html", "lcov"],
 		},
 		exclude: ["lib", "node_modules"],
 		setupFiles: ["console-fail-test/setup"],
