@@ -18,6 +18,7 @@ describe("validateDependencies", () => {
 			lt: "<1.2.3",
 			lteq: "<=1.2.3",
 			range: "1.2.3 - 2.3.4",
+			relative: "file:../relative/path",
 			star: "*",
 			"svgo-v1": "npm:svgo@1.3.2",
 			"svgo-v2": "npm:svgo@2.0.3",
@@ -40,7 +41,7 @@ describe("validateDependencies", () => {
 		expect(result).toEqual([]);
 	});
 
-	it("reports a complaint when dependencies has an invalid range", () => {
+	it("should report an error when dependencies have an invalid range", () => {
 		const dependencies = {
 			"bad-catalog": "catalob:",
 			"bad-jsr": "jsr;@scope/package@^1.0.0",
