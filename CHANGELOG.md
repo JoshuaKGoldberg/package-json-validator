@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.20.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.19.0...v0.20.0) (2025-07-03)
+
+### Features
+
+- **validateConfig:** add function for validating `config` ([#329](https://github.com/JoshuaKGoldberg/package-json-validator/issues/329)) ([f6dfb10](https://github.com/JoshuaKGoldberg/package-json-validator/commit/f6dfb1036a12702413599c8bc0b972002d661954)), closes [#309](https://github.com/JoshuaKGoldberg/package-json-validator/issues/309)
+
 # [0.19.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.18.0...v0.19.0) (2025-07-02)
 
 ### Features
