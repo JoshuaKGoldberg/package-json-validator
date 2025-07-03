@@ -26,4 +26,9 @@ describe("validateConfig", () => {
 		const result = validateConfig(null);
 		expect(result).toEqual(["the field is `null`, but should be an `object`"]);
 	});
+
+	it("should return an error if the field is a string", () => {
+		const result = validateConfig("string");
+		expect(result).toEqual(["the type should be `object`, not `string`"]);
+	});
 });
