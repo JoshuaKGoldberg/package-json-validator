@@ -10,6 +10,7 @@ import {
 	validateAuthor,
 	validateBin,
 	validateBundleDependencies,
+	validateConfig,
 	validateDependencies,
 	validateScripts,
 	validateType,
@@ -33,7 +34,7 @@ const getSpecMap = (
 			bundleDependencies: {
 				validate: (_, value) => validateBundleDependencies(value),
 			},
-			config: { type: "object" },
+			config: { validate: (_, value) => validateConfig(value) },
 			contributors: { validate: validatePeople },
 			cpu: { type: "array" },
 			dependencies: {
