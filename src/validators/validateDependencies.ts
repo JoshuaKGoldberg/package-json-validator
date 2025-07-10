@@ -1,23 +1,39 @@
 import { packageFormat, urlFormat } from "../formats.js";
 
-const isValidVersionRange = (v: string): boolean => {
-	// https://github.com/isaacs/npm/blob/master/doc/cli/json.md#dependencies
+const isUnpublishedVersion = (v: string): boolean => {
 	return (
-		/^[\^<>=~]{0,2}[0-9.x]+/.test(v) ||
+		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#urls-as-dependencies
 		urlFormat.test(v) ||
-		v == "*" ||
-		v === "" ||
-		v === "latest" ||
-		v.startsWith("git") ||
+		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#git-urls-as-dependencies
+		/^git(?:\+(?:ssh|http|https|file|rsync|ftp))?:/.test(v) ||
+		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#github-urls
+		/^(?:github:)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\/[\w.-]+(?:#|$)/.test(v) ||
 		// https://pnpm.io/next/workspaces#workspace-protocol-workspace
 		/^workspace:((\^|~)?[0-9.x]*|(<=?|>=?)?[0-9.x][\-.+\w]+|\*)?$/.test(v) ||
 		// https://pnpm.io/next/catalogs
 		v.startsWith("catalog:") ||
+		// https://docs.npmjs.com/cli/v11/using-npm/package-spec#aliases
 		v.startsWith("npm:") ||
-		// https://jsr.io/docs/using-packages
-		v.startsWith("jsr:") ||
 		// https://docs.npmjs.com/cli/v10/configuring-npm/package-json#local-paths
 		v.startsWith("file:") ||
+		v.startsWith("../") ||
+		v.startsWith("~/") ||
+		v.startsWith("./") ||
+		v.startsWith("/") ||
+		false
+	);
+};
+
+const isValidVersionRange = (v: string): boolean => {
+	// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#dependencies
+	return (
+		/^[\^<>=~]{0,2}[0-9.x]+/.test(v) ||
+		v == "*" ||
+		v === "" ||
+		v === "latest" ||
+		// https://jsr.io/docs/using-packages
+		v.startsWith("jsr:") ||
+		isUnpublishedVersion(v) ||
 		false
 	);
 };
@@ -35,7 +51,10 @@ export const validateDependencies = (
 ): string[] => {
 	const errors: string[] = [];
 	for (const pkg in deps) {
-		if (!packageFormat.test(pkg)) {
+		if (
+			!packageFormat.test(pkg) &&
+			!(typeof deps[pkg] === "string" && isUnpublishedVersion(deps[pkg]))
+		) {
 			errors.push(`Invalid dependency package name: ${pkg}`);
 		}
 
