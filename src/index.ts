@@ -6,6 +6,7 @@ export {
 	validateBin,
 	validateBundleDependencies,
 	validateConfig,
+	validateLicense,
 	validateScripts,
 	validateType,
 } from "./validators/index.js";

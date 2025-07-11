@@ -12,6 +12,7 @@ import {
 	validateBundleDependencies,
 	validateConfig,
 	validateDependencies,
+	validateLicense,
 	validateScripts,
 	validateType,
 	validateUrlOrMailto,
@@ -50,7 +51,7 @@ const getSpecMap = (
 			files: { type: "array" },
 			homepage: { format: urlFormat, recommended: true, type: "string" },
 			keywords: { type: "array", warning: true },
-			license: { type: "string" },
+			license: { validate: (_, value) => validateLicense(value) },
 			licenses: {
 				or: "license",
 				type: "array",

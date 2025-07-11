@@ -262,6 +262,25 @@ const packageData = {
 const errors = validateScripts(packageData.config);
 ```
 
+### validateLicense(value)
+
+This function validates the value of the `license` property of a `package.json`.
+It takes the value, and validates it using `validate-npm-package-license`, which is the same package that npm uses.
+
+It returns a list of error messages, if a violation is found.
+
+#### Examples
+
+```ts
+import { validateLicense } from "package-json-validator";
+
+const packageData = {
+	license: "MIT",
+};
+
+const errors = validateType(packageData.license);
+```
+
 ### validateScripts(value)
 
 This function validates the value of the `scripts` property of a `package.json`.
