@@ -54,6 +54,8 @@ describe("validateDependencies", () => {
 	it("should only validate the package name for published-looking versions", () => {
 		const publishedDependencies = {
 			"_caret-first": "^1.0.0",
+			"_catalog-named-package": "catalog:react19",
+			"_catalog-package": "catalog:",
 			_empty: "",
 			_gt: ">1.2.3",
 			_gteq: ">=1.2.3",
@@ -71,8 +73,6 @@ describe("validateDependencies", () => {
 		};
 		const unpublishedDependencies = {
 			"_absolute-path-without-protocol": "/absolute/path",
-			"_catalog-named-package": "catalog:react19",
-			"_catalog-package": "catalog:",
 			"_git-https-reference": "git+https://isaacs@github.com/npm/cli.git",
 			"_git-reference": "git://github.com/npm/cli.git#v1.0.27",
 			"_git-ssh-reference": "git+ssh://git@github.com:npm/cli#semver:^5.0",
