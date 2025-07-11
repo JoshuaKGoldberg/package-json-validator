@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      validate-npm-package-license:
+        specifier: ^3.0.4
+        version: 3.0.4
       yargs:
         specifier: ~18.0.0
         version: 18.0.0
@@ -27,6 +30,9 @@ importers:
       '@types/node':
         specifier: 22.16.0
         version: 22.16.0
+      '@types/validate-npm-package-license':
+        specifier: ^3.0.3
+        version: 3.0.3
       '@types/yargs':
         specifier: 17.0.33
         version: 17.0.33
@@ -1002,6 +1008,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/validate-npm-package-license@3.0.3':
+    resolution: {integrity: sha512-uu5D5tHla4R+dEKKmF7NxlK4UHiEwqR8hgm1zF3ISBd5MnmNvTDYEcB77zEpAybHDEPgUVDFhOtU8V4LwuFGXg==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -3983,6 +3992,8 @@ snapshots:
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
+
+  '@types/validate-npm-package-license@3.0.3': {}
 
   '@types/yargs-parser@21.0.3': {}
 
