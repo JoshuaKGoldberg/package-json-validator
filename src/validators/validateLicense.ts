@@ -19,7 +19,6 @@ export const validateLicense = (license: unknown): string[] => {
 	if (license.trim() === "") {
 		errors.push("the value is empty, but should be a valid license");
 	} else {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- not sure why this is complaining, seems to be false positive
 		const validationResults = valid(license);
 		if (validationResults.warnings) {
 			errors.push(...validationResults.warnings);
