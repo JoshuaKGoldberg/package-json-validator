@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.21.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.20.1...v0.21.0) (2025-07-11)
+
+### Features
+
+- **validateDependencies:** Improve dependency name validation ([#339](https://github.com/JoshuaKGoldberg/package-json-validator/issues/339)) ([6c30d24](https://github.com/JoshuaKGoldberg/package-json-validator/commit/6c30d244f0d0683168b567268367c91116717aee)), closes [/github.com/JoshuaKGoldberg/eslint-plugin-package-json/issues/1165#issuecomment-3054338310](https://github.com//github.com/JoshuaKGoldberg/eslint-plugin-package-json/issues/1165/issues/issuecomment-3054338310)
+
 ## [0.20.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.20.0...v0.20.1) (2025-07-03)
 
 ### Bug Fixes
