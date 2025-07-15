@@ -3,6 +3,7 @@ export { validateBin } from "./validateBin.js";
 export { validateBundleDependencies } from "./validateBundleDependencies.js";
 export { validateConfig } from "./validateConfig.js";
 export { validateDependencies } from "./validateDependencies.js";
+export { validateLicense } from "./validateLicense.js";
 export { validateScripts } from "./validateScripts.js";
 export { validateType } from "./validateType.js";
 export { validateUrlOrMailto } from "./validateUrlOrMailto.js";
