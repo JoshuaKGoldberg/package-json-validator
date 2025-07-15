@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.22.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.21.0...v0.22.0) (2025-07-15)
+
+### Features
+
+- **validateLicense:** add function for validating `license` ([#346](https://github.com/JoshuaKGoldberg/package-json-validator/issues/346)) ([d210cf6](https://github.com/JoshuaKGoldberg/package-json-validator/commit/d210cf65ad9e576060845c2dd4412f016ca8d473)), closes [#344](https://github.com/JoshuaKGoldberg/package-json-validator/issues/344) [#341](https://github.com/JoshuaKGoldberg/package-json-validator/issues/341)
+
 # [0.21.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.20.1...v0.21.0) (2025-07-11)
 
 ### Features
