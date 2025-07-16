@@ -9,4 +9,5 @@ export {
 	validateLicense,
 	validateScripts,
 	validateType,
+	validateVersion,
 } from "./validators/index.js";

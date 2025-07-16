@@ -16,6 +16,7 @@ import {
 	validateScripts,
 	validateType,
 	validateUrlOrMailto,
+	validateVersion,
 } from "./validators/index.js";
 
 const getSpecMap = (
@@ -86,9 +87,8 @@ const getSpecMap = (
 			scripts: { validate: (_, value) => validateScripts(value) },
 			type: { recommended: true, validate: (_, value) => validateType(value) },
 			version: {
-				format: versionFormat,
 				required: !isPrivate,
-				type: "string",
+				validate: (_, value) => validateVersion(value),
 			},
 		};
 	} else if (specName == "commonjs_1.0") {

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      semver:
+        specifier: ^7.7.2
+        version: 7.7.2
       validate-npm-package-license:
         specifier: ^3.0.4
         version: 3.0.4
@@ -30,6 +33,9 @@ importers:
       '@types/node':
         specifier: 22.16.0
         version: 22.16.0
+      '@types/semver':
+        specifier: ^7.7.0
+        version: 7.7.0
       '@types/validate-npm-package-license':
         specifier: 3.0.3
         version: 3.0.3
@@ -1000,8 +1006,8 @@ packages:
   '@types/parse-path@7.0.3':
     resolution: {integrity: sha512-LriObC2+KYZD3FzCrgWGv/qufdUy4eXrxcLgQMfYXgPbLIecKIsVBaQgUPmxSSLcjmYbDTQbMgr6qr6l/eb7Bg==}
 
-  '@types/semver@7.5.8':
-    resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+  '@types/semver@7.7.0':
+    resolution: {integrity: sha512-k107IF4+Xr7UHjwDc7Cfd6PRQfbdkiRabXGRjo07b4WyPahFBZCZ1sE+BNxYIJPPg73UkfOsVOLwqVc/6ETrIA==}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
@@ -3349,7 +3355,7 @@ snapshots:
 
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)':
     dependencies:
-      '@types/semver': 7.5.8
+      '@types/semver': 7.7.0
       semver: 7.7.2
     optionalDependencies:
       conventional-commits-filter: 5.0.0
@@ -3987,7 +3993,7 @@ snapshots:
 
   '@types/parse-path@7.0.3': {}
 
-  '@types/semver@7.5.8': {}
+  '@types/semver@7.7.0': {}
 
   '@types/unist@2.0.11': {}
 
@@ -4438,7 +4444,7 @@ snapshots:
 
   conventional-changelog-writer@8.0.0:
     dependencies:
-      '@types/semver': 7.5.8
+      '@types/semver': 7.7.0
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.8
       meow: 13.2.0
