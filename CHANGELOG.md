@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.23.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.22.0...v0.23.0) (2025-07-17)
+
+### Features
+
+- **validateVersion:** add function for validating `version` ([#351](https://github.com/JoshuaKGoldberg/package-json-validator/issues/351)) ([e5c137a](https://github.com/JoshuaKGoldberg/package-json-validator/commit/e5c137ac7110c96e3bed40785ee2ee69eebb19d4)), closes [#349](https://github.com/JoshuaKGoldberg/package-json-validator/issues/349) [#340](https://github.com/JoshuaKGoldberg/package-json-validator/issues/340)
+
 # [0.22.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.21.0...v0.22.0) (2025-07-15)
 
 ### Features
