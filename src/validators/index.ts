@@ -7,3 +7,4 @@ export { validateLicense } from "./validateLicense.js";
 export { validateScripts } from "./validateScripts.js";
 export { validateType } from "./validateType.js";
 export { validateUrlOrMailto } from "./validateUrlOrMailto.js";
+export { validateVersion } from "./validateVersion.js";

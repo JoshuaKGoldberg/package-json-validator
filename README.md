@@ -330,6 +330,25 @@ const packageData = {
 const errors = validateType(packageData.type);
 ```
 
+### validateVersion(value)
+
+This function validates the value of the `version` property of a `package.json`.
+It takes the value, and validates it using `semver`, which is the same package that npm uses.
+
+It returns a list of error messages, if a violation is found.
+
+#### Examples
+
+```ts
+import { validateVersion } from "package-json-validator";
+
+const packageData = {
+	version: "1.2.3",
+};
+
+const errors = validateVersion(packageData.version);
+```
+
 ## Specification
 
 This package uses the `npm` [spec](https://docs.npmjs.com/cli/configuring-npm/package-json) along with additional [supporting documentation from node](https://nodejs.org/api/packages.html), as its source of truth for validation.
