@@ -236,7 +236,7 @@ const packageData = {
 	bundleDependencies: ["renderized", "super-streams"],
 };
 
-const errors = validateBundleDependencies(packageData.packageData);
+const errors = validateBundleDependencies(packageData.bundleDependencies);
 ```
 
 ### validateConfig(value)
@@ -260,6 +260,28 @@ const packageData = {
 };
 
 const errors = validateScripts(packageData.config);
+```
+
+### validateCpu(value)
+
+This function validates the value of the `cpu` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be non-empty strings
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateCpu } from "package-json-validator";
+
+const packageData = {
+	cpu: ["x64", "ia32"],
+};
+
+const errors = validateCpu(packageData.cpu);
 ```
 
 ### validateLicense(value)
