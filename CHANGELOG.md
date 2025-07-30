@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.24.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.23.0...v0.24.0) (2025-07-30)
+
+### Features
+
+- **validateCpu:** add function for validating `cpu` ([#361](https://github.com/JoshuaKGoldberg/package-json-validator/issues/361)) ([81efa06](https://github.com/JoshuaKGoldberg/package-json-validator/commit/81efa062ba3f737af3a66d810054911a2880e13e)), closes [#310](https://github.com/JoshuaKGoldberg/package-json-validator/issues/310)
+
 # [0.23.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.22.0...v0.23.0) (2025-07-17)
 
 ### Features
