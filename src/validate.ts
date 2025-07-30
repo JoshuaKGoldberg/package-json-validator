@@ -11,6 +11,7 @@ import {
 	validateBin,
 	validateBundleDependencies,
 	validateConfig,
+	validateCpu,
 	validateDependencies,
 	validateLicense,
 	validateScripts,
@@ -38,7 +39,7 @@ const getSpecMap = (
 			},
 			config: { validate: (_, value) => validateConfig(value) },
 			contributors: { validate: validatePeople },
-			cpu: { type: "array" },
+			cpu: { validate: (_, value) => validateCpu(value) },
 			dependencies: {
 				recommended: true,
 				type: "object",

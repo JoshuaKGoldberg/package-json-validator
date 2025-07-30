@@ -2,6 +2,7 @@ export { validateAuthor } from "./validateAuthor.js";
 export { validateBin } from "./validateBin.js";
 export { validateBundleDependencies } from "./validateBundleDependencies.js";
 export { validateConfig } from "./validateConfig.js";
+export { validateCpu } from "./validateCpu.js";
 export { validateDependencies } from "./validateDependencies.js";
 export { validateLicense } from "./validateLicense.js";
 export { validateScripts } from "./validateScripts.js";
