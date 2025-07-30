@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.24.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.24.0...v0.24.1) (2025-07-30)
+
+### Bug Fixes
+
+- **validateCpu:** add export to root index ([#364](https://github.com/JoshuaKGoldberg/package-json-validator/issues/364)) ([ce3d9a0](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ce3d9a0a76f7238508bb5b2b3aee37ff69386710)), closes [#000](https://github.com/JoshuaKGoldberg/package-json-validator/issues/000) [#361](https://github.com/JoshuaKGoldberg/package-json-validator/issues/361)
+
 # [0.24.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.23.0...v0.24.0) (2025-07-30)
 
 ### Features

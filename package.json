@@ -1,6 +1,6 @@
 {
 	"name": "package-json-validator",
-	"version": "0.24.0",
+	"version": "0.24.1",
 	"description": "Tools to validate package.json files.",
 	"keywords": [
 		"lint",
