@@ -6,6 +6,7 @@ export {
 	validateBin,
 	validateBundleDependencies,
 	validateConfig,
+	validateCpu,
 	validateLicense,
 	validateScripts,
 	validateType,
