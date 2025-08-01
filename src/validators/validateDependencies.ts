@@ -1,76 +1,84 @@
+import { validRange } from "semver";
+
 import { packageFormat, urlFormat } from "../formats.js";
 
-const isUnpublishedVersion = (v: string): boolean => {
+const isUnpublishedVersion = (version: string): boolean => {
 	return (
 		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#urls-as-dependencies
-		urlFormat.test(v) ||
+		urlFormat.test(version) ||
 		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#git-urls-as-dependencies
-		/^git(?:\+(?:ssh|http|https|file|rsync|ftp))?:/.test(v) ||
+		/^git(?:\+(?:ssh|http|https|file|rsync|ftp))?:/.test(version) ||
 		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#github-urls
-		/^(?:github:)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\/[\w.-]+(?:#|$)/.test(v) ||
+		/^(?:github:)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*\/[\w.-]+(?:#|$)/.test(
+			version,
+		) ||
 		// https://pnpm.io/next/workspaces#workspace-protocol-workspace
-		/^workspace:((\^|~)?[0-9.x]*|(<=?|>=?)?[0-9.x][\-.+\w]+|\*)?$/.test(v) ||
+		/^workspace:((\^|~)?[0-9.x]*|(<=?|>=?)?[0-9.x][\-.+\w]+|\*)?$/.test(
+			version,
+		) ||
 		// https://docs.npmjs.com/cli/v11/using-npm/package-spec#aliases
-		v.startsWith("npm:") ||
+		version.startsWith("npm:") ||
 		// https://docs.npmjs.com/cli/v10/configuring-npm/package-json#local-paths
-		v.startsWith("file:") ||
-		v.startsWith("../") ||
-		v.startsWith("~/") ||
-		v.startsWith("./") ||
-		v.startsWith("/") ||
+		version.startsWith("file:") ||
+		version.startsWith("../") ||
+		version.startsWith("~/") ||
+		version.startsWith("./") ||
+		version.startsWith("/") ||
 		false
 	);
 };
 
-const isValidVersionRange = (v: string): boolean => {
+const isValidVersionRange = (version: string): boolean => {
 	// https://docs.npmjs.com/cli/v11/configuring-npm/package-json#dependencies
 	return (
-		/^[\^<>=~]{0,2}[0-9.x]+/.test(v) ||
-		v == "*" ||
-		v === "" ||
-		v === "latest" ||
+		!!validRange(version) ||
+		version === "*" ||
+		version === "" ||
+		version === "latest" ||
 		// https://jsr.io/docs/using-packages
-		v.startsWith("jsr:") ||
+		version.startsWith("jsr:") ||
 		// https://pnpm.io/next/catalogs
 		// These could be published or unpublished. Ideally linting would validate the
 		// catalog itself, and then we could ignore the package names here since they'd be
 		// correctly validated there. But the catalog is elsewhere, and the better
 		// assumption is that it mostly has published packages.
-		v.startsWith("catalog:") ||
-		isUnpublishedVersion(v) ||
-		false
+		version.startsWith("catalog:") ||
+		isUnpublishedVersion(version)
 	);
 };
 
 /**
  * Validates dependencies, making sure the object is a set of key value pairs
  * with package names and versions
- * @param name The name of the field being validated (e.g. "dependencies", "devDependencies")
- * @param deps A dependencies Record
  * @returns An array with validation errors (if any violations are found)
  */
-export const validateDependencies = (
-	name: string,
-	deps: Record<string, unknown>,
-): string[] => {
+export const validateDependencies = (value: unknown): string[] => {
 	const errors: string[] = [];
-	for (const pkg in deps) {
-		if (
-			!packageFormat.test(pkg) &&
-			!(typeof deps[pkg] === "string" && isUnpublishedVersion(deps[pkg]))
-		) {
-			errors.push(`Invalid dependency package name: ${pkg}`);
-		}
 
-		if (typeof deps[pkg] !== "string") {
-			errors.push(
-				`Dependency version for ${pkg} should be a string: ${deps[pkg]}`,
-			);
-			continue;
+	if (value == null) {
+		errors.push("the field is `null`, but should be a record of dependencies");
+	} else if (typeof value === "object" && !Array.isArray(value)) {
+		for (const [pkg, version] of Object.entries(value)) {
+			if (
+				!packageFormat.test(pkg) &&
+				!(typeof version === "string" && isUnpublishedVersion(version))
+			) {
+				errors.push(`invalid dependency package name: ${pkg}`);
+			}
+
+			if (typeof version !== "string") {
+				errors.push(
+					`dependency version for ${pkg} should be a string: ${version}`,
+				);
+				continue;
+			}
+			if (!isValidVersionRange(version)) {
+				errors.push(`invalid version range for dependency ${pkg}: ${version}`);
+			}
 		}
-		if (!isValidVersionRange(deps[pkg])) {
-			errors.push(`Invalid version range for dependency ${pkg}: ${deps[pkg]}`);
-		}
+	} else {
+		const valueType = Array.isArray(value) ? "array" : typeof value;
+		errors.push(`the type should be \`object\`, not \`${valueType}\``);
 	}
 	return errors;
 };

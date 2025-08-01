@@ -284,6 +284,33 @@ const packageData = {
 const errors = validateCpu(packageData.cpu);
 ```
 
+### validateDependencies(value)
+
+This function validates the value of the `dependency` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- It should be of type an `object`.
+- The object should be a record of key value pairs
+- For each property, the key should be a valid package name, and the value should be a valid version
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateDependencies } from "package-json-validator";
+
+const packageData = {
+	dependencies: {
+		"@catalog/package": "catalog:",
+		"@my/package": "^1.2.3",
+		"@workspace/package": "workspace:^",
+	},
+};
+
+const errors = validateBin(packageData.dependencies);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.

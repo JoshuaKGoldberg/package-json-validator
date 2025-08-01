@@ -3,6 +3,11 @@ import { assert, describe, expect, it } from "vitest";
 import { validateDependencies } from "./validateDependencies.js";
 
 describe("validateDependencies", () => {
+	it("should return no errors if the value is an empty object", () => {
+		const result = validateDependencies({});
+		expect(result).toEqual([]);
+	});
+
 	it("should validate dependencies with no errors", () => {
 		const dependencies = {
 			"absolute-path-without-protocol": "/absolute/path",
@@ -47,7 +52,7 @@ describe("validateDependencies", () => {
 			"github-reference-with-hash": "some/package#feature/branch",
 		};
 
-		const result = validateDependencies("dependencies", dependencies);
+		const result = validateDependencies(dependencies);
 		expect(result).toEqual([]);
 	});
 
@@ -94,14 +99,14 @@ describe("validateDependencies", () => {
 			"_workspace-pre-release": "workspace:1.2.3-rc.1",
 		};
 
-		const result = validateDependencies("dependencies", {
+		const result = validateDependencies({
 			...publishedDependencies,
 			...unpublishedDependencies,
 		});
 		assert.deepStrictEqual(
 			result,
 			Object.keys(publishedDependencies).map(
-				(k) => `Invalid dependency package name: ${k}`,
+				(k) => `invalid dependency package name: ${k}`,
 			),
 		);
 	});
@@ -120,19 +125,41 @@ describe("validateDependencies", () => {
 			"package-name": "abc123",
 		};
 
-		const result = validateDependencies("dependencies", dependencies);
+		const result = validateDependencies(dependencies);
 
 		assert.deepStrictEqual(result, [
-			"Invalid version range for dependency bad-catalog: catalob:",
-			"Invalid version range for dependency bad-jsr: jsr;@scope/package@^1.0.0",
-			"Invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-			"Invalid version range for dependency bad-workspace: workspace:abc123",
-			"Invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
-			"Invalid version range for dependency invalid-git-protocol: git+foo://github.com/npm/cli.git",
-			"Invalid version range for dependency invalid-github-reference-bad-reponame: some/package?",
-			"Invalid version range for dependency invalid-github-reference-bad-username: some--user/package",
-			"Invalid version range for dependency invalid-github-reference-too-many-slashes: some/package/subpath",
-			"Invalid version range for dependency package-name: abc123",
+			"invalid version range for dependency bad-catalog: catalob:",
+			"invalid version range for dependency bad-jsr: jsr;@scope/package@^1.0.0",
+			"invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
+			"invalid version range for dependency bad-workspace: workspace:abc123",
+			"invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
+			"invalid version range for dependency invalid-git-protocol: git+foo://github.com/npm/cli.git",
+			"invalid version range for dependency invalid-github-reference-bad-reponame: some/package?",
+			"invalid version range for dependency invalid-github-reference-bad-username: some--user/package",
+			"invalid version range for dependency invalid-github-reference-too-many-slashes: some/package/subpath",
+			"invalid version range for dependency package-name: abc123",
+		]);
+	});
+
+	it("should return an error if the value is a string", () => {
+		const result = validateDependencies("123");
+		expect(result).toEqual(["the type should be `object`, not `string`"]);
+	});
+
+	it("should return an error if the value is a number", () => {
+		const result = validateDependencies(123);
+		expect(result).toEqual(["the type should be `object`, not `number`"]);
+	});
+
+	it("should return an error if the value is an object", () => {
+		const result = validateDependencies([]);
+		expect(result).toEqual(["the type should be `object`, not `array`"]);
+	});
+
+	it("should return an error if the value is null", () => {
+		const result = validateDependencies(null);
+		expect(result).toEqual([
+			"the field is `null`, but should be a record of dependencies",
 		]);
 	});
 });
