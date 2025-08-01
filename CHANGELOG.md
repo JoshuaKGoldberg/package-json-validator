@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.25.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.24.1...v0.25.0) (2025-08-01)
+
+### Features
+
+- **validateDependencies:** add function for validating `dependencies` ([#365](https://github.com/JoshuaKGoldberg/package-json-validator/issues/365)) ([9654cfd](https://github.com/JoshuaKGoldberg/package-json-validator/commit/9654cfdf11161bcc0b61f70cec9b6e35ba6d3a76)), closes [#312](https://github.com/JoshuaKGoldberg/package-json-validator/issues/312) [#342](https://github.com/JoshuaKGoldberg/package-json-validator/issues/342)
+
 ## [0.24.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.24.0...v0.24.1) (2025-07-30)
 
 ### Bug Fixes
