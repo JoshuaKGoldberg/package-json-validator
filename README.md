@@ -311,6 +311,23 @@ const packageData = {
 const errors = validateBin(packageData.dependencies);
 ```
 
+### validateDescription(value)
+
+This function validates the value of the `description` property of a `package.json`.
+It checks that the value is a non-empty string, and returns a list of error messages, if a violation is found.
+
+#### Examples
+
+```ts
+import { validateDescription } from "package-json-validator";
+
+const packageData = {
+	description: "The Fragile",
+};
+
+const errors = validateDescription(packageData.description);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.
@@ -327,7 +344,7 @@ const packageData = {
 	license: "MIT",
 };
 
-const errors = validateType(packageData.license);
+const errors = validateLicense(packageData.license);
 ```
 
 ### validateScripts(value)

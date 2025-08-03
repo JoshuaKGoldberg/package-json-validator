@@ -8,6 +8,7 @@ export {
 	validateConfig,
 	validateCpu,
 	validateDependencies,
+	validateDescription,
 	validateLicense,
 	validateScripts,
 	validateType,
