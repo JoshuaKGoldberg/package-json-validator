@@ -286,8 +286,10 @@ const errors = validateCpu(packageData.cpu);
 
 ### validateDependencies(value)
 
-This function validates the value of the `dependency` property of a `package.json`.
-It takes the value, and validates it against the following criteria.
+Also: `validateDevDependencies(value)`, `validateOptionalDependencies(value)`, and `validatePeerDependencies(value)`
+
+These functions validate the value of their respective `dependency` property.
+They take the value, and validate it against the following criteria.
 
 - It should be of type an `object`.
 - The object should be a record of key value pairs
