@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.26.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.25.0...v0.26.0) (2025-08-05)
+
+### Features
+
+- **validateDescription:** add function for validating `description` ([#381](https://github.com/JoshuaKGoldberg/package-json-validator/issues/381)) ([78e935d](https://github.com/JoshuaKGoldberg/package-json-validator/commit/78e935dcbe27df94edbe1d800fb890097ad0ec94)), closes [#315](https://github.com/JoshuaKGoldberg/package-json-validator/issues/315)
+
 # [0.25.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.24.1...v0.25.0) (2025-08-01)
 
 ### Features
