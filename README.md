@@ -330,6 +330,32 @@ const packageData = {
 const errors = validateDescription(packageData.description);
 ```
 
+### validateDirectories(value)
+
+This function validates the value of the `directories` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an object
+- its keys are non-empty strings
+- its values are all non-empty strings
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateDirectories } from "package-json-validator";
+
+const packageData = {
+	directories: {
+		bin: "dist/bin",
+		man: "docs",
+	},
+};
+
+const errors = validateDirectories(packageData.directories);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.

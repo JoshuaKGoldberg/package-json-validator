@@ -10,6 +10,7 @@ export {
 	validateDependencies,
 	validateDescription,
 	validateDependencies as validateDevDependencies,
+	validateDirectories,
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
