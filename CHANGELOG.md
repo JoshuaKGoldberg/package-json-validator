@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.28.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.27.0...v0.28.0) (2025-08-07)
+
+### Features
+
+- **validateDirectories:** add function for validating `directories` ([#384](https://github.com/JoshuaKGoldberg/package-json-validator/issues/384)) ([ba712cb](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ba712cbd52f6aa9c57e1db3970302c37f4d8c108)), closes [#354](https://github.com/JoshuaKGoldberg/package-json-validator/issues/354)
+
 # [0.27.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.26.0...v0.27.0) (2025-08-05)
 
 ### Features
