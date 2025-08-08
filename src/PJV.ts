@@ -4,8 +4,8 @@ import {
 	urlFormat,
 	versionFormat,
 } from "./formats.js";
-import { validatePeople, validateUrlTypes } from "./utils/index.js";
-import { validate } from "./validate.js";
+import { validatePeople, validateUrlTypes } from "./utils/index.ts";
+import { validate } from "./validate.ts";
 import {
 	validateDependencies,
 	validateType,

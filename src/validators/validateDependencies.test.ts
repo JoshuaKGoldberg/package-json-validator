@@ -1,6 +1,6 @@
 import { assert, describe, expect, it } from "vitest";
 
-import { validateDependencies } from "./validateDependencies.js";
+import { validateDependencies } from "./validateDependencies.ts";
 
 describe("validateDependencies", () => {
 	it("should return no errors if the value is an empty object", () => {

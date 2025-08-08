@@ -1,6 +1,6 @@
-import type { SpecMap, SpecName } from "./types.js";
+import type { SpecMap, SpecName } from "./types.ts";
 
-import { packageFormat, urlFormat, versionFormat } from "./formats.js";
+import { packageFormat, urlFormat, versionFormat } from "./formats.ts";
 import {
 	validateFieldType,
 	validatePeople,

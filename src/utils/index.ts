@@ -1,3 +1,3 @@
-export { validateFieldType } from "./validateFieldType.js";
-export { isPerson, validatePeople } from "./validatePeople.js";
-export { validateUrlTypes } from "./validateUrlTypes.js";
+export { validateFieldType } from "./validateFieldType.ts";
+export { isPerson, validatePeople } from "./validatePeople.ts";
+export { validateUrlTypes } from "./validateUrlTypes.ts";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateBundleDependencies } from "./validateBundleDependencies.js";
+import { validateBundleDependencies } from "./validateBundleDependencies.ts";
 
 describe("validateBundleDependencies", () => {
 	it("should return no errors if the value is an empty array", () => {

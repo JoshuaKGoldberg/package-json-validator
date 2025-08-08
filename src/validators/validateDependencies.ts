@@ -1,6 +1,6 @@
 import { validRange } from "semver";
 
-import { packageFormat, urlFormat } from "../formats.js";
+import { packageFormat, urlFormat } from "../formats.ts";
 
 const isUnpublishedVersion = (version: string): boolean => {
 	return (

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateDirectories } from "./validateDirectories.js";
+import { validateDirectories } from "./validateDirectories.ts";
 
 describe("validateDirectories", () => {
 	it("should return no errors if the value is an empty object", () => {
