@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { isPerson, validatePeople } from "../utils/index.js";
-import { validateAuthor } from "./validateAuthor.js";
+import { isPerson, validatePeople } from "../utils/index.ts";
+import { validateAuthor } from "./validateAuthor.ts";
 
 vi.mock("../utils/validatePeople", () => ({
 	isPerson: vi.fn(),

@@ -1,6 +1,6 @@
-export { PJV } from "./PJV.js";
-export type { SpecName, SpecType } from "./types.js";
-export { validate } from "./validate.js";
+export { PJV } from "./PJV.ts";
+export type { SpecName, SpecType } from "./types.ts";
+export { validate } from "./validate.ts";
 export {
 	validateAuthor,
 	validateBin,
@@ -17,4 +17,4 @@ export {
 	validateScripts,
 	validateType,
 	validateVersion,
-} from "./validators/index.js";
+} from "./validators/index.ts";

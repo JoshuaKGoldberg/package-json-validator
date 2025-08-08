@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateType } from "./validateType.js";
+import { validateType } from "./validateType.ts";
 
 describe("validateType", () => {
 	it.each(["commonjs", "module"])(

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateCpu } from "./validateCpu.js";
+import { validateCpu } from "./validateCpu.ts";
 
 describe("validateCpu", () => {
 	it("should return no errors if the value is an empty array", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateUrlOrMailto } from "./validateUrlOrMailto.js";
+import { validateUrlOrMailto } from "./validateUrlOrMailto.ts";
 
 describe("validateUrlOrMailto", () => {
 	it("should return an error if the string is neither a valid URL nor a valid email", () => {

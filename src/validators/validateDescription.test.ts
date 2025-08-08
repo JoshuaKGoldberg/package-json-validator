@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateDescription } from "./validateDescription.js";
+import { validateDescription } from "./validateDescription.ts";
 
 describe("validateDescription", () => {
 	it("should return no errors for a string", () => {

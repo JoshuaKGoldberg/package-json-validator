@@ -1,6 +1,6 @@
-import type { UrlType } from "../types.js";
+import type { UrlType } from "../types.ts";
 
-import { urlFormat } from "../formats.js";
+import { urlFormat } from "../formats.ts";
 
 /**
  * Format for license(s) and repository(s):

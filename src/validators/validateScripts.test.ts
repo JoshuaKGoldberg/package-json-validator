@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateScripts } from "./validateScripts.js";
+import { validateScripts } from "./validateScripts.ts";
 
 describe("validateScripts", () => {
 	it("should return no errors if the scripts field is an empty object", () => {

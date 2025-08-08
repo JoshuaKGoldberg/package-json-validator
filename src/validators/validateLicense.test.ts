@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { validateLicense } from "./validateLicense.js";
+import { validateLicense } from "./validateLicense.ts";
 
 describe("validateLicense", () => {
 	it.each([
