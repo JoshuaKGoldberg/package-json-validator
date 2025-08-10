@@ -6,6 +6,7 @@ export { validateCpu } from "./validateCpu.ts";
 export { validateDependencies } from "./validateDependencies.ts";
 export { validateDescription } from "./validateDescription.ts";
 export { validateDirectories } from "./validateDirectories.ts";
+export { validateExports } from "./validateExports.ts";
 export { validateLicense } from "./validateLicense.ts";
 export { validateScripts } from "./validateScripts.ts";
 export { validateType } from "./validateType.ts";
