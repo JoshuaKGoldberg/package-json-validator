@@ -356,6 +356,50 @@ const packageData = {
 const errors = validateDirectories(packageData.directories);
 ```
 
+### validateExports(value)
+
+This function validates the value of the `exports` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- It should be of type `string` or `object`.
+- If it's a `string`, it should be a path to an entry point.
+- If it's an export condition `object`, its properties should have values that are either a path to an entry point, or another exports condition object.
+
+It returns a list of error messages, if any violations are found.
+
+#### Examples
+
+```ts
+import { validateExports } from "package-json-validator";
+
+const packageData = {
+	exports: "./index.js",
+};
+
+const errors = validateExports(packageData.exports);
+```
+
+```ts
+/* eslint-disable perfectionist/sort-objects */
+import { validateExports } from "package-json-validator";
+
+const packageData = {
+	exports: {
+		".": {
+			types: "./index.d.ts",
+			default: "./index.js",
+		},
+		"./secondary": {
+			types: "./secondary.d.ts",
+			default: "./secondary.js",
+		},
+	},
+};
+
+const errors = validateExports(packageData.exports);
+/* eslint-enable perfectionist/sort-objects */
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.

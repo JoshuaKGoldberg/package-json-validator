@@ -11,6 +11,7 @@ export {
 	validateDescription,
 	validateDependencies as validateDevDependencies,
 	validateDirectories,
+	validateExports,
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
