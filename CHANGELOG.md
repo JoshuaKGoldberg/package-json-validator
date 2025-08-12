@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.29.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.28.0...v0.29.0) (2025-08-12)
+
+### Features
+
+- **validateExports:** add function for validating `exports` ([#395](https://github.com/JoshuaKGoldberg/package-json-validator/issues/395)) ([8460dcc](https://github.com/JoshuaKGoldberg/package-json-validator/commit/8460dcc39b5a68f64ca6f0d3b29121382d7b4a11)), closes [#362](https://github.com/JoshuaKGoldberg/package-json-validator/issues/362)
+
 # [0.28.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.27.0...v0.28.0) (2025-08-07)
 
 ### Features
