@@ -10,6 +10,8 @@ describe("validateDependencies", () => {
 
 	it("should validate dependencies with no errors", () => {
 		const dependencies = {
+			"@package/package": "workspace:@package/package@*",
+			"@types/org__package": "workspace:@org/types___org__package@1",
 			"absolute-path-without-protocol": "/absolute/path",
 			"caret-first": "^1.0.0",
 			"caret-top": "^1",
