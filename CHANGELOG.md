@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.29.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.29.0...v0.29.1) (2025-08-15)
+
+### Bug Fixes
+
+- allow pnpm workspace aliases ([#400](https://github.com/JoshuaKGoldberg/package-json-validator/issues/400)) ([158fb5d](https://github.com/JoshuaKGoldberg/package-json-validator/commit/158fb5d0de768d1ca5c9db236d0ffcc11f1e0161)), closes [#389](https://github.com/JoshuaKGoldberg/package-json-validator/issues/389)
+
 # [0.29.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.28.0...v0.29.0) (2025-08-12)
 
 ### Features
