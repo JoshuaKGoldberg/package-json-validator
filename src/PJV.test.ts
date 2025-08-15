@@ -115,8 +115,6 @@ describe("PJV", () => {
 					devDependencies: {
 						"bad-catalog": "catalob:",
 						"bad-npm": "npm;svgo@^1.2.3",
-						"bad-workspace": "workspace:abc123",
-						"bad-workspace-range": "workspace:^>1.2.3",
 						"package-name": "abc123",
 					},
 				});
@@ -133,16 +131,6 @@ describe("PJV", () => {
 						field: "devDependencies",
 						message:
 							"invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-					},
-					{
-						field: "devDependencies",
-						message:
-							"invalid version range for dependency bad-workspace: workspace:abc123",
-					},
-					{
-						field: "devDependencies",
-						message:
-							"invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
 					},
 					{
 						field: "devDependencies",
@@ -363,8 +351,6 @@ describe("PJV", () => {
 					devDependencies: {
 						"bad-catalog": "catalob:",
 						"bad-npm": "npm;svgo@^1.2.3",
-						"bad-workspace": "workspace:abc123",
-						"bad-workspace-range": "workspace:^>1.2.3",
 						"package-name": "abc123",
 					},
 				});
@@ -381,16 +367,6 @@ describe("PJV", () => {
 						field: "devDependencies",
 						message:
 							"invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-					},
-					{
-						field: "devDependencies",
-						message:
-							"invalid version range for dependency bad-workspace: workspace:abc123",
-					},
-					{
-						field: "devDependencies",
-						message:
-							"invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
 					},
 					{
 						field: "devDependencies",

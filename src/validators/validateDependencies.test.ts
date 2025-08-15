@@ -10,6 +10,8 @@ describe("validateDependencies", () => {
 
 	it("should validate dependencies with no errors", () => {
 		const dependencies = {
+			"@package/package": "workspace:@package/package@*",
+			"@types/org__package": "workspace:@org/types___org__package@1",
 			"absolute-path-without-protocol": "/absolute/path",
 			"caret-first": "^1.0.0",
 			"caret-top": "^1",
@@ -116,8 +118,6 @@ describe("validateDependencies", () => {
 			"bad-catalog": "catalob:",
 			"bad-jsr": "jsr;@scope/package@^1.0.0",
 			"bad-npm": "npm;svgo@^1.2.3",
-			"bad-workspace": "workspace:abc123",
-			"bad-workspace-range": "workspace:^>1.2.3",
 			"invalid-git-protocol": "git+foo://github.com/npm/cli.git",
 			"invalid-github-reference-bad-reponame": "some/package?",
 			"invalid-github-reference-bad-username": "some--user/package",
@@ -131,8 +131,6 @@ describe("validateDependencies", () => {
 			"invalid version range for dependency bad-catalog: catalob:",
 			"invalid version range for dependency bad-jsr: jsr;@scope/package@^1.0.0",
 			"invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-			"invalid version range for dependency bad-workspace: workspace:abc123",
-			"invalid version range for dependency bad-workspace-range: workspace:^>1.2.3",
 			"invalid version range for dependency invalid-git-protocol: git+foo://github.com/npm/cli.git",
 			"invalid version range for dependency invalid-github-reference-bad-reponame: some/package?",
 			"invalid version range for dependency invalid-github-reference-bad-username: some--user/package",

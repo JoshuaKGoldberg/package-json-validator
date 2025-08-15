@@ -13,9 +13,7 @@ const isUnpublishedVersion = (version: string): boolean => {
 			version,
 		) ||
 		// https://pnpm.io/next/workspaces#workspace-protocol-workspace
-		/^workspace:((\^|~)?[0-9.x]*|(<=?|>=?)?[0-9.x][\-.+\w]+|\*)?$/.test(
-			version,
-		) ||
+		version.startsWith("workspace:") ||
 		// https://docs.npmjs.com/cli/v11/using-npm/package-spec#aliases
 		version.startsWith("npm:") ||
 		// https://docs.npmjs.com/cli/v10/configuring-npm/package-json#local-paths
