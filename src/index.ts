@@ -1,4 +1,4 @@
-export type { SpecName, SpecType } from "./types.ts";
+export type { SpecName, SpecType } from "./Spec.types.ts";
 export { validate } from "./validate.ts";
 export {
 	validateAuthor,

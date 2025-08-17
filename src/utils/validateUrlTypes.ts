@@ -1,4 +1,4 @@
-import type { UrlType } from "../types.ts";
+import type { UrlType } from "../validators/index.ts";
 
 import { urlFormat } from "../formats.ts";
 
