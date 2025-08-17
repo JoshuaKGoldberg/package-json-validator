@@ -1,4 +1,4 @@
-import type { SpecMap, SpecName } from "./types.ts";
+import type { SpecMap, SpecName } from "./Spec.types.ts";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats.ts";
 import {

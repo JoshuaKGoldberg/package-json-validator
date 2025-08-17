@@ -1,4 +1,4 @@
-import type { FieldSpec, SpecType } from "../types.ts";
+import type { FieldSpec, SpecType } from "../Spec.types.ts";
 
 /**
  * Validate that a field conforms to the shape defined by its `type` property.

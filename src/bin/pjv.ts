@@ -9,7 +9,7 @@ import fs from "node:fs";
 import process from "node:process";
 import yargs from "yargs";
 
-import type { SpecName } from "../types.ts";
+import type { SpecName } from "../Spec.types.ts";
 
 import { validate } from "../validate.ts";
 
