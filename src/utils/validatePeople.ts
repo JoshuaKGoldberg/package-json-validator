@@ -1,4 +1,4 @@
-import type { People, Person } from "../types.ts";
+import type { People, Person } from "../validators/index.ts";
 
 import { emailFormat, urlFormat } from "../formats.ts";
 
