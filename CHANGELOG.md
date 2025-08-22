@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.30.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.29.1...v0.30.0) (2025-08-22)
+
+### Features
+
+- deprecate CLI ([#413](https://github.com/JoshuaKGoldberg/package-json-validator/issues/413)) ([f90520f](https://github.com/JoshuaKGoldberg/package-json-validator/commit/f90520f233dbe69fe11704b2a4a62068957b13a8)), closes [#264](https://github.com/JoshuaKGoldberg/package-json-validator/issues/264) [/github.com/JoshuaKGoldberg/package-json-validator/issues/264#issuecomment-3212272711](https://github.com//github.com/JoshuaKGoldberg/package-json-validator/issues/264/issues/issuecomment-3212272711)
+
 ## [0.29.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.29.0...v0.29.1) (2025-08-15)
 
 ### Bug Fixes
