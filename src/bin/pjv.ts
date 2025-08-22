@@ -56,6 +56,12 @@ const options = yargs(process.argv.slice(2))
 	.usage("Validate package.json files")
 	.parse() as Options;
 
+if (!options.quiet) {
+	console.warn(
+		"The pjv CLI in package-json-validator is deprecated and will be removed soon. Please use package-json-validator-cli instead.",
+	);
+}
+
 if (!fs.existsSync(options.filename)) {
 	console.error("File does not exist: " + options.filename);
 	process.exitCode = 1;
