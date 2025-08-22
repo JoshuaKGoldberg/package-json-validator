@@ -17,25 +17,6 @@
 
 ## Usage
 
-### Command line
-
-```shell
-npm install package-json-validator -g
-```
-
-See `pjv --help` for usage:
-
-```plaintext
-Options:
-  --filename, -f         package.json file to validate                      [default: "package.json"]
-  --warnings, -w         display warnings                                   [default: false]
-  --recommendations, -r  display recommendations                            [default: false]
-  --quiet, -q            less output                                        [default: false]
-  --help, -h, -?         this help message                                  [default: false]
-```
-
-### Node.js
-
 ```shell
 npm install package-json-validator
 ```
@@ -45,6 +26,11 @@ import { validate } from "package-json-validator";
 
 validate(/* ... */);
 ```
+
+For tools that run these validations, see:
+
+- [eslint-plugin-package-json](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): to detect all violations and keep them warned against via ESLint
+- [package-json-validator-cli](https://github.com/JoshuaKGoldberg/package-json-validator-cli): if you want just a one-shot tool to run in the CLI
 
 ## API
 
