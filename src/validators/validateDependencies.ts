@@ -14,6 +14,8 @@ const isUnpublishedVersion = (version: string): boolean => {
 		) ||
 		// https://pnpm.io/next/workspaces#workspace-protocol-workspace
 		version.startsWith("workspace:") ||
+		// https://yarnpkg.com/protocol/patch
+		version.startsWith("patch:") ||
 		// https://docs.npmjs.com/cli/v11/using-npm/package-spec#aliases
 		version.startsWith("npm:") ||
 		// https://docs.npmjs.com/cli/v10/configuring-npm/package-json#local-paths
