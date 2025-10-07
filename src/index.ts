@@ -1,4 +1,3 @@
-export { PJV } from "./PJV.ts";
 export type { SpecName, SpecType } from "./types.ts";
 export { validate } from "./validate.ts";
 export {
