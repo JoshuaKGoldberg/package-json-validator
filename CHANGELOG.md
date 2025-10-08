@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.30.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.30.0...v0.30.1) (2025-10-08)
+
+### Bug Fixes
+
+- validateDependencies rule should allow patch protocol ([#470](https://github.com/JoshuaKGoldberg/package-json-validator/issues/470)) ([83dc957](https://github.com/JoshuaKGoldberg/package-json-validator/commit/83dc957204dae81bde91bdbd88db2bbdf5fe3d85)), closes [#426](https://github.com/JoshuaKGoldberg/package-json-validator/issues/426)
+
 # [0.30.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.29.1...v0.30.0) (2025-08-22)
 
 ### Features
