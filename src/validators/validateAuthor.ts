@@ -1,3 +1,4 @@
+import { createValidationResult, type Result } from "../Result.ts";
 import { isPerson, validatePeople } from "../utils/index.ts";
 
 /**
@@ -11,16 +12,17 @@ import { isPerson, validatePeople } from "../utils/index.ts";
  *   "url" : "http://barnyrubble.tumblr.com/"
  * }
  */
-export const validateAuthor = (obj: unknown): string[] => {
-	const errors: string[] = [];
+export const validateAuthor = (obj: unknown): Result => {
+	let result = createValidationResult();
 
 	if (typeof obj === "string" || isPerson(obj)) {
-		errors.push(...validatePeople("author", obj));
+		result = validatePeople(obj);
 	} else {
-		errors.push(
-			`Type for field "author" should be a \`string\` or an \`object\` with at least a \`name\` property`,
-		);
+		const issue = {
+			message: `the type should be a \`string\` or an \`object\` with at least a \`name\` property`,
+		};
+		result = createValidationResult([issue]);
 	}
 
-	return errors;
+	return result;
 };
