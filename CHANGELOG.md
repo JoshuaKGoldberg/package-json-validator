@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.31.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.30.1...v0.31.0) (2025-10-09)
+
+### Features
+
+- remove deprecated PJV export ([#468](https://github.com/JoshuaKGoldberg/package-json-validator/issues/468)) ([95f2e81](https://github.com/JoshuaKGoldberg/package-json-validator/commit/95f2e81c410b7dbcb11f81aeddd3f65690498c67)), closes [#287](https://github.com/JoshuaKGoldberg/package-json-validator/issues/287)
+
 ## [0.30.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.30.0...v0.30.1) (2025-10-08)
 
 ### Bug Fixes
