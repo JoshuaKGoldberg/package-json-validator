@@ -31,7 +31,10 @@ const getSpecMap = (
 		// https://docs.npmjs.com/cli/v11/configuring-npm/package-json
 		// https://nodejs.org/api/packages.html
 		return {
-			author: { validate: (_, value) => validateAuthor(value), warning: true },
+			author: {
+				validate: (_, value) => validateAuthor(value).errorMessages,
+				warning: true,
+			},
 			bin: { validate: (_, value) => validateBin(value) },
 			bugs: { validate: validateUrlOrMailto, warning: true },
 			bundledDependencies: {
@@ -41,7 +44,9 @@ const getSpecMap = (
 				validate: (_, value) => validateBundleDependencies(value),
 			},
 			config: { validate: (_, value) => validateConfig(value) },
-			contributors: { validate: validatePeople },
+			contributors: {
+				validate: (_, value) => validatePeople(value).errorMessages,
+			},
 			cpu: { validate: (_, value) => validateCpu(value) },
 			dependencies: {
 				recommended: true,
@@ -109,7 +114,7 @@ const getSpecMap = (
 			contributors: {
 				required: true,
 				type: "array",
-				validate: validatePeople,
+				validate: (_, value) => validatePeople(value).errorMessages,
 			},
 			cpu: { type: "array" },
 			dependencies: {
@@ -131,7 +136,7 @@ const getSpecMap = (
 			maintainers: {
 				required: true,
 				type: "array",
-				validate: validatePeople,
+				validate: (_, value) => validatePeople(value).errorMessages,
 			},
 			name: { format: packageFormat, required: true, type: "string" },
 			os: { type: "array" },
@@ -153,7 +158,10 @@ const getSpecMap = (
 			},
 			builtin: { type: "boolean" },
 			checksums: { type: "object" },
-			contributors: { type: "array", validate: validatePeople },
+			contributors: {
+				type: "array",
+				validate: (_, value) => validatePeople(value).errorMessages,
+			},
 
 			cpu: { type: "array" },
 			dependencies: { validate: (_, value) => validateDependencies(value) },
@@ -171,7 +179,7 @@ const getSpecMap = (
 			main: { required: true, type: "string" },
 			maintainers: {
 				type: "array",
-				validate: validatePeople,
+				validate: (_, value) => validatePeople(value).errorMessages,
 				warning: true,
 			},
 			name: { format: packageFormat, required: true, type: "string" },
