@@ -56,7 +56,6 @@
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
-		"lint:packages": "pnpm dedupe --check",
 		"prepare": "husky",
 		"test": "vitest",
 		"typecheck": "tsc"
