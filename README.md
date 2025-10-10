@@ -32,6 +32,43 @@ For tools that run these validations, see:
 - [eslint-plugin-package-json](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): to detect all violations and keep them warned against via ESLint
 - [package-json-validator-cli](https://github.com/JoshuaKGoldberg/package-json-validator-cli): if you want just a one-shot tool to run in the CLI
 
+## Result Types
+
+Following are the types involved in the return type of our granular `validate*` functions.
+
+### Result
+
+The `Result` type, is the common top-level return type for all of our granular `validate*` functions.
+It provides rich information about the nature of the issues encountered as part of validating.
+For complex objects like `exports`, its tree structure can give information on which parts of the structure have issues.
+
+#### errorMessages: string[]
+
+The full collection of error messages (including errors from child element).
+This consists of the `Issue.message` for all of the items in this Result's `issues`, as well as the `message`s of all descendent `issues`.
+
+#### issues: Issue[]
+
+Collection of issues for _this_ object (property or array element).
+
+#### childResults: ChildResult[]
+
+Collection of result objects for child elements (either properties or array elements), if this property is an object or array.
+
+### ChildResult extends Result
+
+Result object for a child (either a property in an object or an element of an array).
+
+#### index: number
+
+The index of this property in relation to its parent's collection (properties or array elements).
+
+### Issue
+
+#### message: string
+
+The message with information about this issue.
+
 ## API
 
 ### validate(data, options?)
@@ -127,7 +164,7 @@ console.log(data);
 //    'Missing optional field: homepage',
 //    'Missing optional field: engines'
 //  ]
-}
+// }
 ```
 
 ### validateAuthor(value)
@@ -139,7 +176,7 @@ It takes the value, and validates it against the following criteria.
 - if it's an object, it should include a `name` field and, optionally, `email` and / or `url` fields.
 - if present, the `email` and `url` fields should be valid email and url, respectively.
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 

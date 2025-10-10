@@ -26,7 +26,7 @@ export interface Issue {
  * Create a Result object from the issues for this property value and an array of child results.
  * The resulting object's `isValid` property will be a product of its own `isValid` value and all of its children.
  * Similarly, the `errorMessages` property will be a combination of the `message` properties of its issues, and the `errorMessages` props of its children.
- * @param issues the collection of issues from this property value
+ * @param issuesOrMessages the collection of issues from this property value
  * @param childResults results from child property values
  */
 export const createValidationResult = (
