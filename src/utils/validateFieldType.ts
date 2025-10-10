@@ -17,7 +17,7 @@ export const validateFieldType = (
 		return [];
 	}
 	const errors: string[] = [];
-	const validFieldTypes = field.types || [field.type!];
+	const validFieldTypes = field.types ?? [field.type];
 	const valueType = value instanceof Array ? "array" : typeof value;
 	if (!validFieldTypes.includes(valueType as SpecType)) {
 		errors.push(

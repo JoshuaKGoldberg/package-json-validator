@@ -148,6 +148,7 @@ const getSpecMap = (
 			scripts: { type: "object" },
 			version: { format: versionFormat, required: true, type: "string" },
 		};
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	} else if (specName == "commonjs_1.1") {
 		// http://wiki.commonjs.org/wiki/Packages/1.1
 		return {
