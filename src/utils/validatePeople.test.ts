@@ -56,16 +56,16 @@ describe("validatePeople", () => {
 		expect(result.issues).toEqual([]);
 		expect(result.childResults).toHaveLength(2);
 
-		const barneyResult = result.childResults?.[0];
-		expect(barneyResult?.errorMessages).toHaveLength(1);
-		expect(barneyResult?.issues).toEqual([]);
-		expect(barneyResult?.childResults).toHaveLength(3);
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
 
-		const barneyEmailResult = barneyResult?.childResults?.[0];
-		expect(barneyEmailResult?.errorMessages).toEqual([
+		const barneyEmailResult = barneyResult.childResults[0];
+		expect(barneyEmailResult.errorMessages).toEqual([
 			"Email not valid: brubble",
 		]);
-		expect(barneyEmailResult?.issues).toHaveLength(1);
+		expect(barneyEmailResult.issues).toHaveLength(1);
 	});
 
 	it("should detect invalid url", () => {
@@ -84,16 +84,14 @@ describe("validatePeople", () => {
 		expect(result.issues).toEqual([]);
 		expect(result.childResults).toHaveLength(2);
 
-		const barneyResult = result.childResults?.[0];
-		expect(barneyResult?.errorMessages).toHaveLength(1);
-		expect(barneyResult?.issues).toEqual([]);
-		expect(barneyResult?.childResults).toHaveLength(3);
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
 
-		const barneyUrlResult = barneyResult?.childResults?.[2];
-		expect(barneyUrlResult?.errorMessages).toEqual([
-			"URL not valid: not a url",
-		]);
-		expect(barneyUrlResult?.issues).toHaveLength(1);
+		const barneyUrlResult = barneyResult.childResults[2];
+		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.issues).toHaveLength(1);
 	});
 
 	it("should detect invalid web", () => {
@@ -112,16 +110,14 @@ describe("validatePeople", () => {
 		expect(result.issues).toEqual([]);
 		expect(result.childResults).toHaveLength(2);
 
-		const barneyResult = result.childResults?.[0];
-		expect(barneyResult?.errorMessages).toHaveLength(1);
-		expect(barneyResult?.issues).toEqual([]);
-		expect(barneyResult?.childResults).toHaveLength(3);
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
 
-		const barneyUrlResult = barneyResult?.childResults?.[2];
-		expect(barneyUrlResult?.errorMessages).toEqual([
-			"URL not valid: not a url",
-		]);
-		expect(barneyUrlResult?.issues).toHaveLength(1);
+		const barneyUrlResult = barneyResult.childResults[2];
+		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.issues).toHaveLength(1);
 	});
 
 	it("should require name", () => {
