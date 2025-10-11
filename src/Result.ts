@@ -50,16 +50,25 @@ export const createValidationResult = (
 /**
  * Adds a new child result to a parent result, adding the child's error messages to the parents, and
  * appending the child result to the parent's childResults array.
+ * @param parent the parent Result object
+ * @param child the child Result object, or a string or array of strings to be converted into a Result object
+ * @param index the index of this child in relation to its siblings (either properties in an object, or elements in an array)
  */
 export const addChildResult = (
 	parent: Result,
-	child: Result | string,
+	child: Result | string | string[],
 	index: number,
 ): void => {
 	let newChild: Result;
 	if (typeof child === "string") {
 		const childResult = createValidationResult();
 		addIssue(childResult, child);
+		newChild = childResult;
+	} else if (Array.isArray(child)) {
+		const childResult = createValidationResult();
+		for (const issueString of child) {
+			addIssue(childResult, issueString);
+		}
 		newChild = childResult;
 	} else {
 		newChild = child;

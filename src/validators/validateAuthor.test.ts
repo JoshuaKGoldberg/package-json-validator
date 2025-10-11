@@ -53,10 +53,7 @@ describe("validateAuthor", () => {
 		const result = validateAuthor(123);
 		expect(result).toEqual(
 			createValidationResult([
-				{
-					message:
-						"the type should be a `string` or an `object` with at least a `name` property",
-				},
+				"the type should be a `string` or an `object` with at least a `name` property",
 			]),
 		);
 		expect(vi.mocked(validatePeople)).not.toHaveBeenCalled();
