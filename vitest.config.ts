@@ -1,10 +1,15 @@
-import { defineConfig } from "vitest/config";
+import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
 		clearMocks: true,
 		coverage: {
 			all: true,
+			exclude: [
+				...coverageConfigDefaults.exclude,
+				"src/index.ts",
+				"**/*.types.ts",
+			],
 			include: ["src"],
 			reporter: ["html", "lcov", "text"],
 		},
