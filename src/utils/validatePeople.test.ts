@@ -68,6 +68,62 @@ describe("validatePeople", () => {
 		expect(barneyEmailResult?.issues).toHaveLength(1);
 	});
 
+	it("should detect invalid url", () => {
+		const barney = {
+			email: "brubble@theflintstones.com",
+			name: "Barney Rubble",
+			url: "not a url",
+		};
+		const fred = {
+			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
+			url: "https://tiktok.com/@fred",
+		};
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toHaveLength(1);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(2);
+
+		const barneyResult = result.childResults?.[0];
+		expect(barneyResult?.errorMessages).toHaveLength(1);
+		expect(barneyResult?.issues).toEqual([]);
+		expect(barneyResult?.childResults).toHaveLength(3);
+
+		const barneyUrlResult = barneyResult?.childResults?.[2];
+		expect(barneyUrlResult?.errorMessages).toEqual([
+			"URL not valid: not a url",
+		]);
+		expect(barneyUrlResult?.issues).toHaveLength(1);
+	});
+
+	it("should detect invalid web", () => {
+		const barney = {
+			email: "brubble@theflintstones.com",
+			name: "Barney Rubble",
+			web: "not a url",
+		};
+		const fred = {
+			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
+			web: "https://tiktok.com/@fred",
+		};
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toHaveLength(1);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(2);
+
+		const barneyResult = result.childResults?.[0];
+		expect(barneyResult?.errorMessages).toHaveLength(1);
+		expect(barneyResult?.issues).toEqual([]);
+		expect(barneyResult?.childResults).toHaveLength(3);
+
+		const barneyUrlResult = barneyResult?.childResults?.[2];
+		expect(barneyUrlResult?.errorMessages).toEqual([
+			"URL not valid: not a url",
+		]);
+		expect(barneyUrlResult?.issues).toHaveLength(1);
+	});
+
 	it("should require name", () => {
 		let result = validatePeople(
 			"<b@rubble.com> (http://barneyrubble.tumblr.com/)",
@@ -81,6 +137,15 @@ describe("validatePeople", () => {
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.errorMessages).toEqual(["person object should have name"]);
+		expect(result.issues.length).toBe(1);
+	});
+
+	it("should report error when not a string or object", () => {
+		// @ts-expect-error - testing invalid input
+		const result = validatePeople(1234);
+		expect(result.errorMessages).toEqual([
+			"person field must be an object or a string",
+		]);
 		expect(result.issues.length).toBe(1);
 	});
 
