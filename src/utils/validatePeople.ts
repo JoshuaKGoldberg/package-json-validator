@@ -6,7 +6,7 @@ import {
 	flattenResult,
 	type Result,
 } from "../Result.ts";
-import { type People, type Person } from "../validators/index.ts";
+import { type People, type Person } from "./validation.types.ts";
 
 export const isPersonArray = (obj: unknown): obj is Person[] => {
 	return Array.isArray(obj) && obj.every((item) => isPerson(item));
