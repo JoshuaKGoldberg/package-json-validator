@@ -7,7 +7,7 @@ export interface Result {
 	issues: Issue[];
 
 	/** Collection of result objects for child elements (either properties or array elements), if this property is an object or array */
-	childResults?: ChildResult[];
+	childResults: ChildResult[];
 }
 
 /** Result object for a child (either a property in an object or an element of an array) */
@@ -73,7 +73,6 @@ export const addChildResult = (
 	} else {
 		newChild = child;
 	}
-	parent.childResults ??= [];
 	parent.childResults.push({ ...newChild, index });
 	parent.errorMessages.push(...newChild.errorMessages);
 };
@@ -91,7 +90,7 @@ export const addIssue = (result: Result, message: string): void => {
  */
 export const flattenResult = (result: Result): Result => {
 	const flattened = createValidationResult(result.issues);
-	for (const childResult of result.childResults ?? []) {
+	for (const childResult of result.childResults) {
 		const flattenedChild = flattenResult(childResult);
 		for (const issue of flattenedChild.issues) {
 			addIssue(flattened, issue.message);

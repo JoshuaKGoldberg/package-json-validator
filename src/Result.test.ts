@@ -67,7 +67,7 @@ describe("Result", () => {
 			addChildResult(parent, child, 0);
 
 			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults?.[0]).toEqual({ ...child, index: 0 });
+			expect(parent.childResults[0]).toEqual({ ...child, index: 0 });
 			expect(parent.errorMessages).toEqual(child.errorMessages);
 		});
 
@@ -78,7 +78,7 @@ describe("Result", () => {
 			addChildResult(parent, childIssueString, 0);
 
 			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults?.[0]).toEqual({
+			expect(parent.childResults[0]).toEqual({
 				...createValidationResult([childIssueString]),
 				index: 0,
 			});
@@ -92,7 +92,7 @@ describe("Result", () => {
 			addChildResult(parent, childIssueStrings, 0);
 
 			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults?.[0]).toEqual({
+			expect(parent.childResults[0]).toEqual({
 				...createValidationResult(childIssueStrings),
 				index: 0,
 			});
@@ -106,7 +106,7 @@ describe("Result", () => {
 			addChildResult(parent, child, 13);
 
 			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults?.[0]).toEqual({ ...child, index: 13 });
+			expect(parent.childResults[0]).toEqual({ ...child, index: 13 });
 			expect(parent.errorMessages).toEqual(child.errorMessages);
 		});
 	});
