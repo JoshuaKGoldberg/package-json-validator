@@ -58,8 +58,8 @@ importers:
         specifier: 60.8.0
         version: 60.8.0(eslint@9.37.0(jiti@2.5.1))
       eslint-plugin-jsonc:
-        specifier: 2.20.0
-        version: 2.20.0(eslint@9.37.0(jiti@2.5.1))
+        specifier: 2.21.0
+        version: 2.21.0(eslint@9.37.0(jiti@2.5.1))
       eslint-plugin-markdown:
         specifier: 5.1.0
         version: 5.1.0(eslint@9.37.0(jiti@2.5.1))
@@ -727,8 +727,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@pkgr/core@0.2.0':
-    resolution: {integrity: sha512-vsJDAkYR6qCPu+ioGScGiMYR7LvZYIXh/dlQeviqoTWNCVfKTLYD/LkNWH4Mxsv2a5vpIRc77FN5DnmK1eBggQ==}
+  '@pkgr/core@0.2.9':
+    resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
   '@quansync/fs@0.1.5':
@@ -1615,8 +1615,8 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
 
-  eslint-plugin-jsonc@2.20.0:
-    resolution: {integrity: sha512-FRgCn9Hzk5eKboCbVMrr9QrhM0eO4G+WKH8IFXoaeqhM/2kuWzbStJn4kkr0VWL8J5H8RYZF+Aoam1vlBaZVkw==}
+  eslint-plugin-jsonc@2.21.0:
+    resolution: {integrity: sha512-HttlxdNG5ly3YjP1cFMP62R4qKLxJURfBZo2gnMY+yQojZxkLyOpY1H1KRTKBmvQeSG9pIpSGEhDjE17vvYosg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -2914,8 +2914,8 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
-  synckit@0.10.3:
-    resolution: {integrity: sha512-R1urvuyiTaWfeCggqEvpDJwAlDVdsT9NM+IP//Tk2x7qHCkSvBk/fwFgw/TLAHzZlrAnnazMcRw0ZD8HlYFTEQ==}
+  synckit@0.11.11:
+    resolution: {integrity: sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
   synckit@0.9.2:
@@ -3762,7 +3762,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@pkgr/core@0.2.0': {}
+  '@pkgr/core@0.2.9': {}
 
   '@quansync/fs@0.1.5':
     dependencies:
@@ -4593,9 +4593,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jsonc@2.20.0(eslint@9.37.0(jiti@2.5.1)):
+  eslint-plugin-jsonc@2.21.0(eslint@9.37.0(jiti@2.5.1)):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.37.0(jiti@2.5.1))
+      diff-sequences: 27.5.1
       eslint: 9.37.0(jiti@2.5.1)
       eslint-compat-utils: 0.6.4(eslint@9.37.0(jiti@2.5.1))
       eslint-json-compat-utils: 0.2.1(eslint@9.37.0(jiti@2.5.1))(jsonc-eslint-parser@2.4.0)
@@ -4603,7 +4604,7 @@ snapshots:
       graphemer: 1.4.0
       jsonc-eslint-parser: 2.4.0
       natural-compare: 1.4.0
-      synckit: 0.10.3
+      synckit: 0.11.11
     transitivePeerDependencies:
       - '@eslint/json'
 
@@ -6168,10 +6169,9 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  synckit@0.10.3:
+  synckit@0.11.11:
     dependencies:
-      '@pkgr/core': 0.2.0
-      tslib: 2.8.1
+      '@pkgr/core': 0.2.9
 
   synckit@0.9.2:
     dependencies:
