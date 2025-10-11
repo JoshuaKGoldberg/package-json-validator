@@ -33,8 +33,6 @@ function validatePerson(obj: Person | string): Result {
 			// Since this wasn't originally an object, we need to flatten the child results
 			// into this result object.
 			result = flattenResult(objResult);
-		} else {
-			addIssue(result, `Unable to parse person string: ${obj}`);
 		}
 	} else if (typeof obj == "object") {
 		if (!obj.name) {
@@ -56,7 +54,7 @@ function validatePerson(obj: Person | string): Result {
 			addChildResult(result, childResult, i);
 		}
 	} else {
-		addIssue(result, "People field must be an object or a string");
+		addIssue(result, "person field must be an object or a string");
 	}
 	return result;
 }
