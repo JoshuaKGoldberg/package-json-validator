@@ -48,6 +48,21 @@ export const createValidationResult = (
 };
 
 /**
+ * Given an index and all the parameters of `createValidationResult`, this function creates a new ChildResult object.
+ * @param index The index for this ChildResult.
+ * @param args The params for the call to `createValidationResult`
+ * @see {@link createValidationResult}
+ * @returns The new ChildResult object
+ */
+export const createChildResult = (
+	index: number,
+	...args: Parameters<typeof createValidationResult>
+): ChildResult => {
+	const result = createValidationResult(...args);
+	return { ...result, index };
+};
+
+/**
  * Adds a new child result to a parent result, adding the child's error messages to the parents, and
  * appending the child result to the parent's childResults array.
  * @param parent the parent Result object
