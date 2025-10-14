@@ -27,9 +27,6 @@ importers:
       '@release-it/conventional-changelog':
         specifier: 10.0.0
         version: 10.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@19.0.1(@types/node@22.18.0)(magicast@0.3.5))
-      '@types/eslint-plugin-markdown':
-        specifier: 2.0.2
-        version: 2.0.2
       '@types/node':
         specifier: 22.18.0
         version: 22.18.0
@@ -937,12 +934,6 @@ packages:
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
-  '@types/eslint-plugin-markdown@2.0.2':
-    resolution: {integrity: sha512-ImmEw5xBVb9vCaFfQ+5kUcVatUO4XPpTvryAmhpKzalUKhDb3EZmeuHvIUO6E1/WDOTw+/b9qlWsZhxULhZdfQ==}
-
-  '@types/eslint@9.6.1':
-    resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
-
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
@@ -972,9 +963,6 @@ packages:
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
-
-  '@types/unist@3.0.3':
-    resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
   '@types/validate-npm-package-license@3.0.3':
     resolution: {integrity: sha512-uu5D5tHla4R+dEKKmF7NxlK4UHiEwqR8hgm1zF3ISBd5MnmNvTDYEcB77zEpAybHDEPgUVDFhOtU8V4LwuFGXg==}
@@ -3853,16 +3841,6 @@ snapshots:
 
   '@types/deep-eql@4.0.2': {}
 
-  '@types/eslint-plugin-markdown@2.0.2':
-    dependencies:
-      '@types/eslint': 9.6.1
-      '@types/unist': 3.0.3
-
-  '@types/eslint@9.6.1':
-    dependencies:
-      '@types/estree': 1.0.8
-      '@types/json-schema': 7.0.15
-
   '@types/estree@1.0.6': {}
 
   '@types/estree@1.0.8': {}
@@ -3884,8 +3862,6 @@ snapshots:
   '@types/semver@7.7.0': {}
 
   '@types/unist@2.0.11': {}
-
-  '@types/unist@3.0.3': {}
 
   '@types/validate-npm-package-license@3.0.3': {}
 
