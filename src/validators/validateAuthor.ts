@@ -13,16 +13,11 @@ import { isPerson, validatePeople } from "../utils/index.ts";
  * }
  */
 export const validateAuthor = (obj: unknown): Result => {
-	let result = createValidationResult();
-
 	if (typeof obj === "string" || isPerson(obj)) {
-		result = validatePeople(obj);
+		return validatePeople(obj);
 	} else {
-		const issue = {
-			message: `the type should be a \`string\` or an \`object\` with at least a \`name\` property`,
-		};
-		result = createValidationResult([issue]);
+		return createValidationResult([
+			`the type should be a \`string\` or an \`object\` with at least a \`name\` property`,
+		]);
 	}
-
-	return result;
 };
