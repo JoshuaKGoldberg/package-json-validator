@@ -1,4 +1,4 @@
-import type { UrlOrMailTo } from "../types.ts";
+import type { UrlOrMailTo } from "../utils/index.ts";
 
 import { emailFormat, urlFormat } from "../formats.ts";
 
