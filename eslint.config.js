@@ -49,8 +49,11 @@ export default defineConfig(
 			},
 		},
 		rules: {
+			"@typescript-eslint/consistent-type-imports": "error",
 			"@typescript-eslint/no-deprecated": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",
+			"@typescript-eslint/restrict-template-expressions": "off",
+			"jsdoc/match-description": "off",
 			"n/no-missing-import": "off",
 
 			// Using a ts bin file throws this rule off.
@@ -59,17 +62,10 @@ export default defineConfig(
 			"n/hashbang": "off",
 
 			// TODO: Eventually clean these up
-			"@typescript-eslint/no-non-null-assertion": "off",
-			"@typescript-eslint/no-unnecessary-condition": "off",
 			"@typescript-eslint/no-unsafe-argument": "off",
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-member-access": "off",
 			"@typescript-eslint/no-unsafe-return": "off",
-			"@typescript-eslint/no-unused-vars": "off",
-			"@typescript-eslint/prefer-for-of": "off",
-			"@typescript-eslint/prefer-nullish-coalescing": "off",
-			"@typescript-eslint/restrict-template-expressions": "off",
-			"jsdoc/match-description": "off",
 			"no-useless-escape": "off",
 			"regexp/no-super-linear-backtracking": "off",
 			"regexp/no-unused-capturing-group": "off",

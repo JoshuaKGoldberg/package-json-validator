@@ -1,4 +1,4 @@
-import type { FieldSpec, SpecType } from "../types.ts";
+import type { FieldSpec, SpecType } from "../Spec.types.ts";
 
 /**
  * Validate that a field conforms to the shape defined by its `type` property.
@@ -17,7 +17,7 @@ export const validateFieldType = (
 		return [];
 	}
 	const errors: string[] = [];
-	const validFieldTypes = field.types || [field.type!];
+	const validFieldTypes = field.types ?? [field.type];
 	const valueType = value instanceof Array ? "array" : typeof value;
 	if (!validFieldTypes.includes(valueType as SpecType)) {
 		errors.push(

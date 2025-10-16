@@ -4,16 +4,15 @@ import { isPerson, isPersonArray, validatePeople } from "./validatePeople.ts";
 
 describe("validatePeople", () => {
 	it("should validate string with only name", () => {
-		const result = validatePeople("people", "Barney Rubble");
-		expect(result).toEqual([]);
+		const result = validatePeople("Barney Rubble");
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should validate string with name, email, and url", () => {
 		const result = validatePeople(
-			"people",
 			"Barney Rubble <b@rubble.com> (http://barneyrubble.tumblr.com/)",
 		);
-		expect(result).toEqual([]);
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should validate person object", () => {
@@ -22,8 +21,8 @@ describe("validatePeople", () => {
 			name: "Barney Rubble",
 			url: "http://barneyrubble.tumblr.com/",
 		};
-		const result = validatePeople("people", person);
-		expect(result).toEqual([]);
+		const result = validatePeople(person);
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should validate array of person objects", () => {
@@ -37,23 +36,113 @@ describe("validatePeople", () => {
 			name: "Fred Flintstone",
 			url: "https://tiktok.com/@fred",
 		};
-		const result = validatePeople("people", [barney, fred]);
-		expect(result).toEqual([]);
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toEqual([]);
+	});
+
+	it("should detect invalid email format", () => {
+		const barney = {
+			email: "brubble",
+			name: "Barney Rubble",
+			url: "http://barneyrubble.tumblr.com/",
+		};
+		const fred = {
+			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
+			url: "https://tiktok.com/@fred",
+		};
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toHaveLength(1);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(2);
+
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
+
+		const barneyEmailResult = barneyResult.childResults[0];
+		expect(barneyEmailResult.errorMessages).toEqual([
+			"Email not valid: brubble",
+		]);
+		expect(barneyEmailResult.issues).toHaveLength(1);
+	});
+
+	it("should detect invalid url", () => {
+		const barney = {
+			email: "brubble@theflintstones.com",
+			name: "Barney Rubble",
+			url: "not a url",
+		};
+		const fred = {
+			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
+			url: "https://tiktok.com/@fred",
+		};
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toHaveLength(1);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(2);
+
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
+
+		const barneyUrlResult = barneyResult.childResults[2];
+		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.issues).toHaveLength(1);
+	});
+
+	it("should detect invalid web", () => {
+		const barney = {
+			email: "brubble@theflintstones.com",
+			name: "Barney Rubble",
+			web: "not a url",
+		};
+		const fred = {
+			email: "fred@theflintstones.com",
+			name: "Fred Flintstone",
+			web: "https://tiktok.com/@fred",
+		};
+		const result = validatePeople([barney, fred]);
+		expect(result.errorMessages).toHaveLength(1);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(2);
+
+		const barneyResult = result.childResults[0];
+		expect(barneyResult.errorMessages).toHaveLength(1);
+		expect(barneyResult.issues).toEqual([]);
+		expect(barneyResult.childResults).toHaveLength(3);
+
+		const barneyUrlResult = barneyResult.childResults[2];
+		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.issues).toHaveLength(1);
 	});
 
 	it("should require name", () => {
 		let result = validatePeople(
-			"people",
 			"<b@rubble.com> (http://barneyrubble.tumblr.com/)",
 		);
-		expect(result.length).toBe(1);
+		expect(result.errorMessages).toEqual(["person object should have name"]);
+		expect(result.issues.length).toBe(1);
 
 		// @ts-expect-error testing invalid param
-		result = validatePeople("people", {
+		result = validatePeople({
 			email: "<b@rubble.com>",
 			url: "http://barneyrubble.tumblr.com/",
 		});
-		expect(result.length).toBe(1);
+		expect(result.errorMessages).toEqual(["person object should have name"]);
+		expect(result.issues.length).toBe(1);
+	});
+
+	it("should report error when not a string or object", () => {
+		// @ts-expect-error - testing invalid input
+		const result = validatePeople(1234);
+		expect(result.errorMessages).toEqual([
+			"person field must be an object or a string",
+		]);
+		expect(result.issues.length).toBe(1);
 	});
 
 	describe("isPerson", () => {

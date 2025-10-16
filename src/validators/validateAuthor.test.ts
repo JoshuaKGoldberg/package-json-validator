@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import { createValidationResult } from "../Result.ts";
 import { isPerson, validatePeople } from "../utils/index.ts";
 import { validateAuthor } from "./validateAuthor.ts";
 
@@ -14,18 +15,18 @@ describe("validateAuthor", () => {
 	});
 
 	it("should call validatePeople with 'author' and a string if input is a string", () => {
+		const mockResult = createValidationResult([{ message: "error" }]);
 		const mockValidatePeople = vi
 			.mocked(validatePeople)
-			.mockReturnValue(["error"]);
+			.mockReturnValue(mockResult);
 
 		const result = validateAuthor(
 			"Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
 		);
 		expect(mockValidatePeople).toHaveBeenCalledWith(
-			"author",
 			"Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
 		);
-		expect(result).toEqual(["error"]);
+		expect(result).toEqual(mockResult);
 	});
 
 	it("should call validatePeople with 'author' and the object if input is a person object", () => {
@@ -34,22 +35,27 @@ describe("validateAuthor", () => {
 			name: "Barney Rubble",
 			url: "http://barnyrubble.tumblr.com/",
 		};
-		const mockValidatePeople = vi.mocked(validatePeople).mockReturnValue([]);
+		const mockResult = createValidationResult();
+		const mockValidatePeople = vi
+			.mocked(validatePeople)
+			.mockReturnValue(mockResult);
 		vi.mocked(isPerson).mockReturnValue(true);
 
 		const result = validateAuthor(personObj);
 
-		expect(mockValidatePeople).toHaveBeenCalledWith("author", personObj);
-		expect(result).toEqual([]);
+		expect(mockValidatePeople).toHaveBeenCalledWith(personObj);
+		expect(result).toEqual(mockResult);
 	});
 
 	it("should return the correct error if input is not a string or person object", () => {
 		vi.mocked(isPerson).mockReturnValue(false);
 
 		const result = validateAuthor(123);
-		expect(result).toEqual([
-			'Type for field "author" should be a `string` or an `object` with at least a `name` property',
-		]);
+		expect(result).toEqual(
+			createValidationResult([
+				"the type should be a `string` or an `object` with at least a `name` property",
+			]),
+		);
 		expect(vi.mocked(validatePeople)).not.toHaveBeenCalled();
 	});
 });
