@@ -1,4 +1,4 @@
-import type { UrlType } from "../types.ts";
+import type { UrlType } from "./validation.types.ts";
 
 import { urlFormat } from "../formats.ts";
 
@@ -30,8 +30,8 @@ export const validateUrlTypes = (
 			errors.push(`URL not valid for ${name}: ${obj}`);
 		}
 	} else if (obj instanceof Array) {
-		for (let i = 0; i < obj.length; i++) {
-			validateUrlType(obj[i]);
+		for (const element of obj) {
+			validateUrlType(element);
 		}
 	} else if (typeof obj === "object") {
 		validateUrlType(obj);

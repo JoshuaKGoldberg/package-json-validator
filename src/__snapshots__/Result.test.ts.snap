@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Result > createValidationResult > should create a Result with child results 1`] = `
+{
+  "childResults": [
+    {
+      "childResults": [],
+      "errorMessages": [
+        "child issue 1",
+      ],
+      "index": 0,
+      "issues": [
+        {
+          "message": "child issue 1",
+        },
+      ],
+    },
+    {
+      "childResults": [],
+      "errorMessages": [
+        "child issue 2",
+      ],
+      "index": 1,
+      "issues": [
+        {
+          "message": "child issue 2",
+        },
+      ],
+    },
+  ],
+  "errorMessages": [
+    "issue 1",
+    "issue 2",
+    "child issue 1",
+    "child issue 2",
+  ],
+  "issues": [
+    {
+      "message": "issue 1",
+    },
+    {
+      "message": "issue 2",
+    },
+  ],
+}
+`;
+
+exports[`Result > createValidationResult > should create a Result with issues from Issue objects 1`] = `
+{
+  "childResults": [],
+  "errorMessages": [
+    "issue 1",
+    "issue 2",
+  ],
+  "issues": [
+    {
+      "message": "issue 1",
+    },
+    {
+      "message": "issue 2",
+    },
+  ],
+}
+`;
+
+exports[`Result > createValidationResult > should create a Result with issues from strings 1`] = `
+{
+  "childResults": [],
+  "errorMessages": [
+    "issue 1",
+    "issue 2",
+  ],
+  "issues": [
+    {
+      "message": "issue 1",
+    },
+    {
+      "message": "issue 2",
+    },
+  ],
+}
+`;

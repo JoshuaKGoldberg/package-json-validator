@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { FieldSpec } from "../types.ts";
+import type { FieldSpec } from "../Spec.types.ts";
 
 import { validateFieldType } from "./validateFieldType.ts";
 

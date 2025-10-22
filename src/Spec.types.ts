@@ -1,14 +1,5 @@
 export type FieldSpec = FieldSpecWithType | FieldSpecWithTypes;
 
-export type People = Person | Person[] | string;
-
-export interface Person {
-	email?: string;
-	name: string;
-	url?: string;
-	web?: string;
-}
-
 export type SpecMap = Record<string, FieldSpec>;
 
 /** @deprecated commonjs_1.0 and commonjs_1.1 specs have been deprecated */
@@ -16,17 +7,6 @@ export type SpecName = "commonjs_1.0" | "commonjs_1.1" | "npm";
 
 export type SpecType = "array" | "boolean" | "object" | "string";
 
-export type UrlOrMailTo =
-	| string
-	| { email: string; mail?: never; url?: string; web?: never }
-	| { email?: never; mail: string; url?: never; web?: string }
-	| { email?: never; mail?: string; url?: never; web: string }
-	| { email?: string; mail?: never; url: string; web?: never };
-
-export interface UrlType {
-	type: string;
-	url: string;
-}
 interface BaseFieldSpec {
 	format?: RegExp;
 	or?: string;
