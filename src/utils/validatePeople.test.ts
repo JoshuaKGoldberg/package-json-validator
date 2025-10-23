@@ -147,7 +147,7 @@ describe("validatePeople", () => {
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.errorMessages).toEqual(["name should not be empty"]);
-		expect(result.childResults[0].issues.length).toBe(1);
+		expect(result.childResults[1].issues.length).toBe(1);
 
 		result = validatePeople({
 			email: "<b@rubble.com>",
@@ -155,7 +155,7 @@ describe("validatePeople", () => {
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.errorMessages).toEqual(["name should not be empty"]);
-		expect(result.childResults[0].issues.length).toBe(1);
+		expect(result.childResults[1].issues.length).toBe(1);
 	});
 
 	it("should report error when not a string or object", () => {
