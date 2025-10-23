@@ -35,21 +35,24 @@ function validatePerson(obj: Person | string): Result {
 			result = flattenResult(objResult);
 		}
 	} else if (typeof obj == "object") {
-		if (!obj.name) {
-			addIssue(result, "person object should have name");
+		if (typeof obj.name === "undefined") {
+			addIssue(result, "person should have a name");
 		}
 		const entries = Object.entries(obj);
 		for (let i = 0; i < entries.length; i++) {
 			const [key, value] = entries[i];
 			const childResult = createValidationResult();
+			if (key === "name" && typeof value === "string" && value.trim() === "") {
+				addIssue(childResult, `name should not be empty`);
+			}
 			if (key === "email" && value && !emailFormat.test(value)) {
-				addIssue(childResult, `Email not valid: ${value}`);
+				addIssue(childResult, `email is not valid: ${value}`);
 			}
 			if (key === "url" && value && !urlFormat.test(value)) {
-				addIssue(childResult, `URL not valid: ${value}`);
+				addIssue(childResult, `url is not valid: ${value}`);
 			}
 			if (key === "web" && value && !urlFormat.test(value)) {
-				addIssue(childResult, `URL not valid: ${value}`);
+				addIssue(childResult, `url is not valid: ${value}`);
 			}
 			addChildResult(result, childResult, i);
 		}

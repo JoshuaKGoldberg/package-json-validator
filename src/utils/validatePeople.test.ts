@@ -63,7 +63,7 @@ describe("validatePeople", () => {
 
 		const barneyEmailResult = barneyResult.childResults[0];
 		expect(barneyEmailResult.errorMessages).toEqual([
-			"Email not valid: brubble",
+			"email is not valid: brubble",
 		]);
 		expect(barneyEmailResult.issues).toHaveLength(1);
 	});
@@ -90,7 +90,9 @@ describe("validatePeople", () => {
 		expect(barneyResult.childResults).toHaveLength(3);
 
 		const barneyUrlResult = barneyResult.childResults[2];
-		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.errorMessages).toEqual([
+			"url is not valid: not a url",
+		]);
 		expect(barneyUrlResult.issues).toHaveLength(1);
 	});
 
@@ -116,7 +118,9 @@ describe("validatePeople", () => {
 		expect(barneyResult.childResults).toHaveLength(3);
 
 		const barneyUrlResult = barneyResult.childResults[2];
-		expect(barneyUrlResult.errorMessages).toEqual(["URL not valid: not a url"]);
+		expect(barneyUrlResult.errorMessages).toEqual([
+			"url is not valid: not a url",
+		]);
 		expect(barneyUrlResult.issues).toHaveLength(1);
 	});
 
@@ -124,7 +128,7 @@ describe("validatePeople", () => {
 		let result = validatePeople(
 			"<b@rubble.com> (http://barneyrubble.tumblr.com/)",
 		);
-		expect(result.errorMessages).toEqual(["person object should have name"]);
+		expect(result.errorMessages).toEqual(["person should have a name"]);
 		expect(result.issues.length).toBe(1);
 
 		// @ts-expect-error testing invalid param
@@ -132,8 +136,26 @@ describe("validatePeople", () => {
 			email: "<b@rubble.com>",
 			url: "http://barneyrubble.tumblr.com/",
 		});
-		expect(result.errorMessages).toEqual(["person object should have name"]);
+		expect(result.errorMessages).toEqual(["person should have a name"]);
 		expect(result.issues.length).toBe(1);
+	});
+
+	it("should require non-empty name", () => {
+		let result = validatePeople({
+			email: "<b@rubble.com>",
+			name: "",
+			url: "http://barneyrubble.tumblr.com/",
+		});
+		expect(result.errorMessages).toEqual(["name should not be empty"]);
+		expect(result.childResults[1].issues.length).toBe(1);
+
+		result = validatePeople({
+			email: "<b@rubble.com>",
+			name: "     ",
+			url: "http://barneyrubble.tumblr.com/",
+		});
+		expect(result.errorMessages).toEqual(["name should not be empty"]);
+		expect(result.childResults[1].issues.length).toBe(1);
 	});
 
 	it("should report error when not a string or object", () => {
