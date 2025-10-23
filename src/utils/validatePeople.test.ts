@@ -142,16 +142,16 @@ describe("validatePeople", () => {
 
 	it("should require non-empty name", () => {
 		let result = validatePeople({
-			name: "",
 			email: "<b@rubble.com>",
+			name: "",
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.errorMessages).toEqual(["name should not be empty"]);
 		expect(result.childResults[0].issues.length).toBe(1);
 
 		result = validatePeople({
-			name: "     ",
 			email: "<b@rubble.com>",
+			name: "     ",
 			url: "http://barneyrubble.tumblr.com/",
 		});
 		expect(result.errorMessages).toEqual(["name should not be empty"]);
