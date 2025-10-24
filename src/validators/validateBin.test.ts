@@ -1,26 +1,26 @@
 import { describe, expect, it } from "vitest";
 
-import { createChildResult, createValidationResult } from "../Result.ts";
+import { ChildResult, Result } from "../Result.ts";
 import { validateBin } from "./validateBin.ts";
 
 describe("validateBin", () => {
 	it("should return a Result with no issues if the bin field is an empty object", () => {
 		const result = validateBin({});
-		expect(result).toEqual(createValidationResult());
+		expect(result).toEqual(new Result());
 	});
 
 	it.each(["./cli.js", "cli.js", "./bin/cli.js", "bin/cli.js"])(
 		"should return a Result with no issues if the bin field is a valid string: %s",
 		(binPath) => {
 			const result = validateBin(binPath);
-			expect(result).toEqual(createValidationResult());
+			expect(result).toEqual(new Result());
 		},
 	);
 
 	it("should return a Result with one issue when the bin field is an empty string", () => {
 		const result = validateBin("");
 		expect(result).toEqual(
-			createValidationResult(["field is empty, but should be a relative path"]),
+			new Result(["the value is empty, but should be a relative path"]),
 		);
 	});
 
@@ -32,13 +32,13 @@ describe("validateBin", () => {
 			"my-other-tool": "./tools/other-tool.js",
 		});
 		expect(result).toEqual(
-			createValidationResult(
+			new Result(
 				[],
 				[
-					createChildResult(0, []),
-					createChildResult(1, []),
-					createChildResult(2, []),
-					createChildResult(3, []),
+					new ChildResult(0, []),
+					new ChildResult(1, []),
+					new ChildResult(2, []),
+					new ChildResult(3, []),
 				],
 			),
 		);
@@ -51,15 +51,15 @@ describe("validateBin", () => {
 			"my-other-tool": "  ",
 		});
 		expect(result).toEqual(
-			createValidationResult(
+			new Result(
 				[],
 				[
-					createChildResult(0, []),
-					createChildResult(1, [
-						'bin field "my-dev-tool" is empty, but should be a relative path',
+					new ChildResult(0, []),
+					new ChildResult(1, [
+						'the value of property "my-dev-tool" is empty, but should be a relative path',
 					]),
-					createChildResult(2, [
-						'bin field "my-other-tool" is empty, but should be a relative path',
+					new ChildResult(2, [
+						'the value of property "my-other-tool" is empty, but should be a relative path',
 					]),
 				],
 			),
@@ -73,18 +73,18 @@ describe("validateBin", () => {
 			"    ": "",
 		});
 		expect(result).toEqual(
-			createValidationResult(
+			new Result(
 				[],
 				[
-					createChildResult(0, [
-						"bin field 0 has an empty key, but should be a valid command name",
+					new ChildResult(0, [
+						"property 0 has an empty key, but should be a valid command name",
 					]),
-					createChildResult(1, [
-						"bin field 1 has an empty key, but should be a valid command name",
+					new ChildResult(1, [
+						"property 1 has an empty key, but should be a valid command name",
 					]),
-					createChildResult(2, [
-						"bin field 2 is empty, but should be a relative path",
-						"bin field 2 has an empty key, but should be a valid command name",
+					new ChildResult(2, [
+						"the value of property 2 is empty, but should be a relative path",
+						"property 2 has an empty key, but should be a valid command name",
 					]),
 				],
 			),
@@ -98,11 +98,13 @@ describe("validateBin", () => {
 			"my-dev-tool": 123 as any,
 		});
 		expect(result).toEqual(
-			createValidationResult(
+			new Result(
 				[],
 				[
-					createChildResult(0),
-					createChildResult(1, ['bin field "my-dev-tool" should be a string']),
+					new ChildResult(0),
+					new ChildResult(1, [
+						'the value of property "my-dev-tool" should be a string',
+					]),
 				],
 			),
 		);
@@ -112,26 +114,22 @@ describe("validateBin", () => {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const result = validateBin(123 as any);
 		expect(result).toEqual(
-			createValidationResult([
-				"type should be `string` or `object`, not `number`",
-			]),
+			new Result(["the type should be `string` or `object`, not `number`"]),
 		);
 	});
 
 	it("should return an error if the bin field is an array", () => {
 		const result = validateBin(["./cli.js"]);
 		expect(result).toEqual(
-			createValidationResult([
-				"type should be `string` or `object`, not `array`",
-			]),
+			new Result(["the type should be `string` or `object`, not `array`"]),
 		);
 	});
 
 	it("should return a Result with an issue if the bin field is null", () => {
 		const result = validateBin(null);
 		expect(result).toEqual(
-			createValidationResult([
-				"field is `null`, but should be a `string` or an `object`",
+			new Result([
+				"the value is `null`, but should be a `string` or an `object`",
 			]),
 		);
 	});

@@ -1,177 +1,248 @@
 import { describe, expect, it } from "vitest";
 
-import {
-	addChildResult,
-	addIssue,
-	createValidationResult,
-	flattenResult,
-} from "./Result.ts";
+import { ChildResult, Result } from "./Result.ts";
 
 describe("Result", () => {
-	describe("createValidationResult", () => {
-		it("should create a Result with no issues by default", () => {
-			const result = createValidationResult();
+	describe("Result", () => {
+		describe("constructor", () => {
+			it("should create a Result with no issues by default", () => {
+				const result = new Result();
 
-			expect(result.issues).toEqual([]);
-			expect(result.errorMessages).toEqual([]);
-			expect(result.childResults).toEqual([]);
-		});
-
-		it("should create a Result with issues from strings", () => {
-			const issueStrings = ["issue 1", "issue 2"];
-			const result = createValidationResult(issueStrings);
-
-			expect(result.issues).toEqual(
-				issueStrings.map((message) => ({ message })),
-			);
-			expect(result.errorMessages).toEqual(issueStrings);
-			expect(result.childResults).toEqual([]);
-			expect(result).toMatchSnapshot();
-		});
-
-		it("should create a Result with issues from Issue objects", () => {
-			const issues = [{ message: "issue 1" }, { message: "issue 2" }];
-			const result = createValidationResult(issues);
-
-			expect(result.issues).toEqual(issues);
-			expect(result.errorMessages).toEqual(
-				issues.map((issue) => issue.message),
-			);
-			expect(result.childResults).toEqual([]);
-			expect(result).toMatchSnapshot();
-		});
-
-		it("should create a Result with child results", () => {
-			const issues = [{ message: "issue 1" }, { message: "issue 2" }];
-			const childResults = [
-				{ ...createValidationResult(["child issue 1"]), index: 0 },
-				{ ...createValidationResult(["child issue 2"]), index: 1 },
-			];
-			const result = createValidationResult(issues, childResults);
-
-			expect(result.issues).toEqual(issues);
-			expect(result.errorMessages).toEqual([
-				...issues.map((issue) => issue.message),
-				...childResults[0].errorMessages,
-				...childResults[1].errorMessages,
-			]);
-			expect(result.childResults).toEqual(childResults);
-			expect(result).toMatchSnapshot();
-		});
-	});
-	describe("addChildResult", () => {
-		it("should add a child Result to a parent Result with a Result object", () => {
-			const parent = createValidationResult();
-			const child = createValidationResult(["child issue"]);
-
-			addChildResult(parent, child, 0);
-
-			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults[0]).toEqual({ ...child, index: 0 });
-			expect(parent.errorMessages).toEqual(child.errorMessages);
-		});
-
-		it("should add a child Result to a parent Result with a string", () => {
-			const parent = createValidationResult();
-			const childIssueString = "child issue";
-
-			addChildResult(parent, childIssueString, 0);
-
-			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults[0]).toEqual({
-				...createValidationResult([childIssueString]),
-				index: 0,
+				expect(result.issues).toEqual([]);
+				expect(result.errorMessages).toEqual([]);
+				expect(result.childResults).toEqual([]);
 			});
-			expect(parent.errorMessages).toEqual([childIssueString]);
-		});
 
-		it("should add a child Result to a parent Result with an array of strings", () => {
-			const parent = createValidationResult();
-			const childIssueStrings = ["child issue 1", "child issue 2"];
+			it("should create a Result with issues from strings", () => {
+				const issueStrings = ["issue 1", "issue 2"];
+				const result = new Result(issueStrings);
 
-			addChildResult(parent, childIssueStrings, 0);
-
-			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults[0]).toEqual({
-				...createValidationResult(childIssueStrings),
-				index: 0,
+				expect(result.issues).toEqual(
+					issueStrings.map((message) => ({ message })),
+				);
+				expect(result.errorMessages).toEqual(issueStrings);
+				expect(result.childResults).toEqual([]);
 			});
-			expect(parent.errorMessages).toEqual(childIssueStrings);
+
+			it("should create a Result with issues from Issue objects", () => {
+				const issues = [{ message: "issue 1" }, { message: "issue 2" }];
+				const result = new Result(issues);
+
+				expect(result.issues).toEqual(issues);
+				expect(result.errorMessages).toEqual(
+					issues.map((issue) => issue.message),
+				);
+				expect(result.childResults).toEqual([]);
+			});
+
+			it("should create a Result with child results", () => {
+				const issues = [{ message: "issue 1" }, { message: "issue 2" }];
+				const childResults = [
+					new ChildResult(0, ["child issue 1"]),
+					new ChildResult(1, ["child issue 2"]),
+				];
+				const result = new Result(issues, childResults);
+
+				expect(result.issues).toEqual(issues);
+				expect(result.errorMessages).toEqual([
+					...issues.map((issue) => issue.message),
+					...childResults[0].errorMessages,
+					...childResults[1].errorMessages,
+				]);
+				expect(result.childResults).toEqual(childResults);
+			});
 		});
 
-		it("should add a child Result to a parent using a different index", () => {
-			const parent = createValidationResult();
-			const child = createValidationResult(["child issue"]);
+		describe("addChildResult", () => {
+			it("should add a child Result with a Result object", () => {
+				const parent = new Result();
+				const child = new Result(["child issue"]);
 
-			addChildResult(parent, child, 13);
+				parent.addChildResult(0, child);
 
-			expect(parent.childResults).toHaveLength(1);
-			expect(parent.childResults[0]).toEqual({ ...child, index: 13 });
-			expect(parent.errorMessages).toEqual(child.errorMessages);
+				expect(parent.childResults).toHaveLength(1);
+				expect(parent.childResults[0]).toEqual(new ChildResult(0, child));
+				expect(parent.errorMessages).toEqual(child.errorMessages);
+			});
+
+			it("should add a child Result with a string", () => {
+				const parent = new Result();
+				const childIssueString = "child issue";
+
+				parent.addChildResult(0, childIssueString);
+
+				expect(parent.childResults).toHaveLength(1);
+				expect(parent.childResults[0]).toEqual(
+					new ChildResult(0, [childIssueString]),
+				);
+				expect(parent.errorMessages).toEqual([childIssueString]);
+			});
+
+			it("should add a child Result with an array of strings", () => {
+				const parent = new Result();
+				const childIssueStrings = ["child issue 1", "child issue 2"];
+
+				parent.addChildResult(0, childIssueStrings);
+
+				expect(parent.childResults).toHaveLength(1);
+				expect(parent.childResults[0]).toEqual(
+					new ChildResult(0, childIssueStrings),
+				);
+				expect(parent.errorMessages).toEqual(childIssueStrings);
+			});
+
+			it("should add a child Result using a different index", () => {
+				const parent = new Result();
+				const child = new Result(["child issue"]);
+
+				parent.addChildResult(13, child);
+
+				expect(parent.childResults).toHaveLength(1);
+				expect(parent.childResults[0]).toEqual(new ChildResult(13, child));
+				expect(parent.errorMessages).toEqual(child.errorMessages);
+			});
+
+			it("should add a child Result with a ChildResult object", () => {
+				const parent = new Result();
+				const child = new ChildResult(13, ["child issue"]);
+
+				parent.addChildResult(child);
+
+				expect(parent.childResults).toHaveLength(1);
+				expect(parent.childResults[0]).toEqual(child);
+				expect(parent.errorMessages).toEqual(child.errorMessages);
+			});
+		});
+
+		describe("addIssue", () => {
+			it("should add an issue", () => {
+				const result = new Result();
+
+				result.addIssue("new issue");
+
+				expect(result.issues).toEqual([{ message: "new issue" }]);
+				expect(result.errorMessages).toEqual(["new issue"]);
+			});
+		});
+
+		describe("flatten", () => {
+			it("should flatten a Result with nested child results", () => {
+				const child1 = new ChildResult(0, ["child1 issue1", "child1 issue2"]);
+				const child2 = new ChildResult(1, ["child2 issue1"]);
+				const parent = new Result(["parent issue1"], [child1, child2]);
+				const parentIssues = parent.issues;
+				const child1Issues = child1.issues;
+				const child2Issues = child2.issues;
+
+				const flattened = parent.flatten();
+
+				expect(flattened.issues).toEqual([
+					...parentIssues,
+					...child1Issues,
+					...child2Issues,
+				]);
+				expect(flattened.errorMessages).toEqual([
+					...parentIssues.map((issue) => issue.message),
+					...child1Issues.map((issue) => issue.message),
+					...child2Issues.map((issue) => issue.message),
+				]);
+				expect(flattened.childResults).toEqual([]);
+			});
+
+			it("should flatten a Result with multiple levels of nested child results", () => {
+				const grandchild = new ChildResult(0, ["grandchild issue1"]);
+				const child = new ChildResult(
+					0,
+					["child issue1", "child issue2"],
+					[grandchild],
+				);
+				const parent = new Result(["parent issue1"], [child]);
+				const parentIssues = parent.issues;
+				const childIssues = child.issues;
+				const grandchildIssues = grandchild.issues;
+
+				const flattened = parent.flatten();
+
+				expect(flattened.issues).toEqual([
+					...parentIssues,
+					...childIssues,
+					...grandchildIssues,
+				]);
+				expect(flattened.errorMessages).toEqual([
+					...parentIssues.map((issue) => issue.message),
+					...childIssues.map((issue) => issue.message),
+					...grandchildIssues.map((issue) => issue.message),
+				]);
+				expect(flattened.childResults).toEqual([]);
+			});
 		});
 	});
 
-	describe("addIssue", () => {
-		it("should add an issue to a Result", () => {
-			const result = createValidationResult();
-			addIssue(result, "new issue");
+	describe("ChildResult", () => {
+		describe("constructor", () => {
+			it("should create a ChildResult with no issues by default", () => {
+				const childResult = new ChildResult(0);
 
-			expect(result.issues).toEqual([{ message: "new issue" }]);
-			expect(result.errorMessages).toEqual(["new issue"]);
-		});
-	});
+				expect(childResult.index).toBe(0);
+				expect(childResult.issues).toEqual([]);
+				expect(childResult.errorMessages).toEqual([]);
+				expect(childResult.childResults).toEqual([]);
+			});
 
-	describe("flattenResult", () => {
-		it("should flatten a Result with nested child results", () => {
-			const child1 = createValidationResult(["child1 issue1", "child1 issue2"]);
-			const child2 = createValidationResult(["child2 issue1"]);
-			const parent = createValidationResult(
-				["parent issue1"],
-				[
-					{ ...child1, index: 0 },
-					{ ...child2, index: 1 },
-				],
-			);
+			it("should create a ChildResult with issues from strings", () => {
+				const issueStrings = ["issue 1", "issue 2"];
+				const childResult = new ChildResult(13, issueStrings);
 
-			const flattened = flattenResult(parent);
+				expect(childResult.index).toBe(13);
+				expect(childResult.issues).toEqual(
+					issueStrings.map((message) => ({ message })),
+				);
+				expect(childResult.errorMessages).toEqual(issueStrings);
+				expect(childResult.childResults).toEqual([]);
+			});
 
-			expect(flattened.issues).toEqual([
-				...parent.issues,
-				...child1.issues,
-				...child2.issues,
-			]);
-			expect(flattened.errorMessages).toEqual([
-				...parent.issues.map((issue) => issue.message),
-				...child1.issues.map((issue) => issue.message),
-				...child2.issues.map((issue) => issue.message),
-			]);
-			expect(flattened.childResults).toEqual([]);
-		});
+			it("should create a ChildResult with issues from Issue objects", () => {
+				const issues = [{ message: "issue 1" }, { message: "issue 2" }];
+				const childResult = new ChildResult(0, issues);
 
-		it("should flatten a Result with multiple levels of nested child results", () => {
-			const grandchild = createValidationResult(["grandchild issue1"]);
-			const child = createValidationResult(
-				["child issue1", "child issue2"],
-				[{ ...grandchild, index: 0 }],
-			);
-			const parent = createValidationResult(
-				["parent issue1"],
-				[{ ...child, index: 0 }],
-			);
+				expect(childResult.index).toBe(0);
+				expect(childResult.issues).toEqual(issues);
+				expect(childResult.errorMessages).toEqual(
+					issues.map((issue) => issue.message),
+				);
+				expect(childResult.childResults).toEqual([]);
+			});
 
-			const flattened = flattenResult(parent);
+			it("should create a ChildResult with child results", () => {
+				const issues = [{ message: "issue 1" }, { message: "issue 2" }];
+				const childResults = [
+					new ChildResult(0, ["child issue 1"]),
+					new ChildResult(1, ["child issue 2"]),
+				];
+				const result = new ChildResult(0, issues, childResults);
 
-			expect(flattened.issues).toEqual([
-				...parent.issues,
-				...child.issues,
-				...grandchild.issues,
-			]);
-			expect(flattened.errorMessages).toEqual([
-				...parent.issues.map((issue) => issue.message),
-				...child.issues.map((issue) => issue.message),
-				...grandchild.issues.map((issue) => issue.message),
-			]);
-			expect(flattened.childResults).toEqual([]);
+				expect(result.index).toBe(0);
+				expect(result.issues).toEqual(issues);
+				expect(result.errorMessages).toEqual([
+					...issues.map((issue) => issue.message),
+					...childResults[0].errorMessages,
+					...childResults[1].errorMessages,
+				]);
+				expect(result.childResults).toEqual(childResults);
+			});
+
+			it("should create a ChildResult with a Result object", () => {
+				const issues = [{ message: "issue 1" }, { message: "issue 2" }];
+				const resultObj = new Result(issues);
+				const childResult = new ChildResult(5, resultObj);
+
+				expect(childResult.index).toBe(5);
+				expect(childResult.issues).toEqual(issues);
+				expect(childResult.errorMessages).toEqual(
+					issues.map((issue) => issue.message),
+				);
+				expect(childResult.childResults).toEqual([]);
+			});
 		});
 	});
 });
