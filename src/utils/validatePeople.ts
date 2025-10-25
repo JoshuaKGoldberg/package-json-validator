@@ -1,11 +1,5 @@
 import { emailFormat, urlFormat } from "../formats.ts";
-import {
-	addChildResult,
-	addIssue,
-	createValidationResult,
-	flattenResult,
-	type Result,
-} from "../Result.ts";
+import { ChildResult, Result } from "../Result.ts";
 import { type People, type Person } from "./validation.types.ts";
 
 export const isPersonArray = (obj: unknown): obj is Person[] => {
@@ -17,7 +11,7 @@ export const isPerson = (obj: unknown): obj is Person => {
 };
 
 function validatePerson(obj: Person | string): Result {
-	let result = createValidationResult();
+	let result = new Result();
 	if (typeof obj == "string") {
 		const authorRegex = /^([^<(\s][^<(]*)?(\s*<(.*?)>)?(\s*\((.*?)\))?/;
 		const authorFields = authorRegex.exec(obj);
@@ -32,32 +26,32 @@ function validatePerson(obj: Person | string): Result {
 			});
 			// Since this wasn't originally an object, we need to flatten the child results
 			// into this result object.
-			result = flattenResult(objResult);
+			result = objResult.flatten();
 		}
 	} else if (typeof obj == "object") {
 		if (typeof obj.name === "undefined") {
-			addIssue(result, "person should have a name");
+			result.addIssue("person should have a name");
 		}
 		const entries = Object.entries(obj);
 		for (let i = 0; i < entries.length; i++) {
 			const [key, value] = entries[i];
-			const childResult = createValidationResult();
+			const childResult = new ChildResult(i);
 			if (key === "name" && typeof value === "string" && value.trim() === "") {
-				addIssue(childResult, `name should not be empty`);
+				childResult.addIssue(`name should not be empty`);
 			}
 			if (key === "email" && value && !emailFormat.test(value)) {
-				addIssue(childResult, `email is not valid: ${value}`);
+				childResult.addIssue(`email is not valid: ${value}`);
 			}
 			if (key === "url" && value && !urlFormat.test(value)) {
-				addIssue(childResult, `url is not valid: ${value}`);
+				childResult.addIssue(`url is not valid: ${value}`);
 			}
 			if (key === "web" && value && !urlFormat.test(value)) {
-				addIssue(childResult, `url is not valid: ${value}`);
+				childResult.addIssue(`url is not valid: ${value}`);
 			}
-			addChildResult(result, childResult, i);
+			result.addChildResult(childResult);
 		}
 	} else {
-		addIssue(result, "person field must be an object or a string");
+		result.addIssue("person field must be an object or a string");
 	}
 	return result;
 }
@@ -77,9 +71,9 @@ function validatePerson(obj: Person | string): Result {
  */
 export const validatePeople = (obj: People): Result => {
 	if (obj instanceof Array) {
-		const result = createValidationResult();
+		const result = new Result();
 		for (let i = 0; i < obj.length; i++) {
-			addChildResult(result, validatePerson(obj[i]), i);
+			result.addChildResult(i, validatePerson(obj[i]));
 		}
 		return result;
 	} else {
