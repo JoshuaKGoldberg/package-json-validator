@@ -35,7 +35,7 @@ const getSpecMap = (
 				validate: (_, value) => validateAuthor(value).errorMessages,
 				warning: true,
 			},
-			bin: { validate: (_, value) => validateBin(value) },
+			bin: { validate: (_, value) => validateBin(value).errorMessages },
 			bugs: { validate: validateUrlOrMailto, warning: true },
 			bundledDependencies: {
 				validate: (_, value) => validateBundleDependencies(value),
