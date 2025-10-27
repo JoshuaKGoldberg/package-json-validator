@@ -191,7 +191,7 @@ const packageData = {
 	},
 };
 
-const errors = validateAuthor(packageData.author);
+const result = validateAuthor(packageData.author);
 ```
 
 ```ts
@@ -201,7 +201,7 @@ const packageData = {
 	author: "Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
 };
 
-const errors = validateAuthor(packageData.author);
+const result = validateAuthor(packageData.author);
 ```
 
 ### validateBin(value)
@@ -213,7 +213,7 @@ It takes the value, and validates it against the following criteria.
 - If it's a `string`, it should be a relative path to an executable file.
 - If it's an `object`, it should be a key to string value object, and the values should all be relative paths.
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -224,7 +224,7 @@ const packageData = {
 	bin: "./my-cli.js",
 };
 
-const errors = validateBin(packageData.bin);
+const result = validateBin(packageData.bin);
 ```
 
 ```ts
@@ -237,7 +237,7 @@ const packageData = {
 	},
 };
 
-const errors = validateBin(packageData.bin);
+const result = validateBin(packageData.bin);
 ```
 
 ### validateBundleDependencies(value)
