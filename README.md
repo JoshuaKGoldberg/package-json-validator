@@ -267,7 +267,7 @@ const errors = validateBundleDependencies(packageData.bundleDependencies);
 This function validates the value of the `config` property of a `package.json`.
 It takes the value, and validates that it's an object.
 
-It returns a list of error messages, if a violation is found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -282,7 +282,7 @@ const packageData = {
 	},
 };
 
-const errors = validateScripts(packageData.config);
+const result = validateConfig(packageData.config);
 ```
 
 ### validateCpu(value)

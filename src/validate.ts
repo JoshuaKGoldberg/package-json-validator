@@ -43,7 +43,7 @@ const getSpecMap = (
 			bundleDependencies: {
 				validate: (_, value) => validateBundleDependencies(value),
 			},
-			config: { validate: (_, value) => validateConfig(value) },
+			config: { validate: (_, value) => validateConfig(value).errorMessages },
 			contributors: {
 				validate: (_, value) => validatePeople(value).errorMessages,
 			},
