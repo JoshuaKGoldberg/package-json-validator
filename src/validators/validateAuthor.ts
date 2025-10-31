@@ -1,4 +1,4 @@
-import { createValidationResult, type Result } from "../Result.ts";
+import { Result } from "../Result.ts";
 import { isPerson, validatePeople } from "../utils/index.ts";
 
 /**
@@ -16,7 +16,7 @@ export const validateAuthor = (obj: unknown): Result => {
 	if (typeof obj === "string" || isPerson(obj)) {
 		return validatePeople(obj);
 	} else {
-		return createValidationResult([
+		return new Result([
 			`the type should be a \`string\` or an \`object\` with at least a \`name\` property`,
 		]);
 	}

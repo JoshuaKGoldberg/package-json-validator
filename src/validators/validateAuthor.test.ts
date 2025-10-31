@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { createValidationResult } from "../Result.ts";
+import { Result } from "../Result.ts";
 import { isPerson, validatePeople } from "../utils/index.ts";
 import { validateAuthor } from "./validateAuthor.ts";
 
@@ -15,7 +15,7 @@ describe("validateAuthor", () => {
 	});
 
 	it("should call validatePeople with 'author' and a string if input is a string", () => {
-		const mockResult = createValidationResult([{ message: "error" }]);
+		const mockResult = new Result([{ message: "error" }]);
 		const mockValidatePeople = vi
 			.mocked(validatePeople)
 			.mockReturnValue(mockResult);
@@ -35,7 +35,7 @@ describe("validateAuthor", () => {
 			name: "Barney Rubble",
 			url: "http://barnyrubble.tumblr.com/",
 		};
-		const mockResult = createValidationResult();
+		const mockResult = new Result();
 		const mockValidatePeople = vi
 			.mocked(validatePeople)
 			.mockReturnValue(mockResult);
@@ -52,7 +52,7 @@ describe("validateAuthor", () => {
 
 		const result = validateAuthor(123);
 		expect(result).toEqual(
-			createValidationResult([
+			new Result([
 				"the type should be a `string` or an `object` with at least a `name` property",
 			]),
 		);
