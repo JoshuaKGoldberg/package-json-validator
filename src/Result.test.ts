@@ -60,8 +60,7 @@ describe("Result", () => {
 
 				parent.addChildResult(0, child);
 
-				expect(parent.childResults).toHaveLength(1);
-				expect(parent.childResults[0]).toEqual(new ChildResult(0, child));
+				expect(parent.childResults).toEqual([new ChildResult(0, child)]);
 				expect(parent.errorMessages).toEqual(child.errorMessages);
 			});
 
@@ -71,10 +70,9 @@ describe("Result", () => {
 
 				parent.addChildResult(0, childIssueString);
 
-				expect(parent.childResults).toHaveLength(1);
-				expect(parent.childResults[0]).toEqual(
+				expect(parent.childResults).toEqual([
 					new ChildResult(0, [childIssueString]),
-				);
+				]);
 				expect(parent.errorMessages).toEqual([childIssueString]);
 			});
 
@@ -84,10 +82,9 @@ describe("Result", () => {
 
 				parent.addChildResult(0, childIssueStrings);
 
-				expect(parent.childResults).toHaveLength(1);
-				expect(parent.childResults[0]).toEqual(
+				expect(parent.childResults).toEqual([
 					new ChildResult(0, childIssueStrings),
-				);
+				]);
 				expect(parent.errorMessages).toEqual(childIssueStrings);
 			});
 
@@ -97,8 +94,7 @@ describe("Result", () => {
 
 				parent.addChildResult(13, child);
 
-				expect(parent.childResults).toHaveLength(1);
-				expect(parent.childResults[0]).toEqual(new ChildResult(13, child));
+				expect(parent.childResults).toEqual([new ChildResult(13, child)]);
 				expect(parent.errorMessages).toEqual(child.errorMessages);
 			});
 
@@ -108,8 +104,7 @@ describe("Result", () => {
 
 				parent.addChildResult(child);
 
-				expect(parent.childResults).toHaveLength(1);
-				expect(parent.childResults[0]).toEqual(child);
+				expect(parent.childResults).toEqual([child]);
 				expect(parent.errorMessages).toEqual(child.errorMessages);
 			});
 		});
