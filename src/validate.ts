@@ -38,10 +38,10 @@ const getSpecMap = (
 			bin: { validate: (_, value) => validateBin(value).errorMessages },
 			bugs: { validate: validateUrlOrMailto, warning: true },
 			bundledDependencies: {
-				validate: (_, value) => validateBundleDependencies(value),
+				validate: (_, value) => validateBundleDependencies(value).errorMessages,
 			},
 			bundleDependencies: {
-				validate: (_, value) => validateBundleDependencies(value),
+				validate: (_, value) => validateBundleDependencies(value).errorMessages,
 			},
 			config: { validate: (_, value) => validateConfig(value) },
 			contributors: {

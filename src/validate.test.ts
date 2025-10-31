@@ -328,6 +328,8 @@ describe("validate", () => {
 		describe("Dependencies Ranges", () => {
 			test("Smoke", () => {
 				const json = getPackageJson({
+					bundledDependencies: ["dep1", "dep2"],
+					bundleDependencies: true,
 					dependencies: {
 						"caret-first": "^1.0.0",
 						"caret-top": "^1",

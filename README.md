@@ -248,7 +248,7 @@ It takes the value, and validates it against the following criteria.
 - the property is either an array or a boolean
 - if it's an array, all items should be strings
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -259,7 +259,7 @@ const packageData = {
 	bundleDependencies: ["renderized", "super-streams"],
 };
 
-const errors = validateBundleDependencies(packageData.bundleDependencies);
+const result = validateBundleDependencies(packageData.bundleDependencies);
 ```
 
 ### validateConfig(value)
