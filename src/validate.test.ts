@@ -5,6 +5,9 @@ import { validate } from "./validate.ts";
 const getPackageJson = (
 	extra: Record<string, unknown> = {},
 ): Record<string, unknown> => ({
+	config: {
+		debug: true,
+	},
 	name: "test-package",
 	version: "0.5.0",
 	...extra,
