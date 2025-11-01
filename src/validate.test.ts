@@ -6,6 +6,7 @@ const getPackageJson = (
 	extra: Record<string, unknown> = {},
 ): Record<string, unknown> => ({
 	name: "test-package",
+	type: "module",
 	version: "0.5.0",
 	...extra,
 });

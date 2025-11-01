@@ -95,7 +95,10 @@ const getSpecMap = (
 				warning: true,
 			},
 			scripts: { validate: (_, value) => validateScripts(value) },
-			type: { recommended: true, validate: (_, value) => validateType(value) },
+			type: {
+				recommended: true,
+				validate: (_, value) => validateType(value).errorMessages,
+			},
 			version: {
 				required: !isPrivate,
 				validate: (_, value) => validateVersion(value),

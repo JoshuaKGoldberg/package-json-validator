@@ -477,7 +477,7 @@ It takes the value, and validates it against the following criteria.
 - the property is a string
 - its value is either `'commonjs'` or `'module'`
 
-It returns an error message, if a violation is found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -488,7 +488,7 @@ const packageData = {
 	type: "module",
 };
 
-const errors = validateType(packageData.type);
+const result = validateType(packageData.type);
 ```
 
 ### validateVersion(value)
