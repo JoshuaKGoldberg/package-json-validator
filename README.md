@@ -293,7 +293,7 @@ It takes the value, and validates it against the following criteria.
 - the property is an array
 - all items in the array should be non-empty strings
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -304,7 +304,7 @@ const packageData = {
 	cpu: ["x64", "ia32"],
 };
 
-const errors = validateCpu(packageData.cpu);
+const result = validateCpu(packageData.cpu);
 ```
 
 ### validateDependencies(value)

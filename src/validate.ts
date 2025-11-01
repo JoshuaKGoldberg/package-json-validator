@@ -47,7 +47,7 @@ const getSpecMap = (
 			contributors: {
 				validate: (_, value) => validatePeople(value).errorMessages,
 			},
-			cpu: { validate: (_, value) => validateCpu(value) },
+			cpu: { validate: (_, value) => validateCpu(value).errorMessages },
 			dependencies: {
 				recommended: true,
 				validate: (_, value) => validateDependencies(value),
