@@ -1,28 +1,27 @@
 import { valid } from "semver";
 
+import { Result } from "../Result.ts";
+
 /**
  * Validate the `version` field in a package.json, using `semver`.
  */
-export const validateVersion = (version: unknown): string[] => {
-	const errors: string[] = [];
+export const validateVersion = (version: unknown): Result => {
+	const result = new Result();
 
 	if (typeof version !== "string") {
 		if (version === null) {
-			errors.push("the field is `null`, but should be a `string`");
+			result.addIssue("the value is `null`, but should be a `string`");
 		} else {
 			const valueType = Array.isArray(version) ? "Array" : typeof version;
-			errors.push(`the type should be a \`string\`, not \`${valueType}\``);
+			result.addIssue(`the type should be a \`string\`, not \`${valueType}\``);
 		}
-		return errors;
-	}
-
-	if (version.trim() === "") {
-		errors.push("the value is empty, but should be a valid version");
+	} else if (version.trim() === "") {
+		result.addIssue("the value is empty, but should be a valid version");
 	} else {
 		if (!valid(version)) {
-			errors.push("the value is not a valid semver version");
+			result.addIssue("the value is not a valid semver version");
 		}
 	}
 
-	return errors;
+	return result;
 };

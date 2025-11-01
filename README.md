@@ -496,7 +496,7 @@ const errors = validateType(packageData.type);
 This function validates the value of the `version` property of a `package.json`.
 It takes the value, and validates it using `semver`, which is the same package that npm uses.
 
-It returns a list of error messages, if a violation is found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -507,7 +507,7 @@ const packageData = {
 	version: "1.2.3",
 };
 
-const errors = validateVersion(packageData.version);
+const result = validateVersion(packageData.version);
 ```
 
 ## Specification
