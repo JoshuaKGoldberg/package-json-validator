@@ -50,13 +50,15 @@ const getSpecMap = (
 			cpu: { validate: (_, value) => validateCpu(value).errorMessages },
 			dependencies: {
 				recommended: true,
-				validate: (_, value) => validateDependencies(value),
+				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			description: {
 				validate: (_, value) => validateDescription(value).errorMessages,
 				warning: true,
 			},
-			devDependencies: { validate: (_, value) => validateDependencies(value) },
+			devDependencies: {
+				validate: (_, value) => validateDependencies(value).errorMessages,
+			},
 			directories: {
 				validate: (_, value) => validateDirectories(value).errorMessages,
 			},
@@ -81,11 +83,11 @@ const getSpecMap = (
 				type: "string",
 			},
 			optionalDependencies: {
-				validate: (_, value) => validateDependencies(value),
+				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			os: { type: "array" },
 			peerDependencies: {
-				validate: (_, value) => validateDependencies(value),
+				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			preferGlobal: { type: "boolean" },
 			private: { type: "boolean" },
@@ -124,7 +126,7 @@ const getSpecMap = (
 			cpu: { type: "array" },
 			dependencies: {
 				required: true,
-				validate: (_, value) => validateDependencies(value),
+				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			description: { required: true, type: "string" },
 			directories: { type: "object" },
@@ -170,7 +172,9 @@ const getSpecMap = (
 			},
 
 			cpu: { type: "array" },
-			dependencies: { validate: (_, value) => validateDependencies(value) },
+			dependencies: {
+				validate: (_, value) => validateDependencies(value).errorMessages,
+			},
 			description: { type: "string", warning: true },
 			directories: { required: true, type: "object" },
 			engine: { type: "array" },
