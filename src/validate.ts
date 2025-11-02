@@ -53,7 +53,7 @@ const getSpecMap = (
 				validate: (_, value) => validateDependencies(value),
 			},
 			description: {
-				validate: (_, value) => validateDescription(value),
+				validate: (_, value) => validateDescription(value).errorMessages,
 				warning: true,
 			},
 			devDependencies: { validate: (_, value) => validateDependencies(value) },

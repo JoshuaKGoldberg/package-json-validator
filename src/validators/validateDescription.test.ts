@@ -1,56 +1,75 @@
 import { describe, expect, it } from "vitest";
 
+import { Result } from "../Result.ts";
 import { validateDescription } from "./validateDescription.ts";
 
 describe("validateDescription", () => {
-	it("should return no errors for a string", () => {
-		expect(validateDescription("The Fragile")).toEqual([]);
+	it("should return no issues for a string", () => {
+		const result = validateDescription("The Fragile");
+
+		expect(result).toEqual(new Result());
 	});
 
-	it("should return error if the value is not a string (number)", () => {
-		expect(validateDescription(123)).toEqual([
+	it("should return an issue if the value is not a string (number)", () => {
+		const result = validateDescription(123);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `number`",
 		]);
 	});
 
-	it("should return error if the value is not a string (object)", () => {
-		expect(validateDescription({})).toEqual([
+	it("should return an issue if the value is not a string (object)", () => {
+		const result = validateDescription({});
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `object`",
 		]);
 	});
 
-	it("should return error if the value is not a string (Array)", () => {
-		expect(validateDescription([])).toEqual([
+	it("should return an issue if the value is not a string (Array)", () => {
+		const result = validateDescription([]);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `Array`",
 		]);
 	});
 
-	it("should return error if value is not a string (boolean)", () => {
-		expect(validateDescription(true)).toEqual([
+	it("should return an issue if value is not a string (boolean)", () => {
+		const result = validateDescription(true);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `boolean`",
 		]);
 	});
 
-	it("should return error if value is not a string (undefined)", () => {
-		expect(validateDescription(undefined)).toEqual([
+	it("should return an issue if value is not a string (undefined)", () => {
+		const result = validateDescription(undefined);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `undefined`",
 		]);
 	});
 
-	it("should return error if value is not a string (null)", () => {
-		expect(validateDescription(null)).toEqual([
-			"the field is `null`, but should be a `string`",
+	it("should return an issue if value is not a string (null)", () => {
+		const result = validateDescription(null);
+
+		expect(result.errorMessages).toEqual([
+			"the value is `null`, but should be a `string`",
 		]);
 	});
 
-	it("should return error if the value is an empty string", () => {
-		expect(validateDescription("")).toEqual([
+	it("should return an issue if the value is an empty string", () => {
+		const result = validateDescription("");
+
+		expect(result.errorMessages).toEqual([
 			"the value is empty, but should be a description",
 		]);
 	});
 
-	it("should return error if the value is whitespace only", () => {
-		expect(validateDescription("   ")).toEqual([
+	it("should return an issue if the value is whitespace only", () => {
+		const result = validateDescription("   ");
+
+		expect(result.errorMessages).toEqual([
 			"the value is empty, but should be a description",
 		]);
 	});

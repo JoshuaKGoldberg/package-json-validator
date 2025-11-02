@@ -338,8 +338,9 @@ const errors = validateBin(packageData.dependencies);
 
 ### validateDescription(value)
 
-This function validates the value of the `description` property of a `package.json`.
-It checks that the value is a non-empty string, and returns a list of error messages, if a violation is found.
+This function validates the value of the `description` property of a `package.json`, checking that the value is a non-empty string.
+
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -350,7 +351,7 @@ const packageData = {
 	description: "The Fragile",
 };
 
-const errors = validateDescription(packageData.description);
+const result = validateDescription(packageData.description);
 ```
 
 ### validateDirectories(value)
