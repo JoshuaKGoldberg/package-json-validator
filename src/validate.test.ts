@@ -10,6 +10,7 @@ const getPackageJson = (
 	},
 	cpu: ["x64", "ia32"],
 	name: "test-package",
+	type: "module",
 	version: "0.5.0",
 	...extra,
 });
