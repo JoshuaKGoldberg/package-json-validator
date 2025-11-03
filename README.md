@@ -389,7 +389,7 @@ It takes the value, and validates it against the following criteria.
 - If it's a `string`, it should be a path to an entry point.
 - If it's an export condition `object`, its properties should have values that are either a path to an entry point, or another exports condition object.
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -400,11 +400,10 @@ const packageData = {
 	exports: "./index.js",
 };
 
-const errors = validateExports(packageData.exports);
+const result = validateExports(packageData.exports);
 ```
 
 ```ts
-/* eslint-disable perfectionist/sort-objects */
 import { validateExports } from "package-json-validator";
 
 const packageData = {
@@ -420,8 +419,7 @@ const packageData = {
 	},
 };
 
-const errors = validateExports(packageData.exports);
-/* eslint-enable perfectionist/sort-objects */
+const result = validateExports(packageData.exports);
 ```
 
 ### validateLicense(value)

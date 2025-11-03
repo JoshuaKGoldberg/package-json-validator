@@ -62,7 +62,7 @@ const getSpecMap = (
 			},
 			engines: { recommended: true, type: "object" },
 			engineStrict: { type: "boolean" },
-			exports: { validate: (_, value) => validateExports(value) },
+			exports: { validate: (_, value) => validateExports(value).errorMessages },
 			files: { type: "array" },
 			homepage: { format: urlFormat, recommended: true, type: "string" },
 			keywords: { type: "array", warning: true },
