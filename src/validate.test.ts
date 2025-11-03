@@ -12,6 +12,9 @@ const getPackageJson = (
 	directories: {
 		bin: "dist/bin",
 	},
+	exports: {
+		".": "./index.js",
+	},
 	name: "test-package",
 	type: "module",
 	version: "0.5.0",
