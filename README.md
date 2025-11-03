@@ -362,7 +362,7 @@ It takes the value, and validates it against the following criteria.
 - its keys are non-empty strings
 - its values are all non-empty strings
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -376,7 +376,7 @@ const packageData = {
 	},
 };
 
-const errors = validateDirectories(packageData.directories);
+const result = validateDirectories(packageData.directories);
 ```
 
 ### validateExports(value)

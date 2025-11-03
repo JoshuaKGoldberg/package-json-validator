@@ -57,7 +57,9 @@ const getSpecMap = (
 				warning: true,
 			},
 			devDependencies: { validate: (_, value) => validateDependencies(value) },
-			directories: { validate: (_, value) => validateDirectories(value) },
+			directories: {
+				validate: (_, value) => validateDirectories(value).errorMessages,
+			},
 			engines: { recommended: true, type: "object" },
 			engineStrict: { type: "boolean" },
 			exports: { validate: (_, value) => validateExports(value) },
