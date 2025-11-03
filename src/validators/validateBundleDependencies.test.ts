@@ -1,25 +1,24 @@
 import { describe, expect, it } from "vitest";
 
-import { Result } from "../Result.ts";
 import { validateBundleDependencies } from "./validateBundleDependencies.ts";
 
 describe("validateBundleDependencies", () => {
 	it("should return a result with no issues if the value is an empty array", () => {
 		const result = validateBundleDependencies([]);
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return a result with no issues if the value is a valid array with all strings", () => {
 		const result = validateBundleDependencies(["nin", "thee-silver-mt-zion"]);
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return a result with no issues if the value is a boolean", () => {
 		let result = validateBundleDependencies(true);
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 
 		result = validateBundleDependencies(false);
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return a result with issues if the value is an array with some non-string values", () => {
@@ -63,9 +62,10 @@ describe("validateBundleDependencies", () => {
 
 	it("should return a result with issues if the value is a number", () => {
 		const result = validateBundleDependencies(123);
-		expect(result).toEqual(
-			new Result(["the type should be `Array` or `boolean`, not `number`"]),
-		);
+		expect(result.errorMessages).toEqual([
+			"the type should be `Array` or `boolean`, not `number`",
+		]);
+		expect(result.issues).toHaveLength(1);
 	});
 
 	it("should return a result with issues if the value is an object", () => {

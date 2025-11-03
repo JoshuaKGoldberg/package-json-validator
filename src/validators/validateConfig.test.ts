@@ -1,12 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { Result } from "../Result.ts";
 import { validateConfig } from "./validateConfig.ts";
 
 describe("validateConfig", () => {
 	it("should return a result with no issues if the field is an empty object", () => {
 		const result = validateConfig({});
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return a result with no issues if the field is an object", () => {
@@ -15,7 +14,7 @@ describe("validateConfig", () => {
 			host: "localhost",
 			port: 8080,
 		});
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return a result with issues if the field is an array", () => {

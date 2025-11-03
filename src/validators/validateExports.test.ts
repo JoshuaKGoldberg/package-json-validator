@@ -1,18 +1,17 @@
 /* eslint-disable perfectionist/sort-objects */
 import { describe, expect, it } from "vitest";
 
-import { ChildResult, Result } from "../Result.ts";
 import { validateExports } from "./validateExports.ts";
 
 describe("validateExports", () => {
 	it("should return no issues if the value is an empty object", () => {
 		const result = validateExports({});
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return no issues if the value is a valid string", () => {
 		const result = validateExports("./index.js");
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should return no issues if the value is a valid object with all keys having valid strings", () => {
@@ -76,20 +75,17 @@ describe("validateExports", () => {
 			'the value of "./secondary" is empty, but should be an entry point path',
 			'the value of "./tertiary" is empty, but should be an entry point path',
 		]);
-		expect(result).toEqual(
-			new Result(
-				[],
-				[
-					new ChildResult(0),
-					new ChildResult(1, [
-						'the value of "./secondary" is empty, but should be an entry point path',
-					]),
-					new ChildResult(2, [
-						'the value of "./tertiary" is empty, but should be an entry point path',
-					]),
-				],
-			),
-		);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(3);
+		[
+			[],
+			[
+				'the value of "./secondary" is empty, but should be an entry point path',
+			],
+			['the value of "./tertiary" is empty, but should be an entry point path'],
+		].forEach((childErrors, i) => {
+			expect(result.childResults[i].errorMessages).toEqual(childErrors);
+		});
 	});
 
 	it("should return issues if the value is an object with empty string keys", () => {
@@ -104,23 +100,18 @@ describe("validateExports", () => {
 			"the value of property 2 is empty, but should be an entry point path",
 			"property 2 has an empty key, but should be an export condition",
 		]);
-		expect(result).toEqual(
-			new Result(
-				[],
-				[
-					new ChildResult(0, [
-						"property 0 has an empty key, but should be an export condition",
-					]),
-					new ChildResult(1, [
-						"property 1 has an empty key, but should be an export condition",
-					]),
-					new ChildResult(2, [
-						"the value of property 2 is empty, but should be an entry point path",
-						"property 2 has an empty key, but should be an export condition",
-					]),
-				],
-			),
-		);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(3);
+		[
+			["property 0 has an empty key, but should be an export condition"],
+			["property 1 has an empty key, but should be an export condition"],
+			[
+				"the value of property 2 is empty, but should be an entry point path",
+				"property 2 has an empty key, but should be an export condition",
+			],
+		].forEach((childErrors, i) => {
+			expect(result.childResults[i].errorMessages).toEqual(childErrors);
+		});
 	});
 
 	it("should return issues if the value is an object with some keys having invalid values", () => {
@@ -135,23 +126,22 @@ describe("validateExports", () => {
 			'the value of "invalid-null" should be either an entry point path or an object of export conditions',
 			'the value of "invalid-array" should be either an entry point path or an object of export conditions',
 		]);
-		expect(result).toEqual(
-			new Result(
-				[],
-				[
-					new ChildResult(0),
-					new ChildResult(1, [
-						'the value of "invalid-number" should be either an entry point path or an object of export conditions',
-					]),
-					new ChildResult(2, [
-						'the value of "invalid-null" should be either an entry point path or an object of export conditions',
-					]),
-					new ChildResult(3, [
-						'the value of "invalid-array" should be either an entry point path or an object of export conditions',
-					]),
-				],
-			),
-		);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(4);
+		[
+			[],
+			[
+				'the value of "invalid-number" should be either an entry point path or an object of export conditions',
+			],
+			[
+				'the value of "invalid-null" should be either an entry point path or an object of export conditions',
+			],
+			[
+				'the value of "invalid-array" should be either an entry point path or an object of export conditions',
+			],
+		].forEach((childErrors, i) => {
+			expect(result.childResults[i].errorMessages).toEqual(childErrors);
+		});
 	});
 
 	it("should return an issue if the value is an empty string", () => {

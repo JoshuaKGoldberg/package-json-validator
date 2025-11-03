@@ -1,12 +1,11 @@
-import { assert, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import { ChildResult, Result } from "../Result.ts";
 import { validateDependencies } from "./validateDependencies.ts";
 
 describe("validateDependencies", () => {
 	it("should return no errors if the value is an empty object", () => {
 		const result = validateDependencies({});
-		expect(result).toEqual(new Result());
+		expect(result.errorMessages).toEqual([]);
 	});
 
 	it("should validate dependencies with no issues", () => {
@@ -57,12 +56,14 @@ describe("validateDependencies", () => {
 		};
 
 		const result = validateDependencies(dependencies);
-		expect(result).toEqual(
-			new Result(
-				[],
-				Object.entries(dependencies).map((_, i) => new ChildResult(i)),
-			),
+		expect(result.errorMessages).toEqual([]);
+		expect(result.issues).toEqual([]);
+		expect(result.childResults).toHaveLength(
+			Object.entries(dependencies).length,
 		);
+		result.childResults.forEach((child) => {
+			expect(child.issues).toEqual([]);
+		});
 	});
 
 	it("should only validate the package name for published-looking versions", () => {
@@ -115,21 +116,20 @@ describe("validateDependencies", () => {
 			...publishedDependencies,
 			...unpublishedDependencies,
 		});
-		assert.deepStrictEqual(
-			result,
-			new Result(
-				[],
-				[
-					...publishedKeys.map(
-						(k, i) =>
-							new ChildResult(i, [`invalid dependency package name: ${k}`]),
-					),
-					...unpublishedKeys.map(
-						(_, i) => new ChildResult(i + publishedKeys.length),
-					),
-				],
-			),
+		expect(result.issues).toEqual([]);
+		expect(result.errorMessages).toEqual(
+			publishedKeys.map((key) => `invalid dependency package name: ${key}`),
 		);
+		publishedKeys.forEach((key, i) => {
+			expect(result.childResults[i].errorMessages).toEqual([
+				`invalid dependency package name: ${key}`,
+			]);
+		});
+		unpublishedKeys.forEach((_, i) => {
+			expect(
+				result.childResults[publishedKeys.length + i].errorMessages,
+			).toEqual([]);
+		});
 	});
 
 	it("should report an issue when dependencies have an invalid range", () => {
@@ -146,18 +146,12 @@ describe("validateDependencies", () => {
 
 		const result = validateDependencies(dependencies);
 
-		assert.deepStrictEqual(
-			result,
-			new Result(
-				[],
-				Object.entries(dependencies).map(
-					([key, value], i) =>
-						new ChildResult(i, [
-							`invalid version range for dependency ${key}: ${value}`,
-						]),
-				),
-			),
-		);
+		expect(result.issues).toEqual([]);
+		Object.entries(dependencies).forEach(([key, value], i) => {
+			expect(result.childResults[i].errorMessages).toEqual([
+				`invalid version range for dependency ${key}: ${value}`,
+			]);
+		});
 	});
 
 	it("should return an issue if the value is a string", () => {
@@ -166,6 +160,7 @@ describe("validateDependencies", () => {
 		expect(result.errorMessages).toEqual([
 			"the type should be `object`, not `string`",
 		]);
+		expect(result.issues).toHaveLength(1);
 	});
 
 	it("should return an issue if the value is a number", () => {
@@ -173,6 +168,7 @@ describe("validateDependencies", () => {
 		expect(result.errorMessages).toEqual([
 			"the type should be `object`, not `number`",
 		]);
+		expect(result.issues).toHaveLength(1);
 	});
 
 	it("should return an issue if the value is an object", () => {
@@ -180,6 +176,7 @@ describe("validateDependencies", () => {
 		expect(result.errorMessages).toEqual([
 			"the type should be `object`, not `array`",
 		]);
+		expect(result.issues).toHaveLength(1);
 	});
 
 	it("should return an issue if the value is null", () => {
@@ -187,5 +184,6 @@ describe("validateDependencies", () => {
 		expect(result.errorMessages).toEqual([
 			"the value is `null`, but should be a record of dependencies",
 		]);
+		expect(result.issues).toHaveLength(1);
 	});
 });
