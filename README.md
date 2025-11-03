@@ -428,7 +428,7 @@ const errors = validateExports(packageData.exports);
 This function validates the value of the `license` property of a `package.json`.
 It takes the value, and validates it using `validate-npm-package-license`, which is the same package that npm uses.
 
-It returns a list of error messages, if a violation is found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -439,7 +439,7 @@ const packageData = {
 	license: "MIT",
 };
 
-const errors = validateLicense(packageData.license);
+const result = validateLicense(packageData.license);
 ```
 
 ### validateScripts(value)

@@ -64,7 +64,7 @@ const getSpecMap = (
 			files: { type: "array" },
 			homepage: { format: urlFormat, recommended: true, type: "string" },
 			keywords: { type: "array", warning: true },
-			license: { validate: (_, value) => validateLicense(value) },
+			license: { validate: (_, value) => validateLicense(value).errorMessages },
 			licenses: {
 				or: "license",
 				type: "array",
