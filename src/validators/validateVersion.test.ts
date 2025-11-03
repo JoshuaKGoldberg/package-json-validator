@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { Result } from "../Result.ts";
 import { validateVersion } from "./validateVersion.ts";
 
 describe("validateVersion", () => {
@@ -9,62 +10,80 @@ describe("validateVersion", () => {
 		"0.0.0-experimental-2f0e7e57-20250715",
 		"0.0.0",
 		"1.2.3-rc.1+rev.2",
-	])("should return no errors for valid version '%s'", (version) => {
-		expect(validateVersion(version)).toEqual([]);
+	])("should return no issues for valid version '%s'", (version) => {
+		expect(validateVersion(version)).toEqual(new Result());
 	});
 
-	it("should return error if the value is not a string (number)", () => {
-		expect(validateVersion(123)).toEqual([
+	it("should return an issue if the value is not a string (number)", () => {
+		const result = validateVersion(123);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `number`",
 		]);
 	});
 
-	it("should return error if the value is not a string (object)", () => {
-		expect(validateVersion({})).toEqual([
+	it("should return an issue if the value is not a string (object)", () => {
+		const result = validateVersion({});
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `object`",
 		]);
 	});
 
-	it("should return error if the value is not a string (array)", () => {
-		expect(validateVersion([])).toEqual([
+	it("should return an issue if the value is not a string (array)", () => {
+		const result = validateVersion([]);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `Array`",
 		]);
 	});
 
-	it("should return error if value is not a string (boolean)", () => {
-		expect(validateVersion(true)).toEqual([
+	it("should return an issue if value is not a string (boolean)", () => {
+		const result = validateVersion(true);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `boolean`",
 		]);
 	});
 
-	it("should return error if value is not a string (undefined)", () => {
-		expect(validateVersion(undefined)).toEqual([
+	it("should return an issue if value is not a string (undefined)", () => {
+		const result = validateVersion(undefined);
+
+		expect(result.errorMessages).toEqual([
 			"the type should be a `string`, not `undefined`",
 		]);
 	});
 
-	it("should return error if value is not a string (null)", () => {
-		expect(validateVersion(null)).toEqual([
-			"the field is `null`, but should be a `string`",
+	it("should return an issue if value is not a string (null)", () => {
+		const result = validateVersion(null);
+
+		expect(result.errorMessages).toEqual([
+			"the value is `null`, but should be a `string`",
 		]);
 	});
 
-	it("should return error if the value is an empty string", () => {
-		expect(validateVersion("")).toEqual([
+	it("should return an issue if the value is an empty string", () => {
+		const result = validateVersion("");
+
+		expect(result.errorMessages).toEqual([
 			"the value is empty, but should be a valid version",
 		]);
 	});
 
-	it("should return error if the value is whitespace only", () => {
-		expect(validateVersion("   ")).toEqual([
+	it("should return an issue if the value is whitespace only", () => {
+		const result = validateVersion("   ");
+
+		expect(result.errorMessages).toEqual([
 			"the value is empty, but should be a valid version",
 		]);
 	});
 
 	it.each(["^1.2.3", "~1.2.3", "invalid", "1.2.3.4.5-alpha2", "1.2", "1"])(
-		"should return error for invalid version '%s'",
+		"should return an issue for invalid version '%s'",
 		(version) => {
-			expect(validateVersion(version)).toEqual([
+			const result = validateVersion(version);
+
+			expect(result.errorMessages).toEqual([
 				"the value is not a valid semver version",
 			]);
 		},

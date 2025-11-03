@@ -98,7 +98,7 @@ const getSpecMap = (
 			type: { recommended: true, validate: (_, value) => validateType(value) },
 			version: {
 				required: !isPrivate,
-				validate: (_, value) => validateVersion(value),
+				validate: (_, value) => validateVersion(value).errorMessages,
 			},
 		};
 	} else if (specName == "commonjs_1.0") {
