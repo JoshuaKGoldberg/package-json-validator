@@ -16,6 +16,9 @@ const getPackageJson = (
 		".": "./index.js",
 	},
 	name: "test-package",
+	scripts: {
+		lint: "eslint .",
+	},
 	type: "module",
 	version: "0.5.0",
 	...extra,
