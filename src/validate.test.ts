@@ -9,6 +9,9 @@ const getPackageJson = (
 		debug: true,
 	},
 	cpu: ["x64", "ia32"],
+	directories: {
+		bin: "dist/bin",
+	},
 	name: "test-package",
 	type: "module",
 	version: "0.5.0",
