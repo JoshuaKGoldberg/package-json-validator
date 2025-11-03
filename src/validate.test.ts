@@ -369,6 +369,14 @@ describe("validate", () => {
 						range: "1.2.3 - 2.3.4",
 						"verion-build": "1.2.3+build2012",
 					},
+					optionalDependencies: {
+						gt: ">1.2.3",
+						gteq: ">=1.2.3",
+						lt: "<1.2.3",
+						lteq: "<=1.2.3",
+						range: "1.2.3 - 2.3.4",
+						"verion-build": "1.2.3+build2012",
+					},
 					peerDependencies: {
 						gt: ">1.2.3",
 						gteq: ">=1.2.3",

@@ -1,6 +1,7 @@
 import { validRange } from "semver";
 
 import { packageFormat, urlFormat } from "../formats.ts";
+import { ChildResult, Result } from "../Result.ts";
 
 const isUnpublishedVersion = (version: string): boolean => {
 	return (
@@ -52,33 +53,39 @@ const isValidVersionRange = (version: string): boolean => {
  * with package names and versions
  * @returns An array with validation errors (if any violations are found)
  */
-export const validateDependencies = (value: unknown): string[] => {
-	const errors: string[] = [];
+export const validateDependencies = (value: unknown): Result => {
+	const result = new Result();
 
 	if (value == null) {
-		errors.push("the field is `null`, but should be a record of dependencies");
+		result.addIssue(
+			"the value is `null`, but should be a record of dependencies",
+		);
 	} else if (typeof value === "object" && !Array.isArray(value)) {
-		for (const [pkg, version] of Object.entries(value)) {
+		const entries = Object.entries(value);
+		for (let i = 0; i < entries.length; ++i) {
+			const childResult = new ChildResult(i);
+			const [pkg, version] = entries[i];
 			if (
 				!packageFormat.test(pkg) &&
 				!(typeof version === "string" && isUnpublishedVersion(version))
 			) {
-				errors.push(`invalid dependency package name: ${pkg}`);
+				childResult.addIssue(`invalid dependency package name: ${pkg}`);
 			}
 
 			if (typeof version !== "string") {
-				errors.push(
+				childResult.addIssue(
 					`dependency version for ${pkg} should be a string: ${version}`,
 				);
-				continue;
+			} else if (!isValidVersionRange(version)) {
+				childResult.addIssue(
+					`invalid version range for dependency ${pkg}: ${version}`,
+				);
 			}
-			if (!isValidVersionRange(version)) {
-				errors.push(`invalid version range for dependency ${pkg}: ${version}`);
-			}
+			result.addChildResult(childResult);
 		}
 	} else {
 		const valueType = Array.isArray(value) ? "array" : typeof value;
-		errors.push(`the type should be \`object\`, not \`${valueType}\``);
+		result.addIssue(`the type should be \`object\`, not \`${valueType}\``);
 	}
-	return errors;
+	return result;
 };

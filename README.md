@@ -318,7 +318,7 @@ They take the value, and validate it against the following criteria.
 - The object should be a record of key value pairs
 - For each property, the key should be a valid package name, and the value should be a valid version
 
-It returns a list of error messages, if any violations are found.
+It returns a `Result` object (See [Result Types](#result-types)).
 
 #### Examples
 
@@ -333,7 +333,7 @@ const packageData = {
 	},
 };
 
-const errors = validateBin(packageData.dependencies);
+const result = validateDependencies(packageData.dependencies);
 ```
 
 ### validateDescription(value)

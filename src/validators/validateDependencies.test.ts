@@ -1,14 +1,15 @@
 import { assert, describe, expect, it } from "vitest";
 
+import { ChildResult, Result } from "../Result.ts";
 import { validateDependencies } from "./validateDependencies.ts";
 
 describe("validateDependencies", () => {
 	it("should return no errors if the value is an empty object", () => {
 		const result = validateDependencies({});
-		expect(result).toEqual([]);
+		expect(result).toEqual(new Result());
 	});
 
-	it("should validate dependencies with no errors", () => {
+	it("should validate dependencies with no issues", () => {
 		const dependencies = {
 			"@package/package": "workspace:@package/package@*",
 			"@types/org__package": "workspace:@org/types___org__package@1",
@@ -56,7 +57,12 @@ describe("validateDependencies", () => {
 		};
 
 		const result = validateDependencies(dependencies);
-		expect(result).toEqual([]);
+		expect(result).toEqual(
+			new Result(
+				[],
+				Object.entries(dependencies).map((_, i) => new ChildResult(i)),
+			),
+		);
 	});
 
 	it("should only validate the package name for published-looking versions", () => {
@@ -102,6 +108,8 @@ describe("validateDependencies", () => {
 			"_workspace-package-tilde-version": "workspace:~1.2.3",
 			"_workspace-pre-release": "workspace:1.2.3-rc.1",
 		};
+		const publishedKeys = Object.keys(publishedDependencies);
+		const unpublishedKeys = Object.keys(unpublishedDependencies);
 
 		const result = validateDependencies({
 			...publishedDependencies,
@@ -109,13 +117,22 @@ describe("validateDependencies", () => {
 		});
 		assert.deepStrictEqual(
 			result,
-			Object.keys(publishedDependencies).map(
-				(k) => `invalid dependency package name: ${k}`,
+			new Result(
+				[],
+				[
+					...publishedKeys.map(
+						(k, i) =>
+							new ChildResult(i, [`invalid dependency package name: ${k}`]),
+					),
+					...unpublishedKeys.map(
+						(_, i) => new ChildResult(i + publishedKeys.length),
+					),
+				],
 			),
 		);
 	});
 
-	it("should report an error when dependencies have an invalid range", () => {
+	it("should report an issue when dependencies have an invalid range", () => {
 		const dependencies = {
 			"bad-catalog": "catalob:",
 			"bad-jsr": "jsr;@scope/package@^1.0.0",
@@ -129,37 +146,46 @@ describe("validateDependencies", () => {
 
 		const result = validateDependencies(dependencies);
 
-		assert.deepStrictEqual(result, [
-			"invalid version range for dependency bad-catalog: catalob:",
-			"invalid version range for dependency bad-jsr: jsr;@scope/package@^1.0.0",
-			"invalid version range for dependency bad-npm: npm;svgo@^1.2.3",
-			"invalid version range for dependency invalid-git-protocol: git+foo://github.com/npm/cli.git",
-			"invalid version range for dependency invalid-github-reference-bad-reponame: some/package?",
-			"invalid version range for dependency invalid-github-reference-bad-username: some--user/package",
-			"invalid version range for dependency invalid-github-reference-too-many-slashes: some/package/subpath",
-			"invalid version range for dependency package-name: abc123",
+		assert.deepStrictEqual(
+			result,
+			new Result(
+				[],
+				Object.entries(dependencies).map(
+					([key, value], i) =>
+						new ChildResult(i, [
+							`invalid version range for dependency ${key}: ${value}`,
+						]),
+				),
+			),
+		);
+	});
+
+	it("should return an issue if the value is a string", () => {
+		const result = validateDependencies("123");
+
+		expect(result.errorMessages).toEqual([
+			"the type should be `object`, not `string`",
 		]);
 	});
 
-	it("should return an error if the value is a string", () => {
-		const result = validateDependencies("123");
-		expect(result).toEqual(["the type should be `object`, not `string`"]);
-	});
-
-	it("should return an error if the value is a number", () => {
+	it("should return an issue if the value is a number", () => {
 		const result = validateDependencies(123);
-		expect(result).toEqual(["the type should be `object`, not `number`"]);
+		expect(result.errorMessages).toEqual([
+			"the type should be `object`, not `number`",
+		]);
 	});
 
-	it("should return an error if the value is an object", () => {
+	it("should return an issue if the value is an object", () => {
 		const result = validateDependencies([]);
-		expect(result).toEqual(["the type should be `object`, not `array`"]);
+		expect(result.errorMessages).toEqual([
+			"the type should be `object`, not `array`",
+		]);
 	});
 
-	it("should return an error if the value is null", () => {
+	it("should return an issue if the value is null", () => {
 		const result = validateDependencies(null);
-		expect(result).toEqual([
-			"the field is `null`, but should be a record of dependencies",
+		expect(result.errorMessages).toEqual([
+			"the value is `null`, but should be a record of dependencies",
 		]);
 	});
 });
