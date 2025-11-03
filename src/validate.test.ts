@@ -8,6 +8,7 @@ const getPackageJson = (
 	config: {
 		debug: true,
 	},
+	cpu: ["x64", "ia32"],
 	name: "test-package",
 	version: "0.5.0",
 	...extra,
