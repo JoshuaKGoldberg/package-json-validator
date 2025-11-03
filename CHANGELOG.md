@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.39.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.38.0...v0.39.0) (2025-11-03)
+
+### Features
+
+- **validateDescription:** adopt new Result return type ([#522](https://github.com/JoshuaKGoldberg/package-json-validator/issues/522)) ([91af809](https://github.com/JoshuaKGoldberg/package-json-validator/commit/91af809968b0abd4c215d9aeb0cd7371ffe33ed2)), closes [#478](https://github.com/JoshuaKGoldberg/package-json-validator/issues/478) [#393](https://github.com/JoshuaKGoldberg/package-json-validator/issues/393)
+
 # [0.38.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.37.0...v0.38.0) (2025-11-03)
 
 ### Features
