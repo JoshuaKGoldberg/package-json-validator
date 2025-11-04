@@ -103,7 +103,7 @@
 		"typescript-eslint": "8.46.0",
 		"vitest": "4.0.4"
 	},
-	"packageManager": "pnpm@10.19.0",
+	"packageManager": "pnpm@10.20.0",
 	"engines": {
 		"node": "^20.19.0 || >=22.12.0"
 	},
