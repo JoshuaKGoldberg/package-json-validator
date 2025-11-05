@@ -17,6 +17,7 @@ import {
 	validateDirectories,
 	validateExports,
 	validateFiles,
+	validateHomepage,
 	validateLicense,
 	validateScripts,
 	validateType,
@@ -67,7 +68,10 @@ const getSpecMap = (
 			engineStrict: { type: "boolean" },
 			exports: { validate: (_, value) => validateExports(value).errorMessages },
 			files: { validate: (_, value) => validateFiles(value).errorMessages },
-			homepage: { format: urlFormat, recommended: true, type: "string" },
+			homepage: {
+				recommended: true,
+				validate: (_, value) => validateHomepage(value).errorMessages,
+			},
 			keywords: { type: "array", warning: true },
 			license: { validate: (_, value) => validateLicense(value).errorMessages },
 			licenses: {

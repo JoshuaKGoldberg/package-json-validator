@@ -444,6 +444,24 @@ const packageData = {
 const result = validateFiles(packageData.files);
 ```
 
+### validateHomepage(value)
+
+This function validates the value of the `homepage` property of a `package.json`, checking that the value is a string containing a valid url.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateHomepage } from "package-json-validator";
+
+const packageData = {
+	homepage: "The Fragile",
+};
+
+const result = validateDescription(packageData.homepage);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.
