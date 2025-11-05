@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.44.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.43.0...v0.44.0) (2025-11-05)
+
+### Features
+
+- **validateFiles:** add function for validating `files` ([#531](https://github.com/JoshuaKGoldberg/package-json-validator/issues/531)) ([e9e8cf5](https://github.com/JoshuaKGoldberg/package-json-validator/commit/e9e8cf5e06bf1056d5373510792485c3e95e67d5)), closes [#371](https://github.com/JoshuaKGoldberg/package-json-validator/issues/371)
+
 # [0.43.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.42.0...v0.43.0) (2025-11-03)
 
 ### Features
