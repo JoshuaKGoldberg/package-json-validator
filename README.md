@@ -503,6 +503,24 @@ const packageData = {
 const result = validateLicense(packageData.license);
 ```
 
+### validateMain(value)
+
+This function validates the value of the `main` property of a `package.json`, checking that the value is a non-empty string.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateMain } from "package-json-validator";
+
+const packageData = {
+	main: "index.js",
+};
+
+const result = validateMain(packageData.main);
+```
+
 ### validatePrivate(value)
 
 This function validates the value of the `private` property of a `package.json`.

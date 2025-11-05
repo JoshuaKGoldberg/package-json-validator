@@ -20,6 +20,7 @@ import {
 	validateHomepage,
 	validateKeywords,
 	validateLicense,
+	validateMain,
 	validatePrivate,
 	validateScripts,
 	validateType,
@@ -85,7 +86,7 @@ const getSpecMap = (
 				validate: validateUrlTypes,
 				warning: true,
 			},
-			main: { type: "string" },
+			main: { validate: (_, value) => validateMain(value).errorMessages },
 			man: { types: ["string", "array"] },
 			name: {
 				format: packageFormat,
