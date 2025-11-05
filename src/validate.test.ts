@@ -15,6 +15,7 @@ const getPackageJson = (
 	exports: {
 		".": "./index.js",
 	},
+	files: ["dist", "CHANGELOG.md"],
 	name: "test-package",
 	type: "module",
 	version: "0.5.0",

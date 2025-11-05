@@ -422,6 +422,28 @@ const packageData = {
 const result = validateExports(packageData.exports);
 ```
 
+### validateFiles(value)
+
+This function validates the value of the `files` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be non-empty strings
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateFiles } from "package-json-validator";
+
+const packageData = {
+	files: ["dist", "CHANGELOG.md"],
+};
+
+const result = validateFiles(packageData.files);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.

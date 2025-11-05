@@ -12,6 +12,7 @@ export {
 	validateDependencies as validateDevDependencies,
 	validateDirectories,
 	validateExports,
+	validateFiles,
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
