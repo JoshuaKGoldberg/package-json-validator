@@ -13,6 +13,7 @@ export {
 	validateDirectories,
 	validateExports,
 	validateFiles,
+	validateHomepage,
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
