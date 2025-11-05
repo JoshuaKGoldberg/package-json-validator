@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.45.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.44.0...v0.45.0) (2025-11-05)
+
+### Features
+
+- **validateHomepage:** add function for validating `homepage` ([#532](https://github.com/JoshuaKGoldberg/package-json-validator/issues/532)) ([510f2d4](https://github.com/JoshuaKGoldberg/package-json-validator/commit/510f2d4b6c55ccdcb10212e1b6978d26c3e9fd83)), closes [#372](https://github.com/JoshuaKGoldberg/package-json-validator/issues/372)
+
 # [0.44.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.43.0...v0.44.0) (2025-11-05)
 
 ### Features
