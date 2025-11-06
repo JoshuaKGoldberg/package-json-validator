@@ -11,6 +11,7 @@ export { validateFiles } from "./validateFiles.ts";
 export { validateHomepage } from "./validateHomepage.ts";
 export { validateKeywords } from "./validateKeywords.ts";
 export { validateLicense } from "./validateLicense.ts";
+export { validateMain } from "./validateMain.ts";
 export { validatePrivate } from "./validatePrivate.ts";
 export { validateScripts } from "./validateScripts.ts";
 export { validateType } from "./validateType.ts";
