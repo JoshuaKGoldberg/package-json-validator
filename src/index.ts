@@ -14,6 +14,7 @@ export {
 	validateExports,
 	validateFiles,
 	validateHomepage,
+	validateKeywords,
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,

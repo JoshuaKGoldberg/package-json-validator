@@ -462,6 +462,28 @@ const packageData = {
 const result = validateDescription(packageData.homepage);
 ```
 
+### validateKeywords(value)
+
+This function validates the value of the `keywords` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be non-empty strings
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateKeywords } from "package-json-validator";
+
+const packageData = {
+	keywords: ["eslint", "package.json"],
+};
+
+const result = validateKeywords(packageData.keywords);
+```
+
 ### validateLicense(value)
 
 This function validates the value of the `license` property of a `package.json`.

@@ -18,6 +18,7 @@ import {
 	validateExports,
 	validateFiles,
 	validateHomepage,
+	validateKeywords,
 	validateLicense,
 	validatePrivate,
 	validateScripts,
@@ -73,7 +74,10 @@ const getSpecMap = (
 				recommended: true,
 				validate: (_, value) => validateHomepage(value).errorMessages,
 			},
-			keywords: { type: "array", warning: true },
+			keywords: {
+				validate: (_, value) => validateKeywords(value).errorMessages,
+				warning: true,
+			},
 			license: { validate: (_, value) => validateLicense(value).errorMessages },
 			licenses: {
 				or: "license",

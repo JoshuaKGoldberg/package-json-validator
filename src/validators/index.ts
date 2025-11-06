@@ -9,6 +9,7 @@ export { validateDirectories } from "./validateDirectories.ts";
 export { validateExports } from "./validateExports.ts";
 export { validateFiles } from "./validateFiles.ts";
 export { validateHomepage } from "./validateHomepage.ts";
+export { validateKeywords } from "./validateKeywords.ts";
 export { validateLicense } from "./validateLicense.ts";
 export { validatePrivate } from "./validatePrivate.ts";
 export { validateScripts } from "./validateScripts.ts";
