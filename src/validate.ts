@@ -21,6 +21,7 @@ import {
 	validateKeywords,
 	validateLicense,
 	validateMain,
+	validateMan,
 	validatePrivate,
 	validateScripts,
 	validateType,
@@ -87,7 +88,7 @@ const getSpecMap = (
 				warning: true,
 			},
 			main: { validate: (_, value) => validateMain(value).errorMessages },
-			man: { types: ["string", "array"] },
+			man: { validate: (_, value) => validateMan(value).errorMessages },
 			name: {
 				format: packageFormat,
 				required: !isPrivate,
