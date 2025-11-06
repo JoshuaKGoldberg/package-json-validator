@@ -19,6 +19,7 @@ import {
 	validateFiles,
 	validateHomepage,
 	validateLicense,
+	validatePrivate,
 	validateScripts,
 	validateType,
 	validateUrlOrMailto,
@@ -95,7 +96,7 @@ const getSpecMap = (
 				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			preferGlobal: { type: "boolean" },
-			private: { type: "boolean" },
+			private: { validate: (_, value) => validatePrivate(value).errorMessages },
 			publishConfig: { type: "object" },
 			repository: {
 				or: "repositories",
