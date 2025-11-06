@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.48.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.47.0...v0.48.0) (2025-11-06)
+
+### Features
+
+- **validateKeywords:** add function for validating `keywords` ([#533](https://github.com/JoshuaKGoldberg/package-json-validator/issues/533)) ([f5edd86](https://github.com/JoshuaKGoldberg/package-json-validator/commit/f5edd8633b1c6fb97c4bb00101c59ca8fb68b801)), closes [#373](https://github.com/JoshuaKGoldberg/package-json-validator/issues/373)
+
 # [0.47.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.46.0...v0.47.0) (2025-11-06)
 
 ### Features
