@@ -540,6 +540,28 @@ const packageData = {
 const result = validatePrivate(packageData.private);
 ```
 
+### validateMan(value)
+
+This function validates the value of the `man` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is either a string or an array of strings
+- the string(s) must end in a number (and optionally .gz)
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateMan } from "package-json-validator";
+
+const packageData = {
+	man: ["./man/foo.1", "./man/bar.1"],
+};
+
+const result = validateMan(packageData.man);
+```
+
 ### validateScripts(value)
 
 This function validates the value of the `scripts` property of a `package.json`.

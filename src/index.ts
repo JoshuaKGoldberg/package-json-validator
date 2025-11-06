@@ -17,6 +17,7 @@ export {
 	validateKeywords,
 	validateLicense,
 	validateMain,
+	validateMan,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
 	validatePrivate,

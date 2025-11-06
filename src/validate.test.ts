@@ -17,6 +17,7 @@ const getPackageJson = (
 	},
 	files: ["dist", "CHANGELOG.md"],
 	main: "index.js",
+	man: ["./man/foo.1", "./man/bar.1"],
 	name: "test-package",
 	scripts: {
 		lint: "eslint .",
