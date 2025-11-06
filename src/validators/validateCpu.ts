@@ -1,5 +1,19 @@
 import { ChildResult, Result } from "../Result.ts";
 
+const VALID_ARCHS = [
+	"arm",
+	"arm64",
+	"ia32",
+	"loong64",
+	"mips",
+	"mipsel",
+	"ppc64",
+	"riscv64",
+	"s390",
+	"s390x",
+	"x64",
+];
+
 /**
  * Validate the `cpu` field in a package.json, which should be an array of
  * strings.
@@ -23,6 +37,10 @@ export const validateCpu = (obj: unknown): Result => {
 			} else if (item.trim() === "") {
 				childResult.addIssue(
 					`item at index ${i} is empty, but should be the name of a CPU architecture`,
+				);
+			} else if (!VALID_ARCHS.includes(item)) {
+				childResult.addIssue(
+					`the value "${item}" is not valid. Valid CPU values are: ${VALID_ARCHS.join(", ")}`,
 				);
 			}
 			result.addChildResult(childResult);
