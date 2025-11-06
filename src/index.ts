@@ -17,6 +17,7 @@ export {
 	validateLicense,
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
+	validatePrivate,
 	validateScripts,
 	validateType,
 	validateVersion,

@@ -481,6 +481,25 @@ const packageData = {
 const result = validateLicense(packageData.license);
 ```
 
+### validatePrivate(value)
+
+This function validates the value of the `private` property of a `package.json`.
+It takes the value, and checks that it's a boolean.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validatePrivate } from "package-json-validator";
+
+const packageData = {
+	private: true,
+};
+
+const result = validatePrivate(packageData.private);
+```
+
 ### validateScripts(value)
 
 This function validates the value of the `scripts` property of a `package.json`.
