@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.50.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.49.0...v0.50.0) (2025-11-06)
+
+### Features
+
+- **validateMan:** add function for validating `main` ([#539](https://github.com/JoshuaKGoldberg/package-json-validator/issues/539)) ([998a344](https://github.com/JoshuaKGoldberg/package-json-validator/commit/998a34434d548275902ce17e121546874cd38bbd)), closes [#375](https://github.com/JoshuaKGoldberg/package-json-validator/issues/375)
+
 # [0.49.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.48.0...v0.49.0) (2025-11-06)
 
 ### Features
