@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.47.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.46.0...v0.47.0) (2025-11-06)
+
+### Features
+
+- **validatePrivate:** add function for validating `private` ([#541](https://github.com/JoshuaKGoldberg/package-json-validator/issues/541)) ([ec96d4c](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ec96d4c9240a21c3bdaf40d9f2a6870e141d53c6)), closes [#377](https://github.com/JoshuaKGoldberg/package-json-validator/issues/377)
+
 # [0.46.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.45.0...v0.46.0) (2025-11-06)
 
 ### Features
