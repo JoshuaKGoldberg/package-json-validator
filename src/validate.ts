@@ -103,7 +103,7 @@ const getSpecMap = (
 				validate: validateUrlTypes,
 				warning: true,
 			},
-			scripts: { validate: (_, value) => validateScripts(value) },
+			scripts: { validate: (_, value) => validateScripts(value).errorMessages },
 			type: {
 				recommended: true,
 				validate: (_, value) => validateType(value).errorMessages,

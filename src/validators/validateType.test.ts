@@ -1,13 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { Result } from "../Result.ts";
 import { validateType } from "./validateType.ts";
 
 describe("validateType", () => {
 	it.each(["commonjs", "module"])(
 		"should return no issues for valid type '%s'",
 		(type) => {
-			expect(validateType(type)).toEqual(new Result());
+			expect(validateType(type).errorMessages).toEqual([]);
 		},
 	);
 

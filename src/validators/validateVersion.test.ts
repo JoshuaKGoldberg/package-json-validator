@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 
-import { Result } from "../Result.ts";
 import { validateVersion } from "./validateVersion.ts";
 
 describe("validateVersion", () => {
@@ -11,7 +10,7 @@ describe("validateVersion", () => {
 		"0.0.0",
 		"1.2.3-rc.1+rev.2",
 	])("should return no issues for valid version '%s'", (version) => {
-		expect(validateVersion(version)).toEqual(new Result());
+		expect(validateVersion(version).errorMessages).toEqual([]);
 	});
 
 	it("should return an issue if the value is not a string (number)", () => {

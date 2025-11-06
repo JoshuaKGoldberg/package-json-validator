@@ -26,7 +26,7 @@ describe("validateAuthor", () => {
 		expect(mockValidatePeople).toHaveBeenCalledWith(
 			"Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)",
 		);
-		expect(result).toEqual(mockResult);
+		expect(result).toBe(mockResult);
 	});
 
 	it("should call validatePeople with 'author' and the object if input is a person object", () => {
@@ -44,18 +44,17 @@ describe("validateAuthor", () => {
 		const result = validateAuthor(personObj);
 
 		expect(mockValidatePeople).toHaveBeenCalledWith(personObj);
-		expect(result).toEqual(mockResult);
+		expect(result).toBe(mockResult);
 	});
 
 	it("should return the correct error if input is not a string or person object", () => {
 		vi.mocked(isPerson).mockReturnValue(false);
 
 		const result = validateAuthor(123);
-		expect(result).toEqual(
-			new Result([
-				"the type should be a `string` or an `object` with at least a `name` property",
-			]),
-		);
+		expect(result.issues).toHaveLength(1);
+		expect(result.errorMessages).toEqual([
+			"the type should be a `string` or an `object` with at least a `name` property",
+		]);
 		expect(vi.mocked(validatePeople)).not.toHaveBeenCalled();
 	});
 });

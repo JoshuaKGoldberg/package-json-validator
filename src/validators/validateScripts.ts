@@ -1,37 +1,44 @@
+import { ChildResult, Result } from "../Result.ts";
+
 /**
  * Validate the `scripts` field in a package.json. The value of
  * should be a Record&lt;string, string&gt;
  */
-export const validateScripts = (obj: unknown): string[] => {
-	const errors: string[] = [];
+export const validateScripts = (obj: unknown): Result => {
+	const result = new Result();
 
 	if (obj && typeof obj === "object" && !Array.isArray(obj)) {
-		let propertyNumber = 0;
-		for (const [key, value] of Object.entries(obj)) {
+		const entries = Object.entries(obj);
+		for (let i = 0; i < entries.length; i++) {
+			const childResult = new ChildResult(i);
+
+			const [key, value] = entries[i];
 			const normalizedKey = key.trim();
-			const fieldName =
-				normalizedKey === "" ? String(propertyNumber) : `"${normalizedKey}"`;
+			const propertyName =
+				normalizedKey === "" ? String(i) : `"${normalizedKey}"`;
 
 			if (typeof value !== "string") {
-				errors.push(`the value of field ${fieldName} should be a string`);
+				childResult.addIssue(
+					`the value of property ${propertyName} should be a string`,
+				);
 			} else if (value.trim() === "") {
-				errors.push(
-					`the value of field ${fieldName} is empty, but should be a script command`,
+				childResult.addIssue(
+					`the value of property ${propertyName} is empty, but should be a script command`,
 				);
 			}
 			if (key.trim() === "") {
-				errors.push(
-					`field ${fieldName} has an empty key, but should be a script name`,
+				childResult.addIssue(
+					`property ${propertyName} has an empty key, but should be a script name`,
 				);
 			}
-			propertyNumber++;
+			result.addChildResult(childResult);
 		}
 	} else if (obj === null) {
-		errors.push("the field is `null`, but should be an `object`");
+		result.addIssue("the value is `null`, but should be an `object`");
 	} else {
 		const valueType = Array.isArray(obj) ? "array" : typeof obj;
-		errors.push(`the type should be \`object\`, not \`${valueType}\``);
+		result.addIssue(`the type should be \`object\`, not \`${valueType}\``);
 	}
 
-	return errors;
+	return result;
 };

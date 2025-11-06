@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 
-import { Result } from "../Result.ts";
 import { validateLicense } from "./validateLicense.ts";
 
 describe("validateLicense", () => {
@@ -14,7 +13,7 @@ describe("validateLicense", () => {
 		"SEE LICENSE IN license.md",
 		"SEE LICENCE IN license.md",
 	])("should return no issues for valid license '%s'", (license) => {
-		expect(validateLicense(license)).toEqual(new Result());
+		expect(validateLicense(license).errorMessages).toEqual([]);
 	});
 
 	it("should return an issue if the value is not a string (number)", () => {
