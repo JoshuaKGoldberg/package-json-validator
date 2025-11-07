@@ -637,6 +637,45 @@ const packageData = {
 const result = validatePrivate(packageData.private);
 ```
 
+### validatePublishConfig(value)
+
+This function validates the value of the `publishConfig` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an object
+- if any of the following properties are present, they should conform to the type defined by the package manager
+  - access
+  - bin
+  - cpu
+  - directory
+  - exports
+  - main
+  - provenance
+  - tag
+
+> [!NOTE]
+> These properties are a (non-exhaustive) combination of those supported by `npm`, `pnpm`, and `yarn`.
+>
+> - <https://docs.npmjs.com/cli/v11/commands/npm-publish#configuration>
+> - <https://pnpm.io/package_json#publishconfig>
+> - <https://yarnpkg.com/configuration/manifest#publishConfig>
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validatePublishConfig } from "package-json-validator";
+
+const packageData = {
+	publishConfig: {
+		provenance: true,
+	},
+};
+
+const result = validatePublishConfig(packageData.publishConfig);
+```
+
 ### validateRepository(value)
 
 This function validates the value of the `repository` property of a `package.json`.

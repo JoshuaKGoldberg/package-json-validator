@@ -26,6 +26,7 @@ import {
 	validateName,
 	validateOs,
 	validatePrivate,
+	validatePublishConfig,
 	validateRepository,
 	validateScripts,
 	validateType,
@@ -105,7 +106,9 @@ const getSpecMap = (
 				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
 			private: { validate: (_, value) => validatePrivate(value).errorMessages },
-			publishConfig: { type: "object" },
+			publishConfig: {
+				validate: (_, value) => validatePublishConfig(value).errorMessages,
+			},
 			repository: {
 				validate: (_, value) => validateRepository(value).errorMessages,
 				warning: true,
