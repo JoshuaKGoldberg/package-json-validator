@@ -591,6 +591,33 @@ const packageData = {
 const result = validateName(packageData.name);
 ```
 
+### validateOs(value)
+
+This function validates the value of the `os` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be one of the following:
+
+"aix", "android", "darwin", "freebsd", "linux", "openbsd", "sunos", and "win32"
+
+> [!NOTE]
+> These values are the list of possible `process.platform` values [documented by Node](https://nodejs.org/api/process.html#processplatform).
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateOs } from "package-json-validator";
+
+const packageData = {
+	os: ["linux", "win32"],
+};
+
+const result = validateOs(packageData.os);
+```
+
 ### validatePrivate(value)
 
 This function validates the value of the `private` property of a `package.json`.

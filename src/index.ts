@@ -21,6 +21,7 @@ export {
 	validateMan,
 	validateName,
 	validateDependencies as validateOptionalDependencies,
+	validateOs,
 	validateDependencies as validatePeerDependencies,
 	validatePrivate,
 	validateRepository,
