@@ -27,6 +27,7 @@ import {
 	validateType,
 	validateUrlOrMailto,
 	validateVersion,
+	validateWorkspaces,
 } from "./validators/index.js";
 
 const getSpecMap = (
@@ -118,6 +119,9 @@ const getSpecMap = (
 			version: {
 				required: !isPrivate,
 				validate: (_, value) => validateVersion(value).errorMessages,
+			},
+			workspaces: {
+				validate: (_, value) => validateWorkspaces(value).errorMessages,
 			},
 		};
 	} else if (specName == "commonjs_1.0") {

@@ -18,3 +18,4 @@ export { validateScripts } from "./validateScripts.ts";
 export { validateType } from "./validateType.ts";
 export { validateUrlOrMailto } from "./validateUrlOrMailto.ts";
 export { validateVersion } from "./validateVersion.ts";
+export { validateWorkspaces } from "./validateWorkspaces.ts";

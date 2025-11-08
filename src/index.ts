@@ -24,4 +24,5 @@ export {
 	validateScripts,
 	validateType,
 	validateVersion,
+	validateWorkspaces,
 } from "./validators/index.ts";
