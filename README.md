@@ -545,25 +545,6 @@ const packageData = {
 const result = validateMain(packageData.main);
 ```
 
-### validatePrivate(value)
-
-This function validates the value of the `private` property of a `package.json`.
-It takes the value, and checks that it's a boolean.
-
-It returns a `Result` object (See [Result Types](#result-types)).
-
-#### Examples
-
-```ts
-import { validatePrivate } from "package-json-validator";
-
-const packageData = {
-	private: true,
-};
-
-const result = validatePrivate(packageData.private);
-```
-
 ### validateMan(value)
 
 This function validates the value of the `man` property of a `package.json`.
@@ -584,6 +565,44 @@ const packageData = {
 };
 
 const result = validateMan(packageData.man);
+```
+
+### validateName(value)
+
+This function validates the value of the `name` property of a `package.json`.
+It takes the value, and validates it using `validate-npm-package-name`, which is the same package that npm uses.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateName } from "package-json-validator";
+
+const packageData = {
+	name: "some-package",
+};
+
+const result = validateName(packageData.name);
+```
+
+### validatePrivate(value)
+
+This function validates the value of the `private` property of a `package.json`.
+It takes the value, and checks that it's a boolean.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validatePrivate } from "package-json-validator";
+
+const packageData = {
+	private: true,
+};
+
+const result = validatePrivate(packageData.private);
 ```
 
 ### validateScripts(value)

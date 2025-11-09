@@ -23,6 +23,7 @@ import {
 	validateLicense,
 	validateMain,
 	validateMan,
+	validateName,
 	validatePrivate,
 	validateScripts,
 	validateType,
@@ -95,9 +96,8 @@ const getSpecMap = (
 			main: { validate: (_, value) => validateMain(value).errorMessages },
 			man: { validate: (_, value) => validateMan(value).errorMessages },
 			name: {
-				format: packageFormat,
 				required: !isPrivate,
-				type: "string",
+				validate: (_, value) => validateName(value).errorMessages,
 			},
 			optionalDependencies: {
 				validate: (_, value) => validateDependencies(value).errorMessages,
