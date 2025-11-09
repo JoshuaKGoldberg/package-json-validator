@@ -33,7 +33,7 @@ const npmWarningFields = {
 	bugs: "http://example.com/bugs",
 	description: "This is my description",
 	keywords: ["keyword1", "keyword2", "keyword3"],
-	licenses: [{ type: "MIT", url: "http://example.com/license" }],
+	license: "MIT",
 	repository: {
 		type: "git",
 		url: "git@github.com:JoshuaKGoldberg/package-json-validator.git",
@@ -305,10 +305,8 @@ describe("validate", () => {
 			}
 		});
 
-		test("Licenses", () => {
+		test("License", () => {
 			// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
-
-			// licenses as an array
 			let json = getPackageJson(npmWarningFields);
 			let result = validate(JSON.stringify(json), {
 				recommendations: false,
@@ -318,21 +316,9 @@ describe("validate", () => {
 			assert.equal(result.critical, undefined, JSON.stringify(result));
 			assert.equal(result.warnings, undefined, JSON.stringify(result));
 
-			// licenses as a single type
+			// without the prop
 			json = getPackageJson(npmWarningFields);
-			delete json.licenses;
-			json.license = "MIT";
-			result = validate(JSON.stringify(json), {
-				recommendations: false,
-				warnings: true,
-			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.critical, undefined, JSON.stringify(result));
-			assert.equal(result.warnings, undefined, JSON.stringify(result));
-
-			// neither
-			json = getPackageJson(npmWarningFields);
-			delete json.licenses;
+			delete json.license;
 			result = validate(JSON.stringify(json), {
 				recommendations: false,
 				warnings: true,
@@ -550,8 +536,6 @@ describe("validate", () => {
 
 		test("Licenses", () => {
 			// https://docs.npmjs.com/cli/v9/configuring-npm/package-json#license
-
-			// licenses as an array
 			let json = getPackageJson(npmWarningFields);
 			let result = validate(json, {
 				recommendations: false,
@@ -561,21 +545,9 @@ describe("validate", () => {
 			assert.equal(result.critical, undefined, JSON.stringify(result));
 			assert.equal(result.warnings, undefined, JSON.stringify(result));
 
-			// licenses as a single type
+			// without the prop
 			json = getPackageJson(npmWarningFields);
-			delete json.licenses;
-			json.license = "MIT";
-			result = validate(json, {
-				recommendations: false,
-				warnings: true,
-			});
-			assert.equal(result.valid, true, JSON.stringify(result));
-			assert.equal(result.critical, undefined, JSON.stringify(result));
-			assert.equal(result.warnings, undefined, JSON.stringify(result));
-
-			// neither
-			json = getPackageJson(npmWarningFields);
-			delete json.licenses;
+			delete json.license;
 			result = validate(json, {
 				recommendations: false,
 				warnings: true,

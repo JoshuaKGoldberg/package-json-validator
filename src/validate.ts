@@ -75,7 +75,6 @@ const getSpecMap = (
 				recommended: true,
 				validate: (_, value) => validateEngines(value).errorMessages,
 			},
-			engineStrict: { type: "boolean" },
 			exports: { validate: (_, value) => validateExports(value).errorMessages },
 			files: { validate: (_, value) => validateFiles(value).errorMessages },
 			homepage: {
@@ -86,11 +85,8 @@ const getSpecMap = (
 				validate: (_, value) => validateKeywords(value).errorMessages,
 				warning: true,
 			},
-			license: { validate: (_, value) => validateLicense(value).errorMessages },
-			licenses: {
-				or: "license",
-				type: "array",
-				validate: validateUrlTypes,
+			license: {
+				validate: (_, value) => validateLicense(value).errorMessages,
 				warning: true,
 			},
 			main: { validate: (_, value) => validateMain(value).errorMessages },
@@ -106,11 +102,9 @@ const getSpecMap = (
 			peerDependencies: {
 				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
-			preferGlobal: { type: "boolean" },
 			private: { validate: (_, value) => validatePrivate(value).errorMessages },
 			publishConfig: { type: "object" },
 			repository: {
-				or: "repositories",
 				types: ["string", "object"],
 				validate: validateUrlTypes,
 				warning: true,
