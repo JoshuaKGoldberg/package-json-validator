@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.56.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.55.0...v0.56.0) (2025-11-10)
+
+### Features
+
+- **validateOs:** add function for validating `os` ([#544](https://github.com/JoshuaKGoldberg/package-json-validator/issues/544)) ([9f8daf3](https://github.com/JoshuaKGoldberg/package-json-validator/commit/9f8daf3a82a69e51c382c7cbc86056c6dc87a8ee)), closes [#376](https://github.com/JoshuaKGoldberg/package-json-validator/issues/376)
+
 # [0.55.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.54.0...v0.55.0) (2025-11-10)
 
 ### Features
