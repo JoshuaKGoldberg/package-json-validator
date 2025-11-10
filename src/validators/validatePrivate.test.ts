@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validatePrivate } from "./validatePrivate.ts";
 
-describe("validatePrivate", () => {
+describe(validatePrivate, () => {
 	it.each([true, false])(
 		"should return no issues for boolean values '%s'",
 		(type) => {

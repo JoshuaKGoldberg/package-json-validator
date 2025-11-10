@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateBin } from "./validateBin.ts";
 
-describe("validateBin", () => {
+describe(validateBin, () => {
 	it("should return a Result with no issues if the bin field is an empty object", () => {
 		const result = validateBin({});
 		expect(result.errorMessages).toEqual([]);

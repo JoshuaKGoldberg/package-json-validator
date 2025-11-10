@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateMain } from "./validateMain.ts";
 
-describe("validateMain", () => {
+describe(validateMain, () => {
 	it("should return no issues for a string", () => {
 		const result = validateMain("index.js");
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateBundleDependencies } from "./validateBundleDependencies.ts";
 
-describe("validateBundleDependencies", () => {
+describe(validateBundleDependencies, () => {
 	it("should return a result with no issues if the value is an empty array", () => {
 		const result = validateBundleDependencies([]);
 		expect(result.errorMessages).toEqual([]);

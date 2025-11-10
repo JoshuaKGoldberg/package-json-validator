@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateDirectories } from "./validateDirectories.ts";
 
-describe("validateDirectories", () => {
+describe(validateDirectories, () => {
 	it("should return no issues if the value is an empty object", () => {
 		const result = validateDirectories({});
 		expect(result.errorMessages).toEqual([]);

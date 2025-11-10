@@ -45,7 +45,7 @@ const npmWarningFields = {
 	},
 };
 
-describe("validate", () => {
+describe(validate, () => {
 	describe("Basic", () => {
 		test("Input types", () => {
 			assert.ok(validate("string").critical, "string");

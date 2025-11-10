@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateDescription } from "./validateDescription.ts";
 
-describe("validateDescription", () => {
+describe(validateDescription, () => {
 	it("should return no issues for a string", () => {
 		const result = validateDescription("The Fragile");
 

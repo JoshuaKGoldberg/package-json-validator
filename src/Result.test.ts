@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { ChildResult, Result } from "./Result.ts";
 
-describe("Result", () => {
-	describe("Result", () => {
+describe(Result, () => {
+	describe(Result, () => {
 		describe("constructor", () => {
 			it("should create a Result with no issues by default", () => {
 				const result = new Result();
@@ -173,7 +173,7 @@ describe("Result", () => {
 		});
 	});
 
-	describe("ChildResult", () => {
+	describe(ChildResult, () => {
 		describe("constructor", () => {
 			it("should create a ChildResult with no issues by default", () => {
 				const childResult = new ChildResult(0);

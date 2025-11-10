@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateScripts } from "./validateScripts.ts";
 
-describe("validateScripts", () => {
+describe(validateScripts, () => {
 	it("should return no issues if the scripts field is an empty object", () => {
 		const result = validateScripts({});
 		expect(result.errorMessages).toEqual([]);

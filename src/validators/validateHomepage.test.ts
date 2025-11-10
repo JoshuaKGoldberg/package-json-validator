@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateHomepage } from "./validateHomepage.ts";
 
-describe("validateHomepage", () => {
+describe(validateHomepage, () => {
 	it("should return no issues for a valid url", () => {
 		let result = validateHomepage("https://nin.com");
 

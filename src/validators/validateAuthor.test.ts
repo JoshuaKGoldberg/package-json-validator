@@ -9,7 +9,7 @@ vi.mock("../utils/validatePeople", () => ({
 	validatePeople: vi.fn(),
 }));
 
-describe("validateAuthor", () => {
+describe(validateAuthor, () => {
 	beforeEach(() => {
 		vi.restoreAllMocks();
 	});
