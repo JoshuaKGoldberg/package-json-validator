@@ -16,6 +16,7 @@ export { validateMain } from "./validateMain.ts";
 export { validateMan } from "./validateMan.ts";
 export { validateName } from "./validateName.ts";
 export { validatePrivate } from "./validatePrivate.ts";
+export { validateRepository } from "./validateRepository.ts";
 export { validateScripts } from "./validateScripts.ts";
 export { validateType } from "./validateType.ts";
 export { validateUrlOrMailto } from "./validateUrlOrMailto.ts";

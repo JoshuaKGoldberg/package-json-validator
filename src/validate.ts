@@ -25,6 +25,7 @@ import {
 	validateMan,
 	validateName,
 	validatePrivate,
+	validateRepository,
 	validateScripts,
 	validateType,
 	validateUrlOrMailto,
@@ -105,8 +106,7 @@ const getSpecMap = (
 			private: { validate: (_, value) => validatePrivate(value).errorMessages },
 			publishConfig: { type: "object" },
 			repository: {
-				types: ["string", "object"],
-				validate: validateUrlTypes,
+				validate: (_, value) => validateRepository(value).errorMessages,
 				warning: true,
 			},
 			scripts: { validate: (_, value) => validateScripts(value).errorMessages },

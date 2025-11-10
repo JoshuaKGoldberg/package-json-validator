@@ -23,6 +23,7 @@ export {
 	validateDependencies as validateOptionalDependencies,
 	validateDependencies as validatePeerDependencies,
 	validatePrivate,
+	validateRepository,
 	validateScripts,
 	validateType,
 	validateVersion,
