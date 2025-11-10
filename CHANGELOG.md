@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.54.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.53.0...v0.54.0) (2025-11-10)
+
+### Features
+
+- **validateRepository:** add function for validating `repository` ([#554](https://github.com/JoshuaKGoldberg/package-json-validator/issues/554)) ([87b364e](https://github.com/JoshuaKGoldberg/package-json-validator/commit/87b364e097877210e259f3cbc6aee399de7ae5db)), closes [#538](https://github.com/JoshuaKGoldberg/package-json-validator/issues/538)
+
 # [0.53.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.52.0...v0.53.0) (2025-11-10)
 
 ### Features
