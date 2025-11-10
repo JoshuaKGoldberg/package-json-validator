@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.51.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.50.0...v0.51.0) (2025-11-10)
+
+### Features
+
+- **validateWorkspaces:** add function for validating `workspaces` ([#547](https://github.com/JoshuaKGoldberg/package-json-validator/issues/547)) ([92e623b](https://github.com/JoshuaKGoldberg/package-json-validator/commit/92e623b89852d117445329756c4bcf0851a1dd27)), closes [#380](https://github.com/JoshuaKGoldberg/package-json-validator/issues/380)
+
 # [0.50.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.49.0...v0.50.0) (2025-11-06)
 
 ### Features
