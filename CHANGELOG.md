@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.57.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.56.0...v0.57.0) (2025-11-10)
+
+### Features
+
+- **validatePublishConfig:** add function for validating `publishConfig` ([#545](https://github.com/JoshuaKGoldberg/package-json-validator/issues/545)) ([811d658](https://github.com/JoshuaKGoldberg/package-json-validator/commit/811d65890435d3d227f9db631f2171d129c5ccdb)), closes [#378](https://github.com/JoshuaKGoldberg/package-json-validator/issues/378)
+
 # [0.56.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.55.0...v0.56.0) (2025-11-10)
 
 ### Features
