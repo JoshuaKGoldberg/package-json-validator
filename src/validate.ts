@@ -15,6 +15,7 @@ import {
 	validateDependencies,
 	validateDescription,
 	validateDirectories,
+	validateEngines,
 	validateExports,
 	validateFiles,
 	validateHomepage,
@@ -69,7 +70,10 @@ const getSpecMap = (
 			directories: {
 				validate: (_, value) => validateDirectories(value).errorMessages,
 			},
-			engines: { recommended: true, type: "object" },
+			engines: {
+				recommended: true,
+				validate: (_, value) => validateEngines(value).errorMessages,
+			},
 			engineStrict: { type: "boolean" },
 			exports: { validate: (_, value) => validateExports(value).errorMessages },
 			files: { validate: (_, value) => validateFiles(value).errorMessages },

@@ -380,6 +380,30 @@ const packageData = {
 const result = validateDirectories(packageData.directories);
 ```
 
+### validateEngines(value)
+
+This function validates the value of the `engines` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- It should be of type `object`.
+- It should be a key to string value object, and the values should all be non-empty.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateEngines } from "package-json-validator";
+
+const packageData = {
+	engines: {
+		node: "^20.19.0 || >=22.12.0",
+	},
+};
+
+const result = validateEngines(packageData.engines);
+```
+
 ### validateExports(value)
 
 This function validates the value of the `exports` property of a `package.json`.
