@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.53.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.52.0...v0.53.0) (2025-11-10)
+
+### Features
+
+- remove validations for deprecated / unsupported properties ([#553](https://github.com/JoshuaKGoldberg/package-json-validator/issues/553)) ([8b1c558](https://github.com/JoshuaKGoldberg/package-json-validator/commit/8b1c5580ee1d04a710224ee3a99b89e784693e04)), closes [#537](https://github.com/JoshuaKGoldberg/package-json-validator/issues/537)
+- **validateName:** add function for validating `name` ([#551](https://github.com/JoshuaKGoldberg/package-json-validator/issues/551)) ([f984c4a](https://github.com/JoshuaKGoldberg/package-json-validator/commit/f984c4a62427d1f67e76c8f2bf0698627e2e61dd)), closes [#536](https://github.com/JoshuaKGoldberg/package-json-validator/issues/536)
+
 # [0.51.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.50.0...v0.51.0) (2025-11-10)
 
 ### Features
