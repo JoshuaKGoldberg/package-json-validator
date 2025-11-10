@@ -605,6 +605,45 @@ const packageData = {
 const result = validatePrivate(packageData.private);
 ```
 
+### validateRepository(value)
+
+This function validates the value of the `repository` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- It should be of type `object` or `string`.
+- If it's an `object`, it should have `type`, `url`, and optionally `directory`.
+- `type` and `directory` (if present) should be non-empty strings
+- `url` should be a valid repo url
+- If it's a `string`, it should be the shorthand repo string from a supported provider.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateRepository } from "package-json-validator";
+
+const packageData = {
+	repository: {
+		type: "git",
+		url: "git+https://github.com/JoshuaKGoldberg/package-json-validator.git",
+		directory: "packages/package-json-validator",
+	},
+};
+
+const result = validateRepository(packageData.repository);
+```
+
+```ts
+import { validateRepository } from "package-json-validator";
+
+const packageData = {
+	repository: "github:JoshuaKGoldberg/package-json-validator",
+};
+
+const result = validateRepository(packageData.repository);
+```
+
 ### validateScripts(value)
 
 This function validates the value of the `scripts` property of a `package.json`.
