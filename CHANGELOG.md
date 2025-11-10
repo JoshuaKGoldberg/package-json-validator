@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.55.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.54.0...v0.55.0) (2025-11-10)
+
+### Features
+
+- **validateCpu:** add validation for specific arch types ([#543](https://github.com/JoshuaKGoldberg/package-json-validator/issues/543)) ([8011395](https://github.com/JoshuaKGoldberg/package-json-validator/commit/8011395abfd1442c8ae0876f8bda88c7579150aa)), closes [#540](https://github.com/JoshuaKGoldberg/package-json-validator/issues/540)
+
 # [0.54.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.53.0...v0.54.0) (2025-11-10)
 
 ### Features
