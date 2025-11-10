@@ -24,6 +24,7 @@ export {
 	validateOs,
 	validateDependencies as validatePeerDependencies,
 	validatePrivate,
+	validatePublishConfig,
 	validateRepository,
 	validateScripts,
 	validateType,

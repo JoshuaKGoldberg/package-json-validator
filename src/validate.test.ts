@@ -20,6 +20,10 @@ const getPackageJson = (
 	man: ["./man/foo.1", "./man/bar.1"],
 	name: "test-package",
 	os: ["win32"],
+	publishConfig: {
+		access: "public",
+		provenance: true,
+	},
 	scripts: {
 		lint: "eslint .",
 	},
