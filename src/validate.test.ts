@@ -19,6 +19,7 @@ const getPackageJson = (
 	main: "index.js",
 	man: ["./man/foo.1", "./man/bar.1"],
 	name: "test-package",
+	os: ["win32"],
 	scripts: {
 		lint: "eslint .",
 	},

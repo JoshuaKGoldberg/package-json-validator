@@ -24,6 +24,7 @@ import {
 	validateMain,
 	validateMan,
 	validateName,
+	validateOs,
 	validatePrivate,
 	validateRepository,
 	validateScripts,
@@ -99,7 +100,7 @@ const getSpecMap = (
 			optionalDependencies: {
 				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
-			os: { type: "array" },
+			os: { validate: (_, value) => validateOs(value).errorMessages },
 			peerDependencies: {
 				validate: (_, value) => validateDependencies(value).errorMessages,
 			},
