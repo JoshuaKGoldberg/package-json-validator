@@ -291,7 +291,12 @@ This function validates the value of the `cpu` property of a `package.json`.
 It takes the value, and validates it against the following criteria.
 
 - the property is an array
-- all items in the array should be non-empty strings
+- all items in the array should be one of the following:
+
+"arm", "arm64", "ia32", "loong64", "mips", "mipsel", "ppc64", "riscv64", "s390", "s390x", "x64"
+
+> [!NOTE]
+> These values are the list of possible `process.arch` values [documented by Node](https://nodejs.org/api/process.html#processarch).
 
 It returns a `Result` object (See [Result Types](#result-types)).
 
