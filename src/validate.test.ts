@@ -24,6 +24,7 @@ const getPackageJson = (
 	},
 	type: "module",
 	version: "0.5.0",
+	workspaces: ["./packages/*"],
 	...extra,
 });
 

@@ -630,6 +630,28 @@ const packageData = {
 const result = validateVersion(packageData.version);
 ```
 
+### validateWorkspaces(value)
+
+This function validates the value of the `workspaces` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be non-empty strings
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateWorkspaces } from "package-json-validator";
+
+const packageData = {
+	workspaces: ["./app", "./packages/*"],
+};
+
+const result = validateWorkspaces(packageData.cpu);
+```
+
 ## Specification
 
 This package uses the `npm` [spec](https://docs.npmjs.com/cli/configuring-npm/package-json) along with additional [supporting documentation from node](https://nodejs.org/api/packages.html), as its source of truth for validation.
