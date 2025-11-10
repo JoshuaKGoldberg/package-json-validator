@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { ChildResult, Result } from "../Result.ts";
 import { validateKeywords } from "./validateKeywords.ts";
 
-describe("validateKeywords", () => {
+describe(validateKeywords, () => {
 	it("should return no issues if the value is an empty array", () => {
 		const result = validateKeywords([]);
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateType } from "./validateType.ts";
 
-describe("validateType", () => {
+describe(validateType, () => {
 	it.each(["commonjs", "module"])(
 		"should return no issues for valid type '%s'",
 		(type) => {

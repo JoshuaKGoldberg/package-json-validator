@@ -13,7 +13,7 @@ const VALID_OSS = [
 	"win32",
 ];
 
-describe("validateOs", () => {
+describe(validateOs, () => {
 	it("should return no issues if the value is an empty array", () => {
 		const result = validateOs([]);
 

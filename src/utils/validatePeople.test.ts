@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { isPerson, isPersonArray, validatePeople } from "./validatePeople.ts";
 
-describe("validatePeople", () => {
+describe(validatePeople, () => {
 	it("should validate string with only name", () => {
 		const result = validatePeople("Barney Rubble");
 		expect(result.errorMessages).toEqual([]);
@@ -167,7 +167,7 @@ describe("validatePeople", () => {
 		expect(result.issues.length).toBe(1);
 	});
 
-	describe("isPerson", () => {
+	describe(isPerson, () => {
 		it("should return true for valid person object", () => {
 			const person = { name: "Barney Rubble" };
 			expect(isPerson(person)).toBe(true);
@@ -189,7 +189,7 @@ describe("validatePeople", () => {
 		);
 	});
 
-	describe("isPersonArray", () => {
+	describe(isPersonArray, () => {
 		it("should return true for valid person array", () => {
 			const personArray = [
 				{ name: "Barney Rubble" },

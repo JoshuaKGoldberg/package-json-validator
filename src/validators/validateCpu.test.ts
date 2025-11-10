@@ -16,7 +16,7 @@ const VALID_ARCHS = [
 	"x64",
 ];
 
-describe("validateCpu", () => {
+describe(validateCpu, () => {
 	it("should return no issues if the value is an empty array", () => {
 		const result = validateCpu([]);
 

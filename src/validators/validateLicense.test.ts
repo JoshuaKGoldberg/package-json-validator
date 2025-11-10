@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateLicense } from "./validateLicense.ts";
 
-describe("validateLicense", () => {
+describe(validateLicense, () => {
 	it.each([
 		"MIT",
 		"BSD-2-Clause",

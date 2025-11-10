@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateConfig } from "./validateConfig.ts";
 
-describe("validateConfig", () => {
+describe(validateConfig, () => {
 	it("should return a result with no issues if the field is an empty object", () => {
 		const result = validateConfig({});
 		expect(result.errorMessages).toEqual([]);

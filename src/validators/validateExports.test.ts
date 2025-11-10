@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateExports } from "./validateExports.ts";
 
-describe("validateExports", () => {
+describe(validateExports, () => {
 	it("should return no issues if the value is an empty object", () => {
 		const result = validateExports({});
 		expect(result.errorMessages).toEqual([]);

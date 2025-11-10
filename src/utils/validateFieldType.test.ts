@@ -4,7 +4,7 @@ import type { FieldSpec } from "../Spec.types.ts";
 
 import { validateFieldType } from "./validateFieldType.ts";
 
-describe("validateFieldType", () => {
+describe(validateFieldType, () => {
 	it("should return an empty array if no type or types are defined", () => {
 		const field = {} satisfies FieldSpec;
 		const result = validateFieldType("testField", field, "testValue");

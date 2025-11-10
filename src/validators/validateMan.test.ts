@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateMan } from "./validateMan.ts";
 
-describe("validateMan", () => {
+describe(validateMan, () => {
 	it("should return no issues if the value is an empty array", () => {
 		const result = validateMan([]);
 		expect(result.errorMessages).toEqual([]);

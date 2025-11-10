@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateUrlOrMailto } from "./validateUrlOrMailto.ts";
 
-describe("validateUrlOrMailto", () => {
+describe(validateUrlOrMailto, () => {
 	it("should return an error if the string is neither a valid URL nor a valid email", () => {
 		const result = validateUrlOrMailto("testField", "invalidString");
 		expect(result).toEqual(["testField should be an email or a url"]);

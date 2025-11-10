@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { validateVersion } from "./validateVersion.ts";
 
-describe("validateVersion", () => {
+describe(validateVersion, () => {
 	it.each([
 		"1.2.3",
 		"1.2.3-beta.0",
