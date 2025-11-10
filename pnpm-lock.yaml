@@ -40,7 +40,7 @@ importers:
         specifier: 3.0.3
         version: 3.0.3
       '@types/validate-npm-package-name':
-        specifier: ^4.0.2
+        specifier: 4.0.2
         version: 4.0.2
       '@types/yargs':
         specifier: 17.0.33
