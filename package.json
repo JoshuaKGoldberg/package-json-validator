@@ -31,6 +31,11 @@
 			"name": "JoshuaKGoldberg",
 			"email": "npm@joshuakgoldberg.com",
 			"url": "https://joshuakgoldberg.com"
+		},
+		{
+			"name": "michael faith",
+			"email": "michaelfaith@users.noreply.github.com",
+			"url": "https://michael.faith"
 		}
 	],
 	"type": "module",
