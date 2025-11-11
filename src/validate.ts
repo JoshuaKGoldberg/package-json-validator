@@ -11,6 +11,7 @@ import {
 	validateBin,
 	validateBundleDependencies,
 	validateConfig,
+	validateContributors,
 	validateCpu,
 	validateDependencies,
 	validateDescription,
@@ -57,7 +58,7 @@ const getSpecMap = (
 			},
 			config: { validate: (_, value) => validateConfig(value).errorMessages },
 			contributors: {
-				validate: (_, value) => validatePeople(value).errorMessages,
+				validate: (_, value) => validateContributors(value).errorMessages,
 			},
 			cpu: { validate: (_, value) => validateCpu(value).errorMessages },
 			dependencies: {

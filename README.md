@@ -285,6 +285,35 @@ const packageData = {
 const result = validateConfig(packageData.config);
 ```
 
+### validateContributors(value)
+
+This function validates the value of the `contributors` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an `Array` of objects
+- each object in the array should be a "person" object with at least a `name` and optionally `email` and `url`
+- the `email` and `url` properties, if present, should be valid email and URL formats.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateContributors } from "package-json-validator";
+
+const packageData = {
+	contributors: [
+		{
+			email: "b@rubble.com",
+			name: "Barney Rubble",
+			url: "http://barnyrubble.tumblr.com/",
+		},
+	],
+};
+
+const result = validateContributors(packageData.contributors);
+```
+
 ### validateCpu(value)
 
 This function validates the value of the `cpu` property of a `package.json`.

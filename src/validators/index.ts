@@ -2,6 +2,7 @@ export { validateAuthor } from "./validateAuthor.ts";
 export { validateBin } from "./validateBin.ts";
 export { validateBundleDependencies } from "./validateBundleDependencies.ts";
 export { validateConfig } from "./validateConfig.ts";
+export { validateContributors } from "./validateContributors.ts";
 export { validateCpu } from "./validateCpu.ts";
 export { validateDependencies } from "./validateDependencies.ts";
 export { validateDescription } from "./validateDescription.ts";

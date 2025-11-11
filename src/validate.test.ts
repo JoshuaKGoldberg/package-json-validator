@@ -8,6 +8,7 @@ const getPackageJson = (
 	config: {
 		debug: true,
 	},
+	contributors: [{ name: "Efrim Manuel Menuck" }],
 	cpu: ["x64", "ia32"],
 	directories: {
 		bin: "dist/bin",
