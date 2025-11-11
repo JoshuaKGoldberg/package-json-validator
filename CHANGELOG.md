@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.58.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.57.0...v0.58.0) (2025-11-11)
+
+### Features
+
+- **validateContributors:** add function for validating `contributors` ([#560](https://github.com/JoshuaKGoldberg/package-json-validator/issues/560)) ([0274358](https://github.com/JoshuaKGoldberg/package-json-validator/commit/0274358047e5e4ee55ee22f35860cc4271489ac2)), closes [#555](https://github.com/JoshuaKGoldberg/package-json-validator/issues/555)
+
 # [0.57.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.56.0...v0.57.0) (2025-11-10)
 
 ### Features

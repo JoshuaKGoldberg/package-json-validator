@@ -65,12 +65,12 @@ function validatePerson(obj: Person | string): Result {
  *   "url" : "http://barnyrubble.tumblr.com/"
  * }
  *
+ * An array of such objects.
  * Or a single string like this:
  * "Barney Rubble &lt;b@rubble.com> (http://barnyrubble.tumblr.com/)
- * Or an array of either of the above.
  */
 export const validatePeople = (obj: People): Result => {
-	if (obj instanceof Array) {
+	if (Array.isArray(obj)) {
 		const result = new Result();
 		for (let i = 0; i < obj.length; i++) {
 			result.addChildResult(i, validatePerson(obj[i]));
