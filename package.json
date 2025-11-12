@@ -41,15 +41,15 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"type": "./lib/index.d.ts",
-			"default": "./lib/index.js"
+			"type": "./lib/index.d.mts",
+			"default": "./lib/index.mjs"
 		},
 		"./package.json": "./package.json"
 	},
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "lib/index.mjs",
+	"types": "lib/index.d.mts",
 	"bin": {
-		"pjv": "lib/bin/pjv.js"
+		"pjv": "lib/bin/pjv.mjs"
 	},
 	"files": [
 		"CHANGELOG.md",
