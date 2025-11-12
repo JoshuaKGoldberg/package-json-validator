@@ -41,15 +41,15 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"type": "./lib/index.d.ts",
-			"default": "./lib/index.js"
+			"type": "./lib/index.d.mts",
+			"default": "./lib/index.mjs"
 		},
 		"./package.json": "./package.json"
 	},
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "lib/index.mjs",
+	"types": "lib/index.d.mts",
 	"bin": {
-		"pjv": "lib/bin/pjv.js"
+		"pjv": "lib/bin/pjv.mjs"
 	},
 	"files": [
 		"CHANGELOG.md",
@@ -105,7 +105,7 @@
 		"prettier-plugin-sh": "0.18.0",
 		"release-it": "19.0.1",
 		"sentences-per-line": "0.3.0",
-		"tsdown": "0.15.11",
+		"tsdown": "0.16.0",
 		"typescript": "5.9.3",
 		"typescript-eslint": "8.46.0",
 		"vitest": "4.0.4"
