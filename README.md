@@ -771,6 +771,28 @@ const packageData = {
 const result = validateScripts(packageData.scripts);
 ```
 
+### validateSideEffects(value)
+
+This function validates the value of the `sideEffects` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- The value is either a boolean or an Array.
+- If it's an array, all items should be non-emptry strings.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateSideEffects } from "package-json-validator";
+
+const packageData = {
+	sideEffects: false,
+};
+
+const result = validateSideEffects(packageData.sideEffects);
+```
+
 ### validateType(value)
 
 This function validates the value of the `type` property of a `package.json`.

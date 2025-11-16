@@ -28,6 +28,7 @@ export {
 	validatePublishConfig,
 	validateRepository,
 	validateScripts,
+	validateSideEffects,
 	validateType,
 	validateVersion,
 	validateWorkspaces,
