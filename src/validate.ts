@@ -30,6 +30,7 @@ import {
 	validatePublishConfig,
 	validateRepository,
 	validateScripts,
+	validateSideEffects,
 	validateType,
 	validateUrlOrMailto,
 	validateVersion,
@@ -115,6 +116,9 @@ const getSpecMap = (
 				warning: true,
 			},
 			scripts: { validate: (_, value) => validateScripts(value).errorMessages },
+			sideEffects: {
+				validate: (_, value) => validateSideEffects(value).errorMessages,
+			},
 			type: {
 				recommended: true,
 				validate: (_, value) => validateType(value).errorMessages,

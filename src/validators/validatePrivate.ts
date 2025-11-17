@@ -10,7 +10,7 @@ export const validatePrivate = (type: unknown): Result => {
 		if (type === null) {
 			result.addIssue("the value is `null`, but should be a `boolean`");
 		} else {
-			const valueType = Array.isArray(type) ? "array" : typeof type;
+			const valueType = Array.isArray(type) ? "Array" : typeof type;
 			result.addIssue(`the type should be a \`boolean\`, not \`${valueType}\``);
 		}
 	}

@@ -28,6 +28,7 @@ const getPackageJson = (
 	scripts: {
 		lint: "eslint .",
 	},
+	sideEffects: false,
 	type: "module",
 	version: "0.5.0",
 	workspaces: ["./packages/*"],

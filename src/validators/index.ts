@@ -21,6 +21,7 @@ export { validatePrivate } from "./validatePrivate.ts";
 export { validatePublishConfig } from "./validatePublishConfig.ts";
 export { validateRepository } from "./validateRepository.ts";
 export { validateScripts } from "./validateScripts.ts";
+export { validateSideEffects } from "./validateSideEffects.ts";
 export { validateType } from "./validateType.ts";
 export { validateUrlOrMailto } from "./validateUrlOrMailto.ts";
 export { validateVersion } from "./validateVersion.ts";

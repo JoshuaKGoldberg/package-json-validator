@@ -8,7 +8,7 @@ describe(validateEngines, () => {
 		expect(result.errorMessages).toEqual([]);
 	});
 
-	it("should return issues if the value is an object with all keys having valid string values", () => {
+	it("should return no issues if the value is an object with all keys having valid string values", () => {
 		const result = validateEngines({
 			node: "^24.11.0",
 			npm: "Please use pnpm",

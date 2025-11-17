@@ -27,11 +27,11 @@ describe(validatePrivate, () => {
 		]);
 	});
 
-	it("should return error if type is not a boolean (array)", () => {
+	it("should return error if type is not a boolean (Array)", () => {
 		const result = validatePrivate([]);
 
 		expect(result.errorMessages).toEqual([
-			"the type should be a `boolean`, not `array`",
+			"the type should be a `boolean`, not `Array`",
 		]);
 	});
 
