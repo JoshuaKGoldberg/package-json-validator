@@ -1,5 +1,11 @@
 # Changelog
 
+# [0.59.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.58.0...v0.59.0) (2025-11-17)
+
+### Features
+
+- **validateSideEffects:** add function for validating `sideEffects` ([#571](https://github.com/JoshuaKGoldberg/package-json-validator/issues/571)) ([60e66da](https://github.com/JoshuaKGoldberg/package-json-validator/commit/60e66daf3574746cc40dad239869f2ade712cc68)), closes [#570](https://github.com/JoshuaKGoldberg/package-json-validator/issues/570)
+
 # [0.58.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.57.0...v0.58.0) (2025-11-11)
 
 ### Features
