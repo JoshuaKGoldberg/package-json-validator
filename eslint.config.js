@@ -11,6 +11,10 @@ import yml from "eslint-plugin-yml";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
+const JS_FILES = ["**/*.js", "**/*.mjs"];
+const TS_FILES = ["**/*.ts", "**/*.mts"];
+const JS_TS_FILES = [...JS_FILES, ...TS_FILES];
+
 export default defineConfig(
 	{
 		ignores: [
@@ -24,22 +28,38 @@ export default defineConfig(
 		],
 	},
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	eslint.configs.recommended,
-	comments.recommended,
-	jsdoc.configs["flat/contents-typescript-error"],
-	jsdoc.configs["flat/logical-typescript-error"],
-	jsdoc.configs["flat/stylistic-typescript-error"],
-	jsonc.configs["flat/recommended-with-json"],
-	n.configs["flat/recommended"],
-	packageJson.configs.recommended,
-	perfectionist.configs["recommended-natural"],
-	regexp.configs["flat/recommended"],
+	{
+		extends: [
+			eslint.configs.recommended,
+			comments.recommended,
+			n.configs["flat/recommended"],
+			perfectionist.configs["recommended-natural"],
+			regexp.configs["flat/recommended"],
+		],
+		files: JS_TS_FILES,
+	},
+	{
+		extends: [
+			jsdoc.configs["flat/contents-typescript-error"],
+			jsdoc.configs["flat/logical-typescript-error"],
+			jsdoc.configs["flat/stylistic-typescript-error"],
+		],
+		files: TS_FILES,
+	},
+	{
+		extends: [jsonc.configs["flat/recommended-with-json"]],
+		files: ["**/*.json", "**/*.jsonc"],
+	},
+	{
+		extends: [packageJson.configs["recommended-publishable"]],
+		files: ["package.json"],
+	},
 	{
 		extends: [
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
 		],
-		files: ["**/*.{js,mjs,ts}"],
+		files: JS_TS_FILES,
 		languageOptions: {
 			parserOptions: {
 				projectService: {
