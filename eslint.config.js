@@ -11,6 +11,10 @@ import yml from "eslint-plugin-yml";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
+const JS_FILES = ["**/*.js"];
+const TS_FILES = ["**/*.ts"];
+const JS_TS_FILES = [...JS_FILES, ...TS_FILES];
+
 export default defineConfig(
 	{
 		ignores: [
@@ -24,52 +28,23 @@ export default defineConfig(
 		],
 	},
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-	eslint.configs.recommended,
-	comments.recommended,
-	jsdoc.configs["flat/contents-typescript-error"],
-	jsdoc.configs["flat/logical-typescript-error"],
-	jsdoc.configs["flat/stylistic-typescript-error"],
-	jsonc.configs["flat/recommended-with-json"],
-	n.configs["flat/recommended"],
-	packageJson.configs.recommended,
-	perfectionist.configs["recommended-natural"],
-	regexp.configs["flat/recommended"],
 	{
 		extends: [
-			tseslint.configs.strictTypeChecked,
-			tseslint.configs.stylisticTypeChecked,
+			eslint.configs.recommended,
+			comments.recommended,
+			n.configs["flat/recommended"],
+			perfectionist.configs["recommended-natural"],
+			regexp.configs["flat/recommended"],
 		],
-		files: ["**/*.{js,mjs,ts}"],
-		languageOptions: {
-			parserOptions: {
-				projectService: {
-					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
-				},
-				tsconfigRootDir: import.meta.dirname,
-			},
-		},
+		files: JS_TS_FILES,
 		rules: {
 			"@typescript-eslint/consistent-type-imports": "error",
-			"@typescript-eslint/no-deprecated": "off",
-			"@typescript-eslint/no-dynamic-delete": "off",
-			"@typescript-eslint/restrict-template-expressions": "off",
-			"jsdoc/match-description": "off",
 			"n/no-missing-import": "off",
 
 			// Using a ts bin file throws this rule off.
 			// It uses the package.json as a source of truth, and since the package points
 			// at the transpiled js file, it treats usage on the ts src as a violation.
 			"n/hashbang": "off",
-
-			// TODO: Eventually clean these up
-			"@typescript-eslint/no-unsafe-argument": "off",
-			"@typescript-eslint/no-unsafe-assignment": "off",
-			"@typescript-eslint/no-unsafe-member-access": "off",
-			"@typescript-eslint/no-unsafe-return": "off",
-			"no-useless-escape": "off",
-			"regexp/no-super-linear-backtracking": "off",
-			"regexp/no-unused-capturing-group": "off",
-			"regexp/no-useless-quantifier": "off",
 
 			// Stylistic concerns that don't interfere with Prettier
 			"logical-assignment-operators": [
@@ -83,6 +58,50 @@ export default defineConfig(
 		},
 		settings: {
 			perfectionist: { partitionByComment: true, type: "natural" },
+		},
+	},
+	{
+		extends: [
+			jsdoc.configs["flat/contents-typescript-error"],
+			jsdoc.configs["flat/logical-typescript-error"],
+			jsdoc.configs["flat/stylistic-typescript-error"],
+		],
+		files: TS_FILES,
+		rules: {
+			"jsdoc/match-description": "off",
+		},
+	},
+	{
+		extends: [jsonc.configs["flat/recommended-with-json"]],
+		files: ["**/*.json", "**/*.jsonc"],
+	},
+	{
+		extends: [packageJson.configs["recommended-publishable"]],
+		files: ["package.json"],
+	},
+	{
+		extends: [
+			tseslint.configs.strictTypeChecked,
+			tseslint.configs.stylisticTypeChecked,
+		],
+		files: JS_TS_FILES,
+		languageOptions: {
+			parserOptions: {
+				projectService: {
+					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
+				},
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+		rules: {
+			"@typescript-eslint/no-deprecated": "off",
+			"@typescript-eslint/no-dynamic-delete": "off",
+			"@typescript-eslint/restrict-template-expressions": "off",
+
+			// TODO: Eventually clean this up
+			"@typescript-eslint/no-unsafe-member-access": "off",
+		},
+		settings: {
 			vitest: { typecheck: true },
 		},
 	},

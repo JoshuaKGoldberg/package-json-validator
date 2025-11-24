@@ -30,7 +30,7 @@ const validateExportCondition = (
 	else if (obj && typeof obj === "object" && !Array.isArray(obj)) {
 		const entries = Object.entries(obj);
 		for (let i = 0; i < entries.length; i++) {
-			const [key, value] = entries[i];
+			const [key, value] = entries[i] as [string, unknown];
 
 			// Recurse to add results from children.
 			const childResult = validateExportCondition(value, key, i);

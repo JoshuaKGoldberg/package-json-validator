@@ -64,7 +64,7 @@ describe(validateContributors, () => {
 		expect(result.issues).toHaveLength(0);
 		expect(result.childResults).toHaveLength(2);
 		expect(result.errorMessages).toEqual([
-			"item 1 is invalid; it should be a person object with at least a \`name\`",
+			"item 1 is invalid; it should be a person object with at least a `name`",
 		]);
 		expect(mockValidatePeople).toHaveBeenCalledTimes(1);
 	});

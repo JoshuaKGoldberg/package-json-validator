@@ -13,6 +13,7 @@ export const isPerson = (obj: unknown): obj is Person => {
 function validatePerson(obj: Person | string): Result {
 	let result = new Result();
 	if (typeof obj == "string") {
+		// eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group
 		const authorRegex = /^([^<(\s][^<(]*)?(\s*<(.*?)>)?(\s*\((.*?)\))?/;
 		const authorFields = authorRegex.exec(obj);
 		if (authorFields) {
@@ -32,7 +33,7 @@ function validatePerson(obj: Person | string): Result {
 		if (typeof obj.name === "undefined") {
 			result.addIssue("person should have a name");
 		}
-		const entries = Object.entries(obj);
+		const entries = Object.entries(obj) as [string, string][];
 		for (let i = 0; i < entries.length; i++) {
 			const [key, value] = entries[i];
 			const childResult = new ChildResult(i);

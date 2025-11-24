@@ -64,7 +64,7 @@ export const validateDependencies = (value: unknown): Result => {
 		const entries = Object.entries(value);
 		for (let i = 0; i < entries.length; ++i) {
 			const childResult = new ChildResult(i);
-			const [pkg, version] = entries[i];
+			const [pkg, version] = entries[i] as [string, unknown];
 			if (
 				!packageFormat.test(pkg) &&
 				!(typeof version === "string" && isUnpublishedVersion(version))

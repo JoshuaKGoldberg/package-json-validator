@@ -24,7 +24,7 @@ export const validateOs = (obj: unknown): Result => {
 		// If it's an array, check if all items are non-empty strings
 		for (let i = 0; i < obj.length; i++) {
 			const childResult = new ChildResult(i);
-			const item = obj[i];
+			const item: unknown = obj[i];
 
 			if (typeof item !== "string") {
 				const itemType = item === null ? "null" : typeof item;
