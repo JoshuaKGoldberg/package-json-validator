@@ -11,8 +11,8 @@ import yml from "eslint-plugin-yml";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-const JS_FILES = ["**/*.js", "**/*.mjs"];
-const TS_FILES = ["**/*.ts", "**/*.mts"];
+const JS_FILES = ["**/*.js"];
+const TS_FILES = ["**/*.ts"];
 const JS_TS_FILES = [...JS_FILES, ...TS_FILES];
 
 export default defineConfig(
