@@ -37,6 +37,28 @@ export default defineConfig(
 			regexp.configs["flat/recommended"],
 		],
 		files: JS_TS_FILES,
+		rules: {
+			"@typescript-eslint/consistent-type-imports": "error",
+			"n/no-missing-import": "off",
+
+			// Using a ts bin file throws this rule off.
+			// It uses the package.json as a source of truth, and since the package points
+			// at the transpiled js file, it treats usage on the ts src as a violation.
+			"n/hashbang": "off",
+
+			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"no-useless-rename": "error",
+			"object-shorthand": "error",
+			"operator-assignment": "error",
+		},
+		settings: {
+			perfectionist: { partitionByComment: true, type: "natural" },
+		},
 	},
 	{
 		extends: [
@@ -45,6 +67,9 @@ export default defineConfig(
 			jsdoc.configs["flat/stylistic-typescript-error"],
 		],
 		files: TS_FILES,
+		rules: {
+			"jsdoc/match-description": "off",
+		},
 	},
 	{
 		extends: [jsonc.configs["flat/recommended-with-json"]],
@@ -69,40 +94,14 @@ export default defineConfig(
 			},
 		},
 		rules: {
-			"@typescript-eslint/consistent-type-imports": "error",
 			"@typescript-eslint/no-deprecated": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",
 			"@typescript-eslint/restrict-template-expressions": "off",
-			"jsdoc/match-description": "off",
-			"n/no-missing-import": "off",
 
-			// Using a ts bin file throws this rule off.
-			// It uses the package.json as a source of truth, and since the package points
-			// at the transpiled js file, it treats usage on the ts src as a violation.
-			"n/hashbang": "off",
-
-			// TODO: Eventually clean these up
-			"@typescript-eslint/no-unsafe-argument": "off",
-			"@typescript-eslint/no-unsafe-assignment": "off",
+			// TODO: Eventually clean this up
 			"@typescript-eslint/no-unsafe-member-access": "off",
-			"@typescript-eslint/no-unsafe-return": "off",
-			"no-useless-escape": "off",
-			"regexp/no-super-linear-backtracking": "off",
-			"regexp/no-unused-capturing-group": "off",
-			"regexp/no-useless-quantifier": "off",
-
-			// Stylistic concerns that don't interfere with Prettier
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"no-useless-rename": "error",
-			"object-shorthand": "error",
-			"operator-assignment": "error",
 		},
 		settings: {
-			perfectionist: { partitionByComment: true, type: "natural" },
 			vitest: { typecheck: true },
 		},
 	},

@@ -14,7 +14,7 @@ export const validateSideEffects = (value: unknown): Result => {
 		// If it's an array, check if all items are non-empty strings
 		for (let i = 0; i < value.length; i++) {
 			const childResult = new ChildResult(i);
-			const item = value[i];
+			const item: unknown = value[i];
 			if (typeof item !== "string") {
 				const itemType = item === null ? "null" : typeof item;
 				childResult.addIssue(

@@ -11,7 +11,7 @@ export const validateDirectories = (obj: unknown): Result => {
 		const entries = Object.entries(obj);
 		for (let i = 0; i < entries.length; i++) {
 			const childResult = new ChildResult(i);
-			const [key, value] = entries[i];
+			const [key, value] = entries[i] as [string, unknown];
 
 			const normalizedKey = key.trim();
 			const propertyName =

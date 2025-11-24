@@ -19,7 +19,7 @@ export const validateContributors = (obj: unknown): Result => {
 	if (Array.isArray(obj)) {
 		for (let i = 0; i < obj.length; i++) {
 			let childResult: Result;
-			const item = obj[i];
+			const item: unknown = obj[i];
 			if (!isPerson(item)) {
 				childResult = new Result([
 					`item ${i} is invalid; it should be a person object with at least a \`name\``,

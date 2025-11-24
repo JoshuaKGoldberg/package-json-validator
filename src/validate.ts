@@ -1,11 +1,7 @@
 import type { SpecMap, SpecName } from "./Spec.types.ts";
 
 import { packageFormat, urlFormat, versionFormat } from "./formats.ts";
-import {
-	validateFieldType,
-	validatePeople,
-	validateUrlTypes,
-} from "./utils/index.js";
+import { validateFieldType, validateUrlTypes } from "./utils/index.js";
 import {
 	validateAuthor,
 	validateBin,
@@ -144,7 +140,7 @@ const getSpecMap = (
 			contributors: {
 				required: true,
 				type: "array",
-				validate: (_, value) => validatePeople(value).errorMessages,
+				validate: (_, value) => validateContributors(value).errorMessages,
 			},
 			cpu: { type: "array" },
 			dependencies: {
@@ -166,7 +162,7 @@ const getSpecMap = (
 			maintainers: {
 				required: true,
 				type: "array",
-				validate: (_, value) => validatePeople(value).errorMessages,
+				validate: (_, value) => validateContributors(value).errorMessages,
 			},
 			name: { format: packageFormat, required: true, type: "string" },
 			os: { type: "array" },
@@ -191,7 +187,7 @@ const getSpecMap = (
 			checksums: { type: "object" },
 			contributors: {
 				type: "array",
-				validate: (_, value) => validatePeople(value).errorMessages,
+				validate: (_, value) => validateContributors(value).errorMessages,
 			},
 
 			cpu: { type: "array" },
@@ -212,7 +208,7 @@ const getSpecMap = (
 			main: { required: true, type: "string" },
 			maintainers: {
 				type: "array",
-				validate: (_, value) => validatePeople(value).errorMessages,
+				validate: (_, value) => validateContributors(value).errorMessages,
 				warning: true,
 			},
 			name: { format: packageFormat, required: true, type: "string" },
@@ -235,6 +231,7 @@ const parse = (data: string) => {
 	}
 	let parsed;
 	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		parsed = JSON.parse(data);
 	} catch (e: unknown) {
 		let errorMessage = "Invalid JSON";
@@ -252,6 +249,7 @@ const parse = (data: string) => {
 		return `Invalid JSON - not an object (actual type: ${typeof parsed})`;
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return parsed;
 };
 
@@ -296,6 +294,7 @@ export const validate: ValidateFunction = (
 	specNameOrOptions: SpecName | ValidationOptions = "npm",
 	options: ValidationOptions = {},
 ): ValidationOutput => {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const parsed = typeof data == "object" ? data : parse(data);
 	const out: ValidationOutput = { valid: false };
 
@@ -312,7 +311,10 @@ export const validate: ValidateFunction = (
 		specName = specNameOrOptions;
 	}
 
-	const map = getSpecMap(parsed.private, specName);
+	const map = getSpecMap(
+		(parsed.private as boolean | undefined) ?? false,
+		specName,
+	);
 	if (map === false) {
 		out.critical = { "Invalid specification": specName };
 		return out;
@@ -347,6 +349,7 @@ export const validate: ValidateFunction = (
 
 		// Type checking
 		if (field.types || field.type) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			const typeErrors = validateFieldType(name, field, parsed[name]);
 			if (typeErrors.length > 0) {
 				errors.push(...typeErrors.map((e) => ({ field: name, message: e })));
@@ -355,6 +358,7 @@ export const validate: ValidateFunction = (
 		}
 
 		// Regexp format check
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		if (field.format && !field.format.test(parsed[name])) {
 			errors.push({
 				field: name,

@@ -12,7 +12,7 @@ export const validateScripts = (obj: unknown): Result => {
 		for (let i = 0; i < entries.length; i++) {
 			const childResult = new ChildResult(i);
 
-			const [key, value] = entries[i];
+			const [key, value] = entries[i] as [string, unknown];
 			const normalizedKey = key.trim();
 			const propertyName =
 				normalizedKey === "" ? String(i) : `"${normalizedKey}"`;
