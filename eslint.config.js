@@ -21,7 +21,6 @@ export default defineConfig(
 			"**/*.snap",
 			"README.md/*.js",
 			"coverage",
-			"demo",
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",

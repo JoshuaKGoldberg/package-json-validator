@@ -13,7 +13,7 @@ pnpm install
 
 ## Building
 
-Run [**tsup**](https://tsup.egoist.dev) locally to build source files from `src/` into output files in `lib/`:
+Run locally to build source files from `src/` into output files in `lib/`:
 
 ```shell
 pnpm build
@@ -44,17 +44,14 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 - `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
-- `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
 
 Read the individual documentation for each linter to understand how it can be configured and used best.
 
 For example, ESLint can be run with `--fix` to auto-fix some lint rule complaints:
 
 ```shell
-pnpm run lint --fix
+pnpm lint --fix
 ```
-
-Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -62,13 +59,13 @@ Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules 
 You can run it locally on the command-line:
 
 ```shell
-pnpm run test
+pnpm test
 ```
 
 Add the `--coverage` flag to compute test coverage and place reports in the `coverage/` directory:
 
 ```shell
-pnpm run test --coverage
+pnpm test --coverage
 ```
 
 Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
@@ -86,22 +83,11 @@ You should be able to see suggestions from [TypeScript](https://typescriptlang.o
 However, it can be useful to run the TypeScript command-line (`tsc`) to type check all files in `src/`:
 
 ```shell
-pnpm tsc
+pnpm typecheck
 ```
 
 Add `--watch` to keep the type checker running in a watch mode that updates the display as you save files:
 
 ```shell
-pnpm tsc --watch
+pnpm typecheck --watch
 ```
-
-## Running the Demo
-
-The `demo/` directory contains a small demo site that can validate a GitHub repository or package.json file contents.
-To run it, run [`serve`](https://www.npmjs.com/package/serve) on the current directory:
-
-```plaintext
-npx serve
-```
-
-...and then open `localhost:3000/demo`.
