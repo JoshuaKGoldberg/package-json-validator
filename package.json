@@ -108,7 +108,7 @@
 		"sentences-per-line": "0.3.0",
 		"tsdown": "0.16.6",
 		"typescript": "5.9.3",
-		"typescript-eslint": "8.47.0",
+		"typescript-eslint": "8.48.1",
 		"vitest": "4.0.13"
 	},
 	"packageManager": "pnpm@10.24.0",
