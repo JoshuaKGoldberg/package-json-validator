@@ -1,5 +1,6 @@
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import eslint from "@eslint/js";
+import markdown from "@eslint/markdown";
 import vitest from "@vitest/eslint-plugin";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
@@ -77,6 +78,14 @@ export default defineConfig(
 	{
 		extends: [packageJson.configs["recommended-publishable"]],
 		files: ["package.json"],
+	},
+	{
+		extends: [markdown.configs.recommended],
+		files: ["**/*.md"],
+		rules: {
+			// https://github.com/eslint/markdown/issues/294
+			"markdown/no-missing-label-refs": "off",
+		},
 	},
 	{
 		extends: [
