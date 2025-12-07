@@ -86,7 +86,7 @@
 		"@types/yargs": "17.0.33",
 		"@vitest/coverage-v8": "4.0.13",
 		"@vitest/eslint-plugin": "1.5.0",
-		"console-fail-test": "0.5.0",
+		"console-fail-test": "0.6.0",
 		"eslint": "9.39.1",
 		"eslint-plugin-jsdoc": "61.4.1",
 		"eslint-plugin-jsonc": "2.21.0",
