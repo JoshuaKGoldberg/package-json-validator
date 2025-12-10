@@ -28,7 +28,7 @@ importers:
         specifier: 9.39.1
         version: 9.39.1
       '@eslint/markdown':
-        specifier: ^7.5.1
+        specifier: 7.5.1
         version: 7.5.1
       '@release-it/conventional-changelog':
         specifier: 10.0.0
@@ -100,7 +100,7 @@ importers:
         specifier: 2.5.19
         version: 2.5.19(prettier@3.7.0)
       prettier-plugin-sentences-per-line:
-        specifier: ~0.1.0
+        specifier: 0.1.0
         version: 0.1.0(prettier@3.7.0)
       prettier-plugin-sh:
         specifier: 0.18.0
@@ -997,9 +997,6 @@ packages:
 
   '@types/semver@7.7.0':
     resolution: {integrity: sha512-k107IF4+Xr7UHjwDc7Cfd6PRQfbdkiRabXGRjo07b4WyPahFBZCZ1sE+BNxYIJPPg73UkfOsVOLwqVc/6ETrIA==}
-
-  '@types/unist@2.0.11':
-    resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -3795,7 +3792,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/ms@2.1.0': {}
 
@@ -3808,8 +3805,6 @@ snapshots:
   '@types/parse-path@7.0.3': {}
 
   '@types/semver@7.7.0': {}
-
-  '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
 
