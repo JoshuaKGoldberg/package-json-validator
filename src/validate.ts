@@ -33,96 +33,94 @@ import {
 } from "./validators/index.ts";
 
 // https://docs.npmjs.com/cli/v11/configuring-npm/package-json
-		// https://nodejs.org/api/packages.html
-const getSpecMap = (
-	isPrivate: boolean,
-): SpecMap => ({
-			author: {
-				validate: (_, value) => validateAuthor(value).errorMessages,
-				warning: true,
-			},
-			bin: { validate: (_, value) => validateBin(value).errorMessages },
-			bugs: { validate: validateUrlOrMailto, warning: true },
-			bundledDependencies: {
-				validate: (_, value) => validateBundleDependencies(value).errorMessages,
-			},
-			bundleDependencies: {
-				validate: (_, value) => validateBundleDependencies(value).errorMessages,
-			},
-			config: { validate: (_, value) => validateConfig(value).errorMessages },
-			contributors: {
-				validate: (_, value) => validateContributors(value).errorMessages,
-			},
-			cpu: { validate: (_, value) => validateCpu(value).errorMessages },
-			dependencies: {
-				recommended: true,
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			description: {
-				validate: (_, value) => validateDescription(value).errorMessages,
-				warning: true,
-			},
-			devDependencies: {
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			directories: {
-				validate: (_, value) => validateDirectories(value).errorMessages,
-			},
-			engines: {
-				recommended: true,
-				validate: (_, value) => validateEngines(value).errorMessages,
-			},
-			exports: { validate: (_, value) => validateExports(value).errorMessages },
-			files: { validate: (_, value) => validateFiles(value).errorMessages },
-			homepage: {
-				recommended: true,
-				validate: (_, value) => validateHomepage(value).errorMessages,
-			},
-			keywords: {
-				validate: (_, value) => validateKeywords(value).errorMessages,
-				warning: true,
-			},
-			license: {
-				validate: (_, value) => validateLicense(value).errorMessages,
-				warning: true,
-			},
-			main: { validate: (_, value) => validateMain(value).errorMessages },
-			man: { validate: (_, value) => validateMan(value).errorMessages },
-			name: {
-				required: !isPrivate,
-				validate: (_, value) => validateName(value).errorMessages,
-			},
-			optionalDependencies: {
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			os: { validate: (_, value) => validateOs(value).errorMessages },
-			peerDependencies: {
-				validate: (_, value) => validateDependencies(value).errorMessages,
-			},
-			private: { validate: (_, value) => validatePrivate(value).errorMessages },
-			publishConfig: {
-				validate: (_, value) => validatePublishConfig(value).errorMessages,
-			},
-			repository: {
-				validate: (_, value) => validateRepository(value).errorMessages,
-				warning: true,
-			},
-			scripts: { validate: (_, value) => validateScripts(value).errorMessages },
-			sideEffects: {
-				validate: (_, value) => validateSideEffects(value).errorMessages,
-			},
-			type: {
-				recommended: true,
-				validate: (_, value) => validateType(value).errorMessages,
-			},
-			version: {
-				required: !isPrivate,
-				validate: (_, value) => validateVersion(value).errorMessages,
-			},
-			workspaces: {
-				validate: (_, value) => validateWorkspaces(value).errorMessages,
-			},
-		});
+// https://nodejs.org/api/packages.html
+const getSpecMap = (isPrivate: boolean): SpecMap => ({
+	author: {
+		validate: (_, value) => validateAuthor(value).errorMessages,
+		warning: true,
+	},
+	bin: { validate: (_, value) => validateBin(value).errorMessages },
+	bugs: { validate: validateUrlOrMailto, warning: true },
+	bundledDependencies: {
+		validate: (_, value) => validateBundleDependencies(value).errorMessages,
+	},
+	bundleDependencies: {
+		validate: (_, value) => validateBundleDependencies(value).errorMessages,
+	},
+	config: { validate: (_, value) => validateConfig(value).errorMessages },
+	contributors: {
+		validate: (_, value) => validateContributors(value).errorMessages,
+	},
+	cpu: { validate: (_, value) => validateCpu(value).errorMessages },
+	dependencies: {
+		recommended: true,
+		validate: (_, value) => validateDependencies(value).errorMessages,
+	},
+	description: {
+		validate: (_, value) => validateDescription(value).errorMessages,
+		warning: true,
+	},
+	devDependencies: {
+		validate: (_, value) => validateDependencies(value).errorMessages,
+	},
+	directories: {
+		validate: (_, value) => validateDirectories(value).errorMessages,
+	},
+	engines: {
+		recommended: true,
+		validate: (_, value) => validateEngines(value).errorMessages,
+	},
+	exports: { validate: (_, value) => validateExports(value).errorMessages },
+	files: { validate: (_, value) => validateFiles(value).errorMessages },
+	homepage: {
+		recommended: true,
+		validate: (_, value) => validateHomepage(value).errorMessages,
+	},
+	keywords: {
+		validate: (_, value) => validateKeywords(value).errorMessages,
+		warning: true,
+	},
+	license: {
+		validate: (_, value) => validateLicense(value).errorMessages,
+		warning: true,
+	},
+	main: { validate: (_, value) => validateMain(value).errorMessages },
+	man: { validate: (_, value) => validateMan(value).errorMessages },
+	name: {
+		required: !isPrivate,
+		validate: (_, value) => validateName(value).errorMessages,
+	},
+	optionalDependencies: {
+		validate: (_, value) => validateDependencies(value).errorMessages,
+	},
+	os: { validate: (_, value) => validateOs(value).errorMessages },
+	peerDependencies: {
+		validate: (_, value) => validateDependencies(value).errorMessages,
+	},
+	private: { validate: (_, value) => validatePrivate(value).errorMessages },
+	publishConfig: {
+		validate: (_, value) => validatePublishConfig(value).errorMessages,
+	},
+	repository: {
+		validate: (_, value) => validateRepository(value).errorMessages,
+		warning: true,
+	},
+	scripts: { validate: (_, value) => validateScripts(value).errorMessages },
+	sideEffects: {
+		validate: (_, value) => validateSideEffects(value).errorMessages,
+	},
+	type: {
+		recommended: true,
+		validate: (_, value) => validateType(value).errorMessages,
+	},
+	version: {
+		required: !isPrivate,
+		validate: (_, value) => validateVersion(value).errorMessages,
+	},
+	workspaces: {
+		validate: (_, value) => validateWorkspaces(value).errorMessages,
+	},
+});
 
 const parse = (data: string) => {
 	if (typeof data != "string") {
@@ -153,7 +151,10 @@ const parse = (data: string) => {
 	return parsed;
 };
 
-export type ValidateFunction = (data: object | string, options?: ValidationOptions) => ValidationOutput;
+export type ValidateFunction = (
+	data: object | string,
+	options?: ValidationOptions,
+) => ValidationOutput;
 
 export interface ValidationOptions {
 	recommendations?: boolean;
