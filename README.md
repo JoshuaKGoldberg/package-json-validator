@@ -815,9 +815,69 @@ const packageData = {
 const result = validateType(packageData.type);
 ```
 
+### validateVersion(value)
+
+This function validates the value of the `version` property of a `package.json`.
+It takes the value, and validates it using `semver`, which is the same package that npm uses.
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateVersion } from "package-json-validator";
+
+const packageData = {
+	version: "1.2.3",
+};
+
+const result = validateVersion(packageData.version);
+```
+
+### validateWorkspaces(value)
+
+This function validates the value of the `workspaces` property of a `package.json`.
+It takes the value, and validates it against the following criteria.
+
+- the property is an array
+- all items in the array should be non-empty strings
+
+It returns a `Result` object (See [Result Types](#result-types)).
+
+#### Examples
+
+```ts
+import { validateWorkspaces } from "package-json-validator";
+
+const packageData = {
+	workspaces: ["./app", "./packages/*"],
+};
+
+const result = validateWorkspaces(packageData.cpu);
+```
+
 ## Specification
 
 This package uses the `npm` [spec](https://docs.npmjs.com/cli/configuring-npm/package-json) along with additional [supporting documentation from node](https://nodejs.org/api/packages.html), as its source of truth for validation.
+
+## Deprecation Policy
+
+We never _want_ to remove things, when we're building them!
+But the reality is that libraries evolve and deprecations are a fact of life.
+Following are the different timeframes that we've defined as it relates to deprecating APIs in this project.
+
+### RFC Timeframe (6 weeks)
+
+When some aspect of our API is going to be deprecated (and eventually removed), it must initially go through an RFC phase.
+Whoever's motivating the removal of the api, should create an RFC issue explaining the proposal and inviting feedback from the community.
+That RFC should remain active for at least 6 weeks.
+The RFC text should make clear what the target date is for closing the RFC.
+Once the RFC period is over, if the removal is still moving forward, the API(s) should be officially deprecated.
+
+### Removal Timeframe (6 months)
+
+Once an API has been marked as deprecated, it will remain intact for at least 6 months.
+After 6 months from the date of deprecation, the API is subject to removal.
 
 ## Development
 
