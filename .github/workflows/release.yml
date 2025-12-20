@@ -5,25 +5,41 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  id-token: write # < REQUIRED FOR OIDC
-
 concurrency:
   group: ${{ github.workflow }}
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
+        id: release
         with:
-          fetch-depth: 0
-          ref: main
-          token: ${{ secrets.ACCESS_TOKEN }}
+          release-type: node
+          package-name: package-json-validator
+          bump-minor-pre-major: true # BREAKING CHANGE only bumps semver minor if version < 1.0.0
+          bump-patch-for-minor-pre-major: true # feat commits bump semver patch instead of minor if version < 1.0.0
+          changelog-types: >
+            [
+              { "type": "feat", "section": "Features", "hidden": false },
+              { "type": "fix", "section": "Bug Fixes", "hidden": false },
+              { "type": "perf", "section": "Performance Improvements", "hidden": false },
+              { "type": "build", "hidden": true },
+              { "type": "chore", "hidden": true },
+              { "type": "ci", "hidden": true },
+              { "type": "docs", "hidden": true },
+              { "type": "refactor", "hidden": true },
+              { "type": "test", "hidden": true }
+            ]
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        if: ${{ steps.release.outputs.release_created }}
       - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        uses: JoshuaKGoldberg/release-it-action@8ee87d0d30f97b452ef5d8aa9f4d0490eed439aa # v0.4.0
-
+        if: ${{ steps.release.outputs.release_created }}
+      - run: |
+          pnpm build
+          pnpm publish
+        if: ${{ steps.release.outputs.release_created }}
