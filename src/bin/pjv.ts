@@ -9,15 +9,12 @@ import fs from "node:fs";
 import process from "node:process";
 import yargs from "yargs";
 
-import type { SpecName } from "../Spec.types.ts";
-
 import { validate } from "../validate.ts";
 
 interface Options {
 	filename: string;
 	quiet: boolean;
 	recommendations: boolean;
-	spec: SpecName;
 	warnings: boolean;
 }
 
@@ -27,13 +24,6 @@ const options = yargs(process.argv.slice(2))
 		alias: "f",
 		default: "package.json",
 		description: "package.json file to validate",
-	})
-	.options("spec", {
-		alias: "s",
-		choices: ["npm", "commonjs_1.0", "commonjs_1.1"],
-		default: "npm",
-		deprecated: true,
-		description: "spec to use - npm|commonjs_1.0|commonjs_1.1",
 	})
 	.options("warnings", {
 		alias: "w",
@@ -67,7 +57,7 @@ if (!fs.existsSync(options.filename)) {
 	process.exitCode = 1;
 } else {
 	const contents = fs.readFileSync(options.filename).toString(),
-		results = validate(contents, options.spec, {
+		results = validate(contents, {
 			recommendations: options.recommendations,
 			warnings: options.warnings,
 		});
