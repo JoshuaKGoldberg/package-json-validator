@@ -45,6 +45,14 @@ describe(validateRepository, () => {
 		"gist:11081aaa281",
 		"bitbucket:user/repo",
 		"gitlab:user/repo",
+		// Names with hyphens and dots
+		"github:some-user/some-repo",
+		"github:user-name/repo-name",
+		"some-user/some-repo",
+		"user-name/repo.js",
+		"bitbucket:my-org/my-repo",
+		"gitlab:some.user/some.repo",
+		"gist:abc-123",
 	])(
 		"should return no issues if the value is a shorthand string: %s",
 		(value) => {

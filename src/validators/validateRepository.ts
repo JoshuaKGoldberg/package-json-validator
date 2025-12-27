@@ -46,10 +46,10 @@ const repositoryValidators = {
 
 const KNOWN_PROVIDERS = ["bitbucket", "gist", "github", "gitlab"];
 const REPONAME_REGEX: Record<(typeof KNOWN_PROVIDERS)[number], RegExp> = {
-	bitbucket: /^\w+\/\w+$/,
-	gist: /^\w+$/,
-	github: /^\w+\/\w+$/,
-	gitlab: /^\w+\/\w+$/,
+	bitbucket: /^[\w.-]+\/[\w.-]+$/,
+	gist: /^[\w.-]+$/,
+	github: /^[\w.-]+\/[\w.-]+$/,
+	gitlab: /^[\w.-]+\/[\w.-]+$/,
 };
 
 /**
