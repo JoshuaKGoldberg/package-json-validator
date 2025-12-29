@@ -1,3 +1,10 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
 concurrency:
   group: ${{ github.workflow }}
 
@@ -7,27 +14,10 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      id-token: write
+      id-token: write # Required for OIDC
     steps:
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         id: release
-        with:
-          release-type: node
-          package-name: package-json-validator
-          bump-minor-pre-major: true # BREAKING CHANGE only bumps semver minor if version < 1.0.0
-          bump-patch-for-minor-pre-major: true # feat commits bump semver patch instead of minor if version < 1.0.0
-          changelog-types: >
-            [
-              { "type": "feat", "section": "Features", "hidden": false },
-              { "type": "fix", "section": "Bug Fixes", "hidden": false },
-              { "type": "perf", "section": "Performance Improvements", "hidden": false },
-              { "type": "build", "hidden": true },
-              { "type": "chore", "hidden": true },
-              { "type": "ci", "hidden": true },
-              { "type": "docs", "hidden": true },
-              { "type": "refactor", "hidden": true },
-              { "type": "test", "hidden": true }
-            ]
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         if: ${{ steps.release.outputs.release_created }}
       - uses: ./.github/actions/prepare
@@ -36,10 +26,3 @@ jobs:
           pnpm build
           pnpm publish
         if: ${{ steps.release.outputs.release_created }}
-
-name: Release
-
-on:
-  push:
-    branches:
-      - main
