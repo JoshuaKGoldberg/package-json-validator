@@ -136,6 +136,10 @@ export default defineConfig(
 		files: ["pnpm-workspace.yaml"],
 		rules: {
 			"yml/file-extension": "off",
+			"yml/sort-keys": [
+				"error",
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
+			],
 		},
 	},
 	{
