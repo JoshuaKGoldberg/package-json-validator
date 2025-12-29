@@ -133,6 +133,12 @@ export default defineConfig(
 		},
 	},
 	{
+		files: ["pnpm-workspace.yaml"],
+		rules: {
+			"yml/file-extension": "off",
+		},
+	},
+	{
 		files: ["./eslint.config.js", "./**/*.test.*"],
 		rules: {
 			"n/no-unsupported-features/node-builtins": "off",
