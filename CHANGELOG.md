@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.59.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.0...v0.59.1) (2025-12-30)
+
+### Bug Fixes
+
+- allow hyphens and dots in repository shorthand names ([#616](https://github.com/JoshuaKGoldberg/package-json-validator/issues/616)) ([ea03c6d](https://github.com/JoshuaKGoldberg/package-json-validator/commit/ea03c6d0b1679ca1dcfa2b8573cb75cb4bbefe11)), closes [#619](https://github.com/JoshuaKGoldberg/package-json-validator/issues/619)
+
 ## [0.59.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.58.0...v0.59.0) (2025-11-17)
 
 ### Features
