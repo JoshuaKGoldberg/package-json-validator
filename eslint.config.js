@@ -41,11 +41,6 @@ export default defineConfig(
 			"@typescript-eslint/consistent-type-imports": "error",
 			"n/no-missing-import": "off",
 
-			// Using a ts bin file throws this rule off.
-			// It uses the package.json as a source of truth, and since the package points
-			// at the transpiled js file, it treats usage on the ts src as a violation.
-			"n/hashbang": "off",
-
 			// Stylistic concerns that don't interfere with Prettier
 			"logical-assignment-operators": [
 				"error",
@@ -96,7 +91,7 @@ export default defineConfig(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
+					allowDefaultProject: ["*.config.*s"],
 				},
 				tsconfigRootDir: import.meta.dirname,
 			},
