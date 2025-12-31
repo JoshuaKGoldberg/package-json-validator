@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.1...v1.0.0) (2025-12-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecated cli
+
+### Features
+
+* remove deprecated cli ([6d56b4d](https://github.com/JoshuaKGoldberg/package-json-validator/commit/6d56b4de9bb54dd4e95a5d21db92f5f0a0e9f700))
+* remove support for the legacy commonjs package specs ([#608](https://github.com/JoshuaKGoldberg/package-json-validator/issues/608)) ([a4f3356](https://github.com/JoshuaKGoldberg/package-json-validator/commit/a4f335649acff83be09fdafcf1840c4b5e27ee69))
+
 ## [0.59.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.0...v0.59.1) (2025-12-30)
 
 ### Bug Fixes
