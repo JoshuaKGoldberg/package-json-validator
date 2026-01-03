@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.59.2](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.1...v0.59.2) (2026-01-03)
+
+
+### Features
+
+* remove support for the legacy commonjs package specs ([#608](https://github.com/JoshuaKGoldberg/package-json-validator/issues/608)) ([a4f3356](https://github.com/JoshuaKGoldberg/package-json-validator/commit/a4f335649acff83be09fdafcf1840c4b5e27ee69))
+
 ## [0.59.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.0...v0.59.1) (2025-12-30)
 
 ### Bug Fixes
