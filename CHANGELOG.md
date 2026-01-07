@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.0-beta.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.1...v1.0.0-beta.0) (2026-01-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove support for the legacy commonjs package specs ([#608](https://github.com/JoshuaKGoldberg/package-json-validator/issues/608))
+
+* update release workflow for beta releases ([40b88da](https://github.com/JoshuaKGoldberg/package-json-validator/commit/40b88da611b206fc5ecb719d65170dffd5c521b6))
+
+
+### Features
+
+* remove support for the legacy commonjs package specs ([#608](https://github.com/JoshuaKGoldberg/package-json-validator/issues/608)) ([a4f3356](https://github.com/JoshuaKGoldberg/package-json-validator/commit/a4f335649acff83be09fdafcf1840c4b5e27ee69))
+
 ## [0.59.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.0...v0.59.1) (2025-12-30)
 
 ### Bug Fixes
