@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - 1.x.x
+      - beta
 
 concurrency:
   group: ${{ github.workflow }}
@@ -19,14 +19,28 @@ jobs:
     outputs:
       releases_created: ${{ steps.release.outputs.releases_created }}
     steps:
+      - name: Select release-please config
+        id: config
+        run: |
+          if [[ "${GITHUB_REF_NAME}" == "beta" ]]; then
+            echo "config=release-please-config.beta.json" >> $GITHUB_OUTPUT
+          else
+            echo "config=release-please-config.json" >> $GITHUB_OUTPUT
+          fi
+
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         id: release
         with:
+          config-file: .github/release-please/${{ steps.config.outputs.config }}
+          manifest-file: .github/release-please/release-please-manifest.json
           target-branch: ${{ github.ref_name }}
+
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         if: ${{ steps.release.outputs.release_created }}
+
       - uses: ./.github/actions/prepare
         if: ${{ steps.release.outputs.release_created }}
+
       - run: |
           pnpm build
           pnpm publish
