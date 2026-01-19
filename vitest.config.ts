@@ -4,7 +4,6 @@ export default defineConfig({
 	test: {
 		clearMocks: true,
 		coverage: {
-			all: true,
 			exclude: [
 				...coverageConfigDefaults.exclude,
 				"src/index.ts",
