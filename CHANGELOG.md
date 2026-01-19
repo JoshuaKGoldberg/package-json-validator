@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0-beta.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.60.0...v1.0.0-beta.0) (2026-01-19)
+
+
+* update release workflow for beta releases ([dd110d1](https://github.com/JoshuaKGoldberg/package-json-validator/commit/dd110d16e4c0d21a47cc5c0c2ed0000d5058e93a))
+
 ## [0.60.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v0.59.1...v0.60.0) (2026-01-06)
 
 
