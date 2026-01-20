@@ -49,9 +49,6 @@
 	},
 	"main": "lib/index.mjs",
 	"types": "lib/index.d.mts",
-	"bin": {
-		"pjv": "lib/bin/pjv.mjs"
-	},
 	"files": [
 		"CHANGELOG.md",
 		"lib/"
@@ -71,8 +68,7 @@
 	"dependencies": {
 		"semver": "^7.7.2",
 		"validate-npm-package-license": "^3.0.4",
-		"validate-npm-package-name": "^7.0.0",
-		"yargs": "~18.0.0"
+		"validate-npm-package-name": "^7.0.0"
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.6.0",
@@ -82,7 +78,6 @@
 		"@types/semver": "7.7.0",
 		"@types/validate-npm-package-license": "3.0.3",
 		"@types/validate-npm-package-name": "4.0.2",
-		"@types/yargs": "17.0.33",
 		"@vitest/coverage-v8": "4.0.13",
 		"@vitest/eslint-plugin": "1.6.1",
 		"console-fail-test": "0.6.0",
