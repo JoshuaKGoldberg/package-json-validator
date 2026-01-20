@@ -16,5 +16,6 @@
 	"release-type": "node",
 	"packages": {
 		".": {}
-	}
+	},
+	"versioning": "prerelease"
 }
