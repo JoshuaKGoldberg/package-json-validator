@@ -17,6 +17,7 @@ jobs:
       pull-requests: write
       id-token: write # Required for OIDC
     outputs:
+      dist_tag: ${{ steps.determine_dist_tag.outputs.dist_tag }}
       releases_created: ${{ steps.release.outputs.releases_created }}
     steps:
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
@@ -81,6 +82,6 @@ jobs:
             The release is available on:
 
             * [GitHub releases](https://github.com/JoshuaKGoldberg/package-json-validator/releases/tag/{release_tag})
-            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/package-json-validator/v/${{ env.npm_version }})
+            * [npm package (@${{ needs.release_please.outputs.dist_tag }} dist-tag)](https://www.npmjs.com/package/package-json-validator/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
