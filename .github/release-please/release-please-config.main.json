@@ -12,9 +12,10 @@
 	],
 	"include-component-in-tag": false,
 	"prerelease": true,
-	"prerelease-type": "beta",
+	"prerelease-type": "rc",
 	"release-type": "node",
 	"packages": {
 		".": {}
-	}
+	},
+	"versioning": "prerelease"
 }
