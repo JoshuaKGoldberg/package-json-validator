@@ -1,0 +1,123 @@
+name: Auto Rebase Next Branch
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TARGET_BRANCH: beta
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout ${{ env.TARGET_BRANCH }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch main
+        run: git fetch origin main
+
+      - name: Attempt Rebase
+        run: git rebase origin/main
+
+      - name: Push Rebased Branch
+        if: success()
+        run: git push --force-with-lease origin $TARGET_BRANCH
+
+      # ---- Close conflict issue(s) if rebase succeeds ----
+      - name: Close rebase-conflict issues
+        if: success()
+        uses: actions/github-script@v7
+        env:
+          TARGET_BRANCH: ${{ env.TARGET_BRANCH }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+
+            const issues = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: "rebase-conflict"
+            });
+
+            const TARGET_BRANCH = process.env.TARGET_BRANCH;
+
+            for (const issue of issues.data) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issue.number,
+                body: `✅ Automated rebase of \`${TARGET_BRANCH}\` onto \`main\` succeeded. Closing this issue.`
+              });
+
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issue.number,
+                state: "closed"
+              });
+            }
+
+      # ---- Create or update conflict issue on failure ----
+      - name: Notify on conflict (deduplicated)
+        if: failure()
+        uses: actions/github-script@v7
+        env:
+          TARGET_BRANCH: ${{ env.TARGET_BRANCH }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const runUrl = `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`;
+
+            const issues = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: "rebase-conflict"
+            });
+
+            const TARGET_BRANCH = process.env.TARGET_BRANCH;
+
+            const body = [
+              "❌ **Automated rebase failed**",
+              "",
+              `An automated rebase of \`${TARGET_BRANCH}\` onto \`main\` failed due to merge conflicts.`,
+              "",
+              "**Workflow run**",
+              runUrl,
+              "",
+              "**Next steps**",
+              `1. \`git checkout ${TARGET_BRANCH}\``,
+              "2. `git fetch origin`",
+              "3. `git rebase origin/main`",
+              "4. Resolve conflicts",
+              `5. \`git push --force-with-lease origin ${TARGET_BRANCH}\``,
+              "",
+              "This issue will be closed automatically once the rebase succeeds."
+            ].join("\n");
+
+            if (issues.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issues.data[0].number,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title: `🚨 ${TARGET_BRANCH} branch rebase conflict with main`,
+                body,
+                labels: ["rebase-conflict"]
+              });
+            }
