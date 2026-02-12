@@ -1,10 +1,12 @@
 {
-	"bump-minor-pre-major": true,
-	"bump-patch-for-minor-pre-major": true,
 	"changelog-sections": [
-		{ "type": "feat", "section": "Features", "hidden": false },
-		{ "type": "fix", "section": "Bug Fixes", "hidden": false },
-		{ "type": "perf", "section": "Performance Improvements", "hidden": false },
+		{ "type": "feat", "section": "🚀 Features", "hidden": false },
+		{ "type": "fix", "section": "🩹 Bug Fixes", "hidden": false },
+		{
+			"type": "perf",
+			"section": "🏁 Performance Improvements",
+			"hidden": false
+		},
 		{ "type": "build", "hidden": true },
 		{ "type": "chore", "hidden": true },
 		{ "type": "ci", "hidden": true },
@@ -13,8 +15,11 @@
 		{ "type": "test", "hidden": true }
 	],
 	"include-component-in-tag": false,
+	"prerelease": true,
+	"prerelease-type": "rc",
 	"release-type": "node",
 	"packages": {
 		".": {}
-	}
+	},
+	"versioning": "prerelease"
 }

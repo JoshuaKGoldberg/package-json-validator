@@ -96,7 +96,7 @@ export default defineConfig(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.config.*s", "lib/bin/pjv.mjs"],
+					allowDefaultProject: ["*.config.*s"],
 				},
 				tsconfigRootDir: import.meta.dirname,
 			},
