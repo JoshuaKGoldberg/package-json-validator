@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0-rc.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0-beta.1...v1.0.0-rc.0) (2026-02-17)
+
+
+* start rc cycle ([#709](https://github.com/JoshuaKGoldberg/package-json-validator/issues/709)) ([935f5db](https://github.com/JoshuaKGoldberg/package-json-validator/commit/935f5db2693fd9ee1566e3bf91e3a571fa5f45bb))
+
 ## [1.0.0-beta.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2026-01-20)
 
 
