@@ -15,11 +15,8 @@
 		{ "type": "test", "hidden": true }
 	],
 	"include-component-in-tag": false,
-	"prerelease": true,
-	"prerelease-type": "rc",
 	"release-type": "node",
 	"packages": {
 		".": {}
-	},
-	"versioning": "prerelease"
+	}
 }
