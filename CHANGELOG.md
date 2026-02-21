@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0-rc.0...v1.0.0) (2026-02-21)
+
+
+* trigger 1.0.0 release ([#716](https://github.com/JoshuaKGoldberg/package-json-validator/issues/716)) ([2dc6f7b](https://github.com/JoshuaKGoldberg/package-json-validator/commit/2dc6f7b601233a34be94a8c1d3e8e05573b15808))
+
 ## [1.0.0-rc.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0-beta.1...v1.0.0-rc.0) (2026-02-17)
 
 
