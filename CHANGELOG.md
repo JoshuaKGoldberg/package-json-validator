@@ -3,9 +3,13 @@
 ## [1.0.1](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0...v1.0.1) (2026-02-22)
 
 
-### 🩹 Bug Fixes
+### ⚠ BREAKING CHANGES
 
-* remove 1.0.0 changelog entry ([#725](https://github.com/JoshuaKGoldberg/package-json-validator/issues/725)) ([e91367b](https://github.com/JoshuaKGoldberg/package-json-validator/commit/e91367b0af9a7bf3bee6db670219f386a3fb7860))
+* remove deprecated cli ([#669](https://github.com/JoshuaKGoldberg/package-json-validator/issues/669))
+
+### Features
+
+* remove deprecated cli ([#669](https://github.com/JoshuaKGoldberg/package-json-validator/issues/669)) ([30c89ff](https://github.com/JoshuaKGoldberg/package-json-validator/commit/30c89ff784b1280f744f50e95ade85554ee696ae))
 
 ## [1.0.0-rc.0](https://github.com/JoshuaKGoldberg/package-json-validator/compare/v1.0.0-beta.1...v1.0.0-rc.0) (2026-02-17)
 
