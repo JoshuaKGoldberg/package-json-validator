@@ -72,7 +72,7 @@ export default defineConfig(
 		},
 	},
 	{
-		extends: [jsonc.configs["flat/recommended-with-json"]],
+		extends: [jsonc.configs["recommended-with-json"]],
 		files: ["**/*.json", "**/*.jsonc"],
 	},
 	{
