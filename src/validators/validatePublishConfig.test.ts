@@ -81,7 +81,6 @@ describe(validatePublishConfig, () => {
 				directory: 123,
 				exports: {
 					"": 123,
-					"./secondary": null,
 				},
 				main: 123,
 				provenance: 123,
@@ -94,7 +93,6 @@ describe(validatePublishConfig, () => {
 				"the type should be a `string`, not `number`",
 				"the value of property 0 should be either an entry point path or an object of export conditions",
 				"property 0 has an empty key, but should be an export condition",
-				'the value of "./secondary" should be either an entry point path or an object of export conditions',
 				"the type should be a `string`, not `number`",
 				"the type should be a `boolean`, not `number`",
 				"the type should be a `string`, not `number`",
@@ -108,7 +106,6 @@ describe(validatePublishConfig, () => {
 				directory: 123,
 				exports: {
 					"": 123,
-					"./secondary": null,
 				},
 				main: 123,
 				provenance: 123,
@@ -121,7 +118,6 @@ describe(validatePublishConfig, () => {
 				"the type should be a `string`, not `number`",
 				"the value of property 0 should be either an entry point path or an object of export conditions",
 				"property 0 has an empty key, but should be an export condition",
-				'the value of "./secondary" should be either an entry point path or an object of export conditions',
 				"the type should be a `string`, not `number`",
 				"the type should be a `boolean`, not `number`",
 				"the type should be a `string`, not `number`",
