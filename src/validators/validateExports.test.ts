@@ -65,6 +65,16 @@ describe(validateExports, () => {
 		expect(result.childResults).toHaveLength(3);
 	});
 
+	it("should return no issues if the value is a valid object with a null value", () => {
+		const result = validateExports({
+			".": "./lib/index.js",
+			"./feature/*.js": "./feature/*.js",
+			"./feature/internal/*": null,
+		});
+		expect(result.errorMessages).toEqual([]);
+		expect(result.childResults).toHaveLength(3);
+	});
+
 	it("should return issues if the value is an object with some properties having invalid string", () => {
 		const result = validateExports({
 			".": "./index.js",
@@ -118,23 +128,18 @@ describe(validateExports, () => {
 		const result = validateExports({
 			".": "./index.js",
 			"invalid-number": 123,
-			"invalid-null": null,
 			"invalid-array": [],
 		});
 		expect(result.errorMessages).toEqual([
 			'the value of "invalid-number" should be either an entry point path or an object of export conditions',
-			'the value of "invalid-null" should be either an entry point path or an object of export conditions',
 			'the value of "invalid-array" should be either an entry point path or an object of export conditions',
 		]);
 		expect(result.issues).toEqual([]);
-		expect(result.childResults).toHaveLength(4);
+		expect(result.childResults).toHaveLength(3);
 		[
 			[],
 			[
 				'the value of "invalid-number" should be either an entry point path or an object of export conditions',
-			],
-			[
-				'the value of "invalid-null" should be either an entry point path or an object of export conditions',
 			],
 			[
 				'the value of "invalid-array" should be either an entry point path or an object of export conditions',
