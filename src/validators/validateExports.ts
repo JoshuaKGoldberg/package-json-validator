@@ -43,17 +43,20 @@ const validateExportCondition = (
 			result.addChildResult(i, childResult);
 		}
 	}
+	// The value of this property is `null`, and this property is not the child of another
+	else if (obj === null) {
+		if (typeof propertyName !== "string") {
+			result.addIssue(
+				"the value is `null`, but should be an `object` or `string`",
+			);
+		}
+	}
 	// The value of this property is not correct, and this property is the child of another
 	else if (typeof propertyName === "string") {
 		result.addIssue(
 			`the value of ${fieldName} should be either an entry point path or an object of export conditions`,
 		);
-	}
-	// The remaining conditions are for values that aren't correct and this is not a child property
-	else if (obj === null) {
-		result.addIssue(
-			"the value is `null`, but should be an `object` or `string`",
-		);
+		// The value of this property is not correct, and this property is not the child of another
 	} else {
 		const valueType = Array.isArray(obj) ? "Array" : typeof obj;
 		result.addIssue(
